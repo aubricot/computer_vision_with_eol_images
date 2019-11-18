@@ -32,43 +32,42 @@ Windows 10
 compatible NVIDIA GPU (GTX 650 or newer)
 
 # At the end of the above installations and downloads, your directory should look like this: 
-TensorFlow
-   └─ models
-        ├── official
-        ├── research
-               └── object_detection
+TensorFlow  
+   └─ models  
+        ├── official  
+        ├── research  
+               └── object_detection  
+        ├── samples  
+        └── tutorials  
 
-        ├── samples
-        └── tutorials
-
-# Next, you need to download a model from the Tensorflow Model Zoo (https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md "Tensorflow Model Zoo") and unzip the files. 
+# Next, you need to download a model from the [Tensorflow Model Zoo] (https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md) and unzip the files.  
 We used faster_rcnn_resnet50_coco_2018_01_28.tar.gz and ssd_resnet50_v1_fpn_shared_box_predictor_640x640_coco14_sync_2018_07_03.tar.gz. 
 
 # Finally, download the 'test_images' folder from the current repository or create your own 'test_images' folder with your own images (saved as .jpg). 
 
 # Move the folders containing the unzipped model files and test images to 'object_detection.' 
 The final directory should look like the one below. 
-TensorFlow
-   └─ models
-        ├── official
-        ├── research
-               └── object_detection
-                         ├── model_downloaded_from_tensorflow_model_zoo
-                                           ├── saved_model
-                                                    ├── variables/
-                                                    └── saved_model.pb
-                                           ├── checkpoint
-                                           ├── frozen_inference_graph.pb
-                                           ├── model.ckpt.data-00000-of-00001
-                                           ├── model.ckpt.index
-                                           ├── model.ckpt.meta
-                                           └── pipeline
-                          ├── test_images   
-                                  ├── 542.4801468374.jpg
-                                  ├── 542.7816025222.jpg
-                                  ├── 542.10578857864.jpg
-                                  ├── 542.15445377044.jpg
-                                  ├── image_info
+TensorFlow  
+   └─ models  
+        ├── official  
+        ├── research  
+               └── object_detection  
+                         ├── model_downloaded_from_tensorflow_model_zoo  
+                                           ├── saved_model  
+                                                    ├── variables/  
+                                                    └── saved_model.pb  
+                                           ├── checkpoint  
+                                           ├── frozen_inference_graph.pb  
+                                           ├── model.ckpt.data-00000-of-00001  
+                                           ├── model.ckpt.index  
+                                           ├── model.ckpt.meta  
+                                           └── pipeline  
+                          ├── test_images  
+                                  ├── 542.4801468374.jpg  
+                                  ├── 542.7816025222.jpg  
+                                  ├── 542.10578857864.jpg  
+                                  ├── 542.15445377044.jpg  
+                                  ├── image_info  
 
-       ├── samples
-       └── tutorials
+       ├── samples  
+       └── tutorials  
