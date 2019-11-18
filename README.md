@@ -1,4 +1,4 @@
-## object_detection_image_cropping
+## Object Detection for Image Cropping
 Using tensorflow-gpu 2.0, CUDA Toolkit 10.0, cuDNN 7.6.0  
 Last updated 17 November 2019
 
@@ -7,6 +7,8 @@ Testing different existing object detection frameworks (Tensorflow Object Detect
 Existing frameworks were modified to be compatible with Windows 10 working on a GPU. Further adjustments were made to extract and modify bounding box coordinates of detected animals to translate these into image cropping coordinates.
 
 For details on installation and getting everything up and running, see the tutorials below that were used and modified to create the current object detection and image cropping pipeline. 
+
+---
 
 # Tensorflow Object Detection API
 First read the official installation instructions from Tensorflow: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html#tensorflow-models-installation
@@ -19,7 +21,7 @@ After installation, you are ready to use the notebook in this repository: object
 You can also see the original Tensorflow Object Detection API demo in Jupyter Notebook that the one in this repository is based off of: https://github.com/tensorflow/models/blob/master/research/object_detection/object_detection_tutorial.ipynb  
 Modifications: The sections "Loader," "Loading Label Maps," and the definition of "show_inference" were modified for use here and other code was replicated verbatim or with only minor variable name changes. 
 
-# Software Requirements:
+#### Software Requirements:
 Git for Windows
 Python 3.7
 Visual Studio 2015 with Windows SDK
@@ -27,61 +29,65 @@ CUDA Toolkit 10.0
 cuDNN 7.6.0
 Protobuf 3.4.0
 
-# Hardware requirements:
+#### Hardware requirements:
 Windows 10
 compatible NVIDIA GPU (GTX 650 or newer)
 
 ### At the end of the above installations and downloads, your directory should look like this: 
-TensorFlow   
+    TensorFlow   
 
-    └─ models  
+        └─ models  
    
-        ├── official  
-        ├── research  
+            ├── official  
+            ├── research  
               
-              └── object_detection  
+                  └── object_detection  
         
-        ├── samples  
-        └── tutorials  
+            ├── samples  
+            └── tutorials  
 
+---
 ### Next, you need to download a model from the Tensorflow Model Zoo  
 https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md and unzip the files. We used faster_rcnn_resnet50_coco_2018_01_28.tar.gz and ssd_resnet50_v1_fpn_shared_box_predictor_640x640_coco14_sync_2018_07_03.tar.gz. 
 
-#### Finally, download the 'test_images' folder from the current repository or create your own 'test_images' folder with your own images (saved as .jpg). 
+##### Finally, download the 'test_images' folder from the current repository or create your own 'test_images' folder with your own images (saved as .jpg). 
 
-#### Move the folders containing the unzipped model files and test images to 'object_detection.' 
+##### Move the folders containing the unzipped model files and test images to 'object_detection.' 
 
 ### The final directory should look like the one below. 
-TensorFlow  
+    TensorFlow  
 
-    └─ models  
+        └─ models  
     
-        ├── official  
-        ├── research 
+            ├── official  
+            ├── research 
         
-               └── object_detection  
-               
-                         ├── model_downloaded_from_tensorflow_model_zoo  
+                   └── object_detection  
+                 
+                             ├── model_downloaded_from_tensorflow_model_zoo  
                          
-                                           ├── saved_model  
+                                               ├── saved_model  
                                            
-                                                    ├── variables/  
-                                                    └── saved_model.pb 
+                                                        ├── variables/  
+                                                        └── saved_model.pb 
                                                     
-                                           ├── checkpoint  
-                                           ├── frozen_inference_graph.pb  
-                                           ├── model.ckpt.data-00000-of-00001  
-                                           ├── model.ckpt.index  
-                                           ├── model.ckpt.meta  
-                                           └── pipeline  
+                                               ├── checkpoint  
+                                               ├── frozen_inference_graph.pb  
+                                               ├── model.ckpt.data-00000-of-00001  
+                                               ├── model.ckpt.index  
+                                               ├── model.ckpt.meta  
+                                               └── pipeline  
                                            
-                          ├── test_images  
+                              ├── test_images  
                           
-                                  ├── 542.4801468374.jpg  
-                                  ├── 542.7816025222.jpg  
-                                  ├── 542.10578857864.jpg  
-                                  ├── 542.15445377044.jpg  
-                                  ├── image_info  
+                                      ├── 542.4801468374.jpg  
+                                      ├── 542.7816025222.jpg  
+                                      ├── 542.10578857864.jpg  
+                                      ├── 542.15445377044.jpg  
+                                      ├── image_info  
 
-       ├── samples  
-       └── tutorials  
+           ├── samples  
+           └── tutorials  
+
+---
+### You're now ready to run the object_detection_for_image_cropping.ipynb notebook to try out the code yourself.
