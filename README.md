@@ -1,4 +1,4 @@
-## Object Detection for Image Cropping
+# Object Detection for Image Cropping
 Using tensorflow-gpu 2.0, CUDA Toolkit 10.0, cuDNN 7.6.0  
 Last updated 17 November 2019
 
@@ -10,8 +10,8 @@ For details on installation and getting everything up and running, see the tutor
 
 ---
 
-# Tensorflow Object Detection API
-## Faster-RCNN and SSD implemented using Tensorflow Object Detection API
+## Tensorflow Object Detection API
+### Faster-RCNN and SSD implemented using Tensorflow Object Detection API
 First read the official installation instructions from Tensorflow: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html#tensorflow-models-installation
 
 Then follow these specific instructions for installing on Windows: https://towardsdatascience.com/installing-tensorflow-with-cuda-cudnn-and-gpu-support-on-windows-10-60693e46e781  
@@ -95,8 +95,8 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 ---  
 ---   
 
-# YOLO via Darkflow
-## YOLO implemented using Darknet in Tensorflow
+## YOLO via Darkflow
+### YOLO implemented using Darknet in Tensorflow
 First read the official installation instructions for Darkflow: https://github.com/thtrieu/darkflow. You can find documentation for Darknet, the underlying model architecture, here https://pjreddie.com/darknet/.
 
 The installation instructions already work for Windows. 
@@ -104,14 +104,17 @@ Modifications: CUDA Toolkit 10.0, cuDNN 7.6.0, tensorflow-gpu 1.15rc and Python 
 
 After installation, you need to clone the Darkflow and Darknet repositories to your computer in the folder yolo_imgdetect/.
 
+```
 #### download and compile darknet (the underlying framework of YOLO)
 git clone https://github.com/pjreddie/darknet
 cd darknet
 python setup.py build_ext --inplace
-
+```
+```
 #### install darkflow, the tensorflow implementation of darknet
 git clone https://github.com/thtrieu/darkflow.git
 pip install .
+```
 
 Confirm installation and file directory structures through the instructions below before using the notebook in this repository
 
@@ -137,7 +140,9 @@ compatible NVIDIA GPU (GTX 650 or newer)
               
 ---
 #### Next you need to download pre-trained sample weight files.
-The models are already in darkflow/cfg, but the weights associated with these models need to be downloaded from https://pjreddie.com/media/files/yolov3.weights and https://drive.google.com/drive/folders/0B1tW_VtY7onidEwyQ2FtQVplWEU. After downloading, move them to yolo_imgdetect/bin
+The models are already in darkflow/cfg, but the weights associated with these models need to be downloaded from https://pjreddie.com/media/files/yolov3.weights and https://drive.google.com/drive/folders/0B1tW_VtY7onidEwyQ2FtQVplWEU.  
+
+#### After downloading, move them to yolo_imgdetect/bin
 
 ##### Finally, download 'object_detection_for_image_cropping_yolo.ipynb' and 'sample_img/' from the current repository or create a 'sample_img/' folder with your own images (saved as .jpg). 
 
