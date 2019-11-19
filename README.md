@@ -9,6 +9,7 @@ Existing frameworks were modified to be compatible with Windows 10 working on a 
 For details on installation and getting everything up and running, see the tutorials below that were used and modified to create the current object detection and image cropping pipeline. 
 
 ---
+---   
 
 ## Tensorflow Object Detection API
 ### Faster-RCNN and SSD implemented using Tensorflow Object Detection API
