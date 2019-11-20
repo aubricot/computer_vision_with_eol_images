@@ -35,7 +35,7 @@ Protobuf 3.4.0
 Windows 10
 compatible NVIDIA GPU (GTX 650 or newer)
 
-### At the end of the above installations and downloads, your directory should look like this: 
+#### At the end of the above installations and downloads, your directory should look like this: 
     TensorFlow   
 
         └─ models  
@@ -52,11 +52,11 @@ compatible NVIDIA GPU (GTX 650 or newer)
 ### Next, you need to download a model from the Tensorflow Model Zoo  
 https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md and unzip the files. We used faster_rcnn_resnet50_coco_2018_01_28.tar.gz and ssd_resnet50_v1_fpn_shared_box_predictor_640x640_coco14_sync_2018_07_03.tar.gz. 
 
-##### Finally, download 'object_detection_for_image_cropping_tf_ssd_rcnn.ipynb' and 'sample_img/' from the current repository or create your own 'sample_img/' folder with your own images (saved as .jpg). 
+Finally, download 'object_detection_for_image_cropping_tf_ssd_rcnn.ipynb' and 'sample_img/' from the current repository or create your own 'sample_img/' folder with your own images (saved as .jpg). 
 
-##### Move the folders containing the unzipped model files, sample images, and object_detection_for_image_cropping_tf_ssd_rcnn.ipynb to 'object_detection'. 
+Move the folders containing the unzipped model files, sample images, and object_detection_for_image_cropping_tf_ssd_rcnn.ipynb to 'object_detection'. 
 
-### The final directory should look like the one below. 
+#### The final directory should look like the one below. 
     TensorFlow  
 
         └─ models  
@@ -92,7 +92,7 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
            └── tutorials  
 
 ---   
-### You're now ready to run the object_detection_for_image_cropping_tf_ssd_rcnn.ipynb notebook to try out the code yourself.
+#### You're now ready to run the object_detection_for_image_cropping_tf_ssd_rcnn.ipynb notebook to try out the code yourself.
 ---  
 ---   
 
@@ -130,7 +130,7 @@ cuDNN 7.6.0
 Windows 10
 compatible NVIDIA GPU (GTX 650 or newer)
 
-### At the end of the above installations, your directory should look like this: 
+#### At the end of the above installations, your directory should look like this: 
     yolo_imgdetect   
 
         └─ darknet  
@@ -143,13 +143,13 @@ compatible NVIDIA GPU (GTX 650 or newer)
 #### Next you need to download pre-trained sample weight files.
 The models are already in darkflow/cfg, but the weights associated with these models need to be downloaded from https://pjreddie.com/media/files/yolov3.weights and https://drive.google.com/drive/folders/0B1tW_VtY7onidEwyQ2FtQVplWEU.  
 
-#### After downloading, move them to yolo_imgdetect/bin
+After downloading, move them to yolo_imgdetect/bin
 
-##### Finally, download 'object_detection_for_image_cropping_yolo.ipynb' and 'sample_img/' from the current repository or create a 'sample_img/' folder with your own images (saved as .jpg). 
+Finally, download 'object_detection_for_image_cropping_yolo.ipynb' and 'sample_img/' from the current repository or create a 'sample_img/' folder with your own images (saved as .jpg). 
 
-##### Move object_detection_for_image_cropping_yolo.ipynb and the folder containing the sample images to 'yolo_imgdetect/'. 
+Move object_detection_for_image_cropping_yolo.ipynb and the folder containing the sample images to 'yolo_imgdetect/'. 
 
-### The final directory should look like the one below. 
+#### The final directory should look like the one below. 
     yolo_imgdetect   
 
         └─ darknet  
@@ -178,7 +178,7 @@ The models are already in darkflow/cfg, but the weights associated with these mo
               └── yolo-tiny.weights
 
 ---   
-### You're now ready to run the object_detection_for_image_cropping_yolo.ipynb notebook to try out the code yourself.
+#### You're now ready to run the object_detection_for_image_cropping_yolo.ipynb notebook to try out the code yourself.
 ---  
 
 #### References:
