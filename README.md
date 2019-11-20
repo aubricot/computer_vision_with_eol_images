@@ -11,8 +11,7 @@ For details on installation and getting everything up and running, see the tutor
 ---
 ---   
 
-## Tensorflow Object Detection API
-### Faster-RCNN and SSD implemented using Tensorflow Object Detection API
+## Faster-RCNN and SSD implemented using Tensorflow Object Detection API
 First read the official installation instructions from Tensorflow: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html#tensorflow-models-installation
 
 Then follow these specific instructions for installing on Windows: https://towardsdatascience.com/installing-tensorflow-with-cuda-cudnn-and-gpu-support-on-windows-10-60693e46e781  
