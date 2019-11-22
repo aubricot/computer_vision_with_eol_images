@@ -2,16 +2,25 @@
 Using tensorflow-gpu 2.0, CUDA Toolkit 10.0, cuDNN 7.6.0  
 Last updated 17 November 2019
 
-Testing different existing object detection frameworks (Using Faster-RCNN and SSD detection via the Tensorflow Object Detection API and YOLO via darkflow) as a method to do customized, large-scale image processing. The three frameworks differ in their speeds and accuracy: YOLO has been found to be the fastest but least accurate, while Faster RCNN was found to be the slowest but most accurate, with MobileNet SSD falling somewhere in between (Lin et al. 2017, Hui 2018, Redmon and Farhadi 2018). Using the location and dimensions of the detected animals within each framework, images will be cropped to square dimensions that are centered and padded around the detection box. [Code to convert bounding box dimensions to square dimension crop coordinates still in progress]. The frameworks were first tested with pre-trained models for "out of the box" inference on images of birds of varying dimensions and resolutions.
+Testing different existing object detection frameworks (Using Faster-RCNN and SSD detection via the Tensorflow Object Detection API and YOLO via Darkflow) as a method to do customized, large-scale image processing. The three frameworks differ in their speeds and accuracy: YOLO has been found to be the fastest but least accurate, while Faster RCNN was found to be the slowest but most accurate, with MobileNet SSD falling somewhere in between (Lin et al. 2017, Hui 2018, Redmon and Farhadi 2018). Using the location and dimensions of the detected animals within each framework, images will be cropped to square dimensions that are centered and padded around the detection box. [Code to convert bounding box dimensions to square dimension crop coordinates still in progress]. The frameworks are tested with pre-trained models for "out of the box" inference on images of birds of varying dimensions and resolutions, but will be modified and fine-tuned in future efforts.
 
-Existing frameworks were modified to be compatible with Windows 10 working on a GPU. Further adjustments were made to extract and modify bounding box coordinates of detected animals to translate these into image cropping coordinates.
+## Getting Started  
+We reccomend first testing and viewing the code within Google Colab (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). If starting in Colab, you run everything entirely in the cloud and no local software or library installs are requried. Modules in the Tensorflow Object Detection API are very version- and operating system-sensitive, so minor incompatibilities can distract you from first implementing and understanding the code. If you prefer to start directly on your local machine, Jupyter Notebooks for object detection are also provided and detailed instructions are included below. 
 
-For details on installation and getting everything up and running, see the tutorials below that were used and modified to create the current object detection and image cropping pipeline. 
+# Getting Started with Google Colab (recommended)   
+To get started in Google Colab, all you need to do is click the link above and follow the instructions in the COLAB notebook files above (ex: COLAB_object_detection_for_image_cropping_[model_name].ipynb). No software installs are required and instructions to run the detector on your own images are included.
+---
+---  
+
+# Getting Started on your local PC
+Existing frameworks were modified to be compatible with Windows 10 working on a GPU, and have a variety of specific software and hardware requirements that are version and operating system specific. Further adjustments were made to extract and modify bounding box coordinates of detected animals to translate these into image cropping coordinates.
+
+For details on installation and getting everything up and running, see the tutorials below that were used and modified to create the current object detection and image cropping pipeline for A) Faster-RCNN and SSD implemented using Tensorflow Object Detection API and B)  YOLO via Darkflow.  
 
 ---
 ---   
 
-## Faster-RCNN and SSD implemented using Tensorflow Object Detection API
+## A) Faster-RCNN and SSD implemented using Tensorflow Object Detection API
 First read the official installation instructions from Tensorflow: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html#tensorflow-models-installation
 
 Then follow these specific instructions for installing on Windows: https://towardsdatascience.com/installing-tensorflow-with-cuda-cudnn-and-gpu-support-on-windows-10-60693e46e781  
@@ -95,7 +104,7 @@ Move the folders containing the unzipped model files, sample images, and object_
 ---  
 ---   
 
-## YOLO via Darkflow
+## B) YOLO via Darkflow
 ### YOLO implemented using Darknet in Tensorflow
 First read the official installation instructions for Darkflow: https://github.com/thtrieu/darkflow. You can find documentation for Darknet, the underlying model architecture, here https://pjreddie.com/darknet/.
 
