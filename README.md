@@ -14,7 +14,7 @@ To get started in Google Colab, all you need to do is click the link above and f
 ---
 ---  
 
-## Getting Started on your local PC
+## Getting Started on your local PC (detailed instructions below)
 Existing frameworks were modified to be compatible with Windows 10 working on a GPU, and have a variety of specific software and hardware requirements that are version and operating system specific. Further adjustments were made to extract and modify bounding box coordinates of detected animals to translate these into image cropping coordinates.
 
 For details on installation and getting everything up and running, see the tutorials below that were used and modified to create the current object detection and image cropping pipeline for A) Faster-RCNN and SSD implemented using Tensorflow Object Detection API and B)  YOLO via Darkflow.  
