@@ -1,14 +1,16 @@
 # Object Detection for Image Cropping
 Using tensorflow-gpu 2.0, CUDA Toolkit 10.0, cuDNN 7.6.0  
-Last updated 17 November 2019
+*Last updated 22 November 2019*
 
 Testing different existing object detection frameworks (Using Faster-RCNN and SSD detection via the Tensorflow Object Detection API and YOLO via Darkflow) as a method to do customized, large-scale image processing. The three frameworks differ in their speeds and accuracy: YOLO has been found to be the fastest but least accurate, while Faster RCNN was found to be the slowest but most accurate, with MobileNet SSD falling somewhere in between (Lin et al. 2017, Hui 2018, Redmon and Farhadi 2018). Using the location and dimensions of the detected animals within each framework, images will be cropped to square dimensions that are centered and padded around the detection box. [Code to convert bounding box dimensions to square dimension crop coordinates still in progress]. The frameworks are tested with pre-trained models for "out of the box" inference on images of birds of varying dimensions and resolutions, but will be modified and fine-tuned in future efforts.
 
 ## Getting Started  
-We reccomend first testing and viewing the code within Google Colab (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). If starting in Colab, you run everything entirely in the cloud and no local software or library installs are requried. Modules in the Tensorflow Object Detection API are very version- and operating system-sensitive, so minor incompatibilities can distract you from first implementing and understanding the code. If you prefer to start directly on your local machine, Jupyter Notebooks for object detection are also provided and detailed instructions are included below. 
+We recommend first testing and viewing the code within Google Colab (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). If starting in Colab, you run everything entirely in the cloud and no local software or library installs are requried. Modules in the Tensorflow Object Detection API are very version- and operating system-sensitive, so minor incompatibilities can distract you from first implementing and understanding the code. If you prefer to start directly on your local machine, Jupyter Notebooks for object detection are also provided and detailed instructions are included below. 
 
-# Getting Started with Google Colab (recommended)   
+
+# Getting Started with Google Colab(recommended) 
 To get started in Google Colab, all you need to do is click the link above and follow the instructions in the COLAB notebook files above (ex: COLAB_object_detection_for_image_cropping_[model_name].ipynb). No software installs are required and instructions to run the detector on your own images are included.
+
 ---
 ---  
 
