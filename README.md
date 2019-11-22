@@ -8,13 +8,13 @@ Testing different existing object detection frameworks (Using Faster-RCNN and SS
 We recommend first testing and viewing the code within Google Colab (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). If starting in Colab, you run everything entirely in the cloud and no local software or library installs are requried. Modules in the Tensorflow Object Detection API are very version- and operating system-sensitive, so minor incompatibilities can distract you from first implementing and understanding the code. If you prefer to start directly on your local machine, Jupyter Notebooks for object detection are also provided and detailed instructions are included below. 
 
 
-# Getting Started with Google Colab(recommended) 
+## Getting Started with Google Colab (recommended) 
 To get started in Google Colab, all you need to do is click the link above and follow the instructions in the COLAB notebook files above (ex: COLAB_object_detection_for_image_cropping_[model_name].ipynb). No software installs are required and instructions to run the detector on your own images are included.
 
 ---
 ---  
 
-# Getting Started on your local PC
+## Getting Started on your local PC
 Existing frameworks were modified to be compatible with Windows 10 working on a GPU, and have a variety of specific software and hardware requirements that are version and operating system specific. Further adjustments were made to extract and modify bounding box coordinates of detected animals to translate these into image cropping coordinates.
 
 For details on installation and getting everything up and running, see the tutorials below that were used and modified to create the current object detection and image cropping pipeline for A) Faster-RCNN and SSD implemented using Tensorflow Object Detection API and B)  YOLO via Darkflow.  
