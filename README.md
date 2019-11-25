@@ -1,5 +1,5 @@
-# Object Detection for Image Cropping
-Using tensorflow-gpu 2.0, CUDA Toolkit 10.0, cuDNN 7.6.0  
+# Object Detection for Image Cropping 
+To test object detectors without any installs or downloads, go to the Google Colab links below.
 *Last updated 22 November 2019*
 
 Testing different existing object detection frameworks (Using Faster-RCNN and SSD detection via the Tensorflow Object Detection API and YOLO via Darkflow) as a method to do customized, large-scale image processing. The three frameworks differ in their speeds and accuracy: YOLO has been found to be the fastest but least accurate, while Faster RCNN was found to be the slowest but most accurate, with MobileNet SSD falling somewhere in between (Lin et al. 2017, Hui 2018, Redmon and Farhadi 2018). Using the location and dimensions of the detected animals within each framework, images will be cropped to square dimensions that are centered and padded around the detection box. [Code to convert bounding box dimensions to square dimension crop coordinates still in progress]. The frameworks are tested with pre-trained models for "out of the box" inference on images of birds of varying dimensions and resolutions, but will be modified and fine-tuned in future efforts.
@@ -25,6 +25,7 @@ For details on installation and getting everything up and running, see the tutor
 ---   
 
 ## A) Faster-RCNN and SSD implemented using Tensorflow Object Detection API
+Using tensorflow-gpu 2.0, CUDA Toolkit 10.0, cuDNN 7.6.0 
 First read the official installation instructions from Tensorflow: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/install.html#tensorflow-models-installation
 
 Then follow these specific instructions for installing on Windows: https://towardsdatascience.com/installing-tensorflow-with-cuda-cudnn-and-gpu-support-on-windows-10-60693e46e781  
