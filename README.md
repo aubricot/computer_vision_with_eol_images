@@ -1,6 +1,6 @@
 # Object Detection for Image Cropping 
 To test object detectors without any installs or downloads, go to the Google Colab links below.   
-*Last updated 25 November 2019*
+*Last updated 27 November 2019*
 
 Testing different existing object detection frameworks (Using Faster-RCNN and SSD detection via the Tensorflow Object Detection API and YOLO via Darkflow) as a method to do customized, large-scale image processing. The three frameworks differ in their speeds and accuracy: YOLO has been found to be the fastest but least accurate, while Faster RCNN was found to be the slowest but most accurate, with MobileNet SSD falling somewhere in between (Lin et al. 2017, Hui 2018, Redmon and Farhadi 2018). Using the location and dimensions of the detected animals within each framework, images will be cropped to square dimensions that are centered and padded around the detection box. [Code to convert bounding box dimensions to square dimension crop coordinates still in progress]. The frameworks are tested with pre-trained models for "out of the box" inference on images of birds of varying dimensions and resolutions, but will be modified and fine-tuned in future efforts.
 
@@ -9,7 +9,7 @@ We recommend first testing and viewing the code within Google Colab (Google Cola
 
 
 ## Getting Started with Google Colab (recommended) 
-To get started in Google Colab, no software installs are required and instructions to run the detector on your own images are included. Tor YOLO in Darkflow, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/object_detection_for_image_cropping/blob/master/COLAB_object_detection_for_image_cropping_yolo.ipynb) or for SSD or Faster-RCNN with Tensorflow Object Detection API, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/object_detection_for_image_cropping/blob/master/COLAB_object_detection_for_image_cropping_tf_ssd_rcnn.ipynb) or 
+To get started in Google Colab, no software installs are required and instructions to run the detector on your own images are included. For YOLO in Darkflow, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/object_detection_for_image_cropping/blob/master/COLAB_object_detection_for_image_cropping_yolo.ipynb) or for SSD or Faster-RCNN with Tensorflow Object Detection API, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/object_detection_for_image_cropping/blob/master/COLAB_object_detection_for_image_cropping_tf_ssd_rcnn.ipynb).
 
 You can also view the COLAB notebooks directly by clicking on the file names in the repository (ex: COLAB_object_detection_for_image_cropping_[model_name].ipynb). 
 
