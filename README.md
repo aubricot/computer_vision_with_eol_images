@@ -13,7 +13,7 @@ You can also view the COLAB notebooks directly by clicking on the file names in 
 
 **Step 2) Convert bounding boxes to square, centered image cropping coordinates:** To convert bounding box coordinates to EOL crop coodinate formatting standards, use convert_bboxdims.py on sample_crops.tsv exported from Google Colab in Step 1.
 
-**Step 3) Display converted cropping coordinates on images:** To display converted crop coordinates on images and verify that the transformations in convert_bboxdims.py are appropriate (or to fine tune accordingly), click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/object_detection_for_image_cropping/blob/master/COLAB_crop_coords_display_test.ipynb).
+**Step 3) Display converted cropping coordinates on images:** To display converted crop coordinates on images and verify that the transformations in convert_bboxdims.py are appropriate (or to fine tune accordingly), click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/object_detection_for_image_cropping/blob/master/crop_coords_display_test.ipynb).
 
 ---
 ---   
