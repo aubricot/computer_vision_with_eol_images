@@ -1,12 +1,12 @@
 # Converting object detection bounding box coordinates to EOL crop format
-# 2 dec 19
+# Last modified 9 December 19
 
 import csv
 import numpy as np
 import pandas as pd
 import os
 
-# Read in sample crops file exported from Google Colab
+# Read in sample crops file exported from object_detection_for_image_cropping_yolo.ipynb
 df = pd.read_csv('sample_crops_yolo_1000img.tsv', sep='\t', header=0)
 print(df.head())
 
@@ -37,61 +37,74 @@ crops_unq['crop_width'] = crops_unq['xmax'] - crops_unq['xmin']
 print(crops_unq.head())
 
 # Get EOL identifiers from eolMediaURLs
-# Change 1st col from index to normal data column
+## Change 1st col from index to normal data column
 crops_unq.reset_index(inplace=True)
 crops_unq.rename(columns={'image_url': 'eolMediaURL'}, inplace=True)
 
-# Get dataObjectVersionIDs and identifiers from 1st 2 and 2nd to last cols of EOL breakdown file 
+## Get dataObjectVersionIDs and identifiers from 1st 2 and 2nd to last cols of EOL breakdown file 
 df = pd.read_csv('images_for_Aves_breakdown_000001.txt', sep='\t', header=0)
 df = df.iloc[:, np.r_[0:2,-2]]
 print(df.head())
 
-# Map dataObjectVersionIDs to crops_unq using identifiers as the index
+## Map dataObjectVersionIDs to crops_unq using identifiers as the index
 crops_unq.set_index('eolMediaURL', inplace=True, drop=True)
 df.set_index('eolMediaURL', inplace=True, drop=True)
 crops = crops_unq.merge(df, left_index=True, right_index=True)
 print(crops.head())
 
-# Convert bounding box/cropping dimensions to square
+# Convert bounding box/cropping dimensions to square, add padding, and make sure crop boxes aren't out of image bounds
 for i, row in crops.iterrows():
-    # When crop height > crop width and crop height + padding <= image height, set crop width = crop height
-    if crops.crop_height[i] > crops.crop_width[i] and (crops.crop_height[i] + 0.11*(crops.im_height[i])) <= crops.im_height[i]:
-            # Center crop coordinates around square dims
+    # When crop height > crop width:
+    if crops.crop_height[i] > crops.crop_width[i]:
+        # If padded crop dimensions are smaller than image dimensions (ie. not out of bounds), make crop width = padded crop height
+        if (crops.crop_height[i] + 0.11*(max(crops.im_width[i], crops.im_height[i]))) <= min(crops.im_height[i], crops.im_width[i]):
+            # Center position of transformed crop
             crops.xmin[i] = crops.xmin[i] - 0.5*(crops.crop_height[i] - crops.crop_width[i])
             # Make crop dimensions square and pad by 11% image height
-            crops.crop_width[i] = crops.crop_height[i] + 0.11*(crops.im_height[i])
-            crops.crop_height[i] = crops.crop_height[i] + 0.11*(crops.im_height[i])
+            crops.crop_width[i] = crops.crop_height[i] + 0.11*(max(crops.im_width[i], crops.im_height[i]))
+            crops.crop_height[i] = crops.crop_height[i] + 0.11*(max(crops.im_width[i], crops.im_height[i]))
     
-    # If crop height > crop width and crop height + padding >= image height, set crop width & height = image height
-    elif crops.crop_height[i] > crops.crop_width[i] and (crops.crop_height[i] + 0.11*(crops.im_height[i])) >= crops.im_height[i]:
-            # Center crop coordinates around square dims
-            crops.xmin[i] = crops.xmin[i] - 0.5*(crops.im_height[i] - crops.crop_width[i])
-            # Set crop dimensions equal to image dimensions
-            crops.crop_width[i] = crops.im_height[i]
-            crops.crop_height[i] = crops.im_height[i]
+        # If padded crop dimensions are larger than image dimensions (ie. out of bounds), make crop width & height = image height or width (smaller dimension)
+        else:
+            # Center position of transformed crop
+            crops.xmin[i] = crops.xmin[i] - 0.5*(min(crops.im_height[i], crops.im_width[i]) - crops.crop_width[i])
+            # Set crop dimensions equal to smaller image dimension (height or width)
+            crops.crop_width[i] = min(crops.im_height[i], crops.im_width[i])
+            crops.crop_height[i] = min(crops.im_height[i], crops.im_width[i])
     
-    # If crop width > crop height and crop width + padding <= image height, set crop height = crop width        
-    elif crops.crop_width[i] > crops.crop_height[i] and (crops.crop_width[i] + 0.11*(crops.im_width[i])) <= crops.im_width[i]:
-            # Center crop coordinates
-            crops.ymin[i] = crops.ymin[i] - 0.5*(crops.crop_width[i] - crops.crop_height[i])
-            # Make crop dimensions square and pad side lengths by 11% image width
-            crops.crop_height[i] = crops.crop_width[i] + 0.11*(crops.im_width[i])
-            crops.crop_width[i] = crops.crop_width[i] + 0.11*(crops.im_width[i])
-    
-    # If crop width > crop height and crop width >= image height, set crop height & width = image width
+    # When crop width > crop height
     else:
-            # Center crop coordinates
-            crops.ymin[i] = crops.ymin[i] - 0.5*(crops.im_width[i] - crops.crop_width[i])
+        # If padded crop dimensions are smaller than image dimensions (ie. not out of bounds), set crop height = padded crop width        
+        if crops.crop_width[i] + 0.11*(max(crops.im_width[i], crops.im_height[i])) <= min(crops.im_width[i], crops.im_height[i]):
+            # Center position of transformed crop
+            crops.ymin[i] = crops.ymin[i] - 0.5*(crops.crop_width[i] - crops.crop_height[i])
+            # Make crop dimensions square and pad side lengths by 11% image width/height
+            crops.crop_height[i] = crops.crop_width[i] + 0.11*(max(crops.im_width[i], crops.im_height[i]))
+            crops.crop_width[i] = crops.crop_width[i] + 0.11*(max(crops.im_width[i], crops.im_height[i]))
+    
+        # If padded crop dimensions are larger than image dimensions (ie. out of bounds), make crop width & height = image height or width (smaller dimension)
+        else:
+            # Center position of transformed crop
+            crops.ymin[i] = crops.ymin[i] - 0.5*(min(crops.im_height[i], crops.im_width[i]) - crops.crop_width[i])
             # Set crop dimensions equal to image dimensions
-            crops.crop_width[i] = crops.im_width[i]
-            crops.crop_height[i] = crops.im_width[i]  
+            crops.crop_width[i] = min(crops.im_height[i], crops.im_width[i])
+            crops.crop_height[i] = min(crops.im_height[i], crops.im_width[i])
 
-# Image coordinates should be positive, set negative xmin and ymin values to 0
+## Check that crop position isn't outside of image bounds, if so, make xmin or ymin=0
+for i, row in crops.iterrows():
+        if crops.ymin[i] + crops.crop_height[i] >= crops.im_height[i]:
+                crops.ymin[i] = 0
+        elif crops.xmin[i] + crops.crop_width[i] >= crops.im_width[i]:
+                crops.xmin[i] = 0
+
+## Image coordinates should be positive, set negative xmin and ymin values to 0
 crops.xmin[crops.xmin < 0] = 0
 crops.ymin[crops.ymin < 0] = 0
 
 print(crops.head())
 
+# Test that dimensions were modified appropriately for dataset by exporting crop coordinates to display_test.tsv 
+# Load this file into crop_coords_display_test.ipynb and visualize results
 crops.to_csv('bird_crops_yolo_1000img_display_test.tsv', sep='\t', index=True)
 
 # Get image and cropping dimensions in EOL format (concatenated string with labels)
@@ -108,5 +121,5 @@ eol_crops = pd.DataFrame(crops.iloc[:,np.r_[-3,-2,0,-1]])
 print(eol_crops.head())
 
 
-# Write results to tsv
+# Write results to tsv formmatted to EOL crop coordinate standards
 eol_crops.to_csv('bird_crops_yolo_1000img.tsv', sep='\t', index=False)
