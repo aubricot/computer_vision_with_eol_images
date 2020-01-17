@@ -1,3 +1,5 @@
+# modified from https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/using_your_own_dataset.md
+# last updated 17 Jan 2020
 """
 Usage:
   # From tensorflow/models/
