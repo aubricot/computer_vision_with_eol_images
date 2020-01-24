@@ -1,5 +1,3 @@
-# modified from https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/using_your_own_dataset.md
-# last updated 17 Jan 2020
 """
 Usage:
   # From tensorflow/models/
@@ -84,7 +82,7 @@ def create_tf_example(group, path):
 
 
 def main(_):
-    writer = tf.python_io.TFRecordWriter(FLAGS.output_path)
+    writer = tf.python_io.TFRecordWriter('/content/drive/My Drive/fall19_smithsonian_informatics/train/tf.record')
     path = os.path.join(FLAGS.image_dir)
     examples = pd.read_csv(FLAGS.csv_input)
     grouped = split(examples, 'filename')
