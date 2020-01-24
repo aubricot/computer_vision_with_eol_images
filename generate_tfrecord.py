@@ -1,3 +1,8 @@
+# Modified from https://github.com/datitran/raccoon_dataset/blob/master/generate_tfrecord.py
+# Last updated on 24 January 2020
+
+# SEE TO-DO lines 34 and 88
+
 """
 Usage:
   # From tensorflow/models/
@@ -80,9 +85,9 @@ def create_tf_example(group, path):
     }))
     return tf_example
 
-
+# TO-DO replace path with your filepath
 def main(_):
-    writer = tf.python_io.TFRecordWriter('/content/drive/My Drive/fall19_smithsonian_informatics/train/tf.record')
+    writer = tf.python_io.TFRecordWriter('/content/drive/My Drive/.../tf.record')
     path = os.path.join(FLAGS.image_dir)
     examples = pd.read_csv(FLAGS.csv_input)
     grouped = split(examples, 'filename')
