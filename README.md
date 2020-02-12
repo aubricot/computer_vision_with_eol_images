@@ -66,13 +66,13 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 ---   
 
 ## References
-Cartucho 2019. mAP (mean average precision). GitHub. https://github.com/Cartucho/mAP.
+Cartucho 2019. mAP (mean average precision). GitHub. https://github.com/Cartucho/mAP.   
 Hui 2018. Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, 
-FPN, RetinaNet and YOLOv3). Medium. 27 March 2018. 
+FPN, RetinaNet and YOLOv3). Medium. 27 March 2018.  
 medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359.   
-Jung 2019. GitHub. imgaug-doc. https://github.com/aleju/imgaug-doc. 
-Lin et al. 2015. Microsoft COCO: Common Objects in Context. arXiv:1405.0312.  
-Liu et al. 2015. SSD: Single Shot MultiBox Detector. arXiv:1512.02325.  
-Redmon and Farhadi 2018. YOLOv3: An Incremental Improvement. arXiv:1804.02767.   
+Jung 2019. GitHub. imgaug-doc. https://github.com/aleju/imgaug-doc.   
+Lin et al. 2015. Microsoft COCO: Common Objects in Context. [arXiv:1405.0312](https://arxiv.org/pdf/1405.0312.pdf).   
+Liu et al. 2015. SSD: Single Shot MultiBox Detector. [arXiv:1512.02325](https://arxiv.org/pdf/1512.02325.pdf).   
+Redmon and Farhadi 2018. YOLOv3: An Incremental Improvement. [arXiv:1804.02767](https://arxiv.org/pdf/1804.02767.pdf).    
 Ren et al. 2016. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal 
-Networks. arXiv:1506.01497.
+Networks. [arXiv:1506.01497](https://arxiv.org/pdf/1506.01497.pdf).   
