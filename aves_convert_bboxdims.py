@@ -1,13 +1,13 @@
 # Converting object detection bounding box coordinates to EOL crop format
-# Last modified 9 December 19
+# Last modified 17 February 20
 
 import csv
 import numpy as np
 import pandas as pd
 import os
 
-# Read in sample crops file exported from object_detection_for_image_cropping_yolo.ipynb
-df = pd.read_csv('sample_crops_yolo_1000img.tsv', sep='\t', header=0)
+# Read in crops file exported from aves_yolo.ipynb
+df = pd.read_csv('aves_det_crops_1000.tsv', sep='\t', header=0)
 print(df.head())
 
 # Correct for images with 1+ bounding boxes by making a 'super box' containing all small boxes per image
