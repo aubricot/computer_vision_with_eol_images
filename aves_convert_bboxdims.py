@@ -7,7 +7,7 @@ import pandas as pd
 import os
 
 # Read in crops file exported from aves_yolo.ipynb
-df = pd.read_csv('aves_det_crops_1000.tsv', sep='\t', header=0)
+df = pd.read_csv('data_files/input/Aves/aves_det_crops_1000.tsv', sep='\t', header=0)
 print(df.head())
 
 # Correct for images with 1+ bounding boxes by making a 'super box' containing all small boxes per image
@@ -42,7 +42,7 @@ crops_unq.reset_index(inplace=True)
 crops_unq.rename(columns={'image_url': 'eolMediaURL'}, inplace=True)
 
 ## Get dataObjectVersionIDs and identifiers from 1st 2 and 2nd to last cols of EOL breakdown file 
-df = pd.read_csv('images_for_Aves_breakdown_000001.txt', sep='\t', header=0)
+df = pd.read_csv('data_files/input/Aves/images_for_Aves_breakdown_000001.txt', sep='\t', header=0)
 df = df.iloc[:, np.r_[0:2,-2]]
 print(df.head())
 
@@ -105,7 +105,7 @@ print(crops.head())
 
 # Test that dimensions were modified appropriately for dataset by exporting crop coordinates to display_test.tsv 
 # Load this file into crop_coords_display_test.ipynb and visualize results
-crops.to_csv('bird_crops_yolo_1000img_display_test.tsv', sep='\t', index=True)
+crops.to_csv('data_files/output/Aves/bird_crops_yolo_1000img_display_test.tsv', sep='\t', index=True)
 
 # Get image and cropping dimensions in EOL format (concatenated string with labels)
 # {"height":"423","width":"640","crop_x":123.712,"crop_y":53.4249,"crop_width":352,"crop_height":0}
@@ -122,4 +122,4 @@ print(eol_crops.head())
 
 
 # Write results to tsv formmatted to EOL crop coordinate standards
-eol_crops.to_csv('bird_crops_yolo_1000img.tsv', sep='\t', index=False)
+eol_crops.to_csv('data_files/output/Aves/bird_crops_yolo_1000img.tsv', sep='\t', index=False)
