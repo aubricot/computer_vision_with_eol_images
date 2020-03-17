@@ -1,5 +1,5 @@
 # Computer Vision with EOL v3 Images 
-Testing different computer vision methods (object detection, image classification) to do customized, large-scale image processing for Encylopedia of Life images.   
+Testing different computer vision methods (object detection, image classification) to do customized, large-scale image processing for [Encyclopedia of Life v3 database images](https://eol.org/pages/2913056/media).   
 *Last updated 16 March 2020*
 
 The Encyclopedia of Life (EOL) is an online biodiversity resource that seeks to provide information about all ~1.9 million species known to science. A goal for the latest version of EOL (v3) is to better leverage the older, less structured image content. To improve discoverability and display of EOL images, automated image processing pipelines that use computer vision with the goal of being scalable to millions of diverse images are being developed and tested.
