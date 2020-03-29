@@ -1,6 +1,6 @@
 # Object Detection for Image Cropping 
 Testing different existing object detection frameworks (using Faster-RCNN and SSD detection via the Tensorflow Object Detection API and YOLO via Darkflow) as a method to do customized, large-scale image processing for different groups of animals (birds, bats, butterflies & moths).   
-*Last updated 16 March 2020*
+*Last updated 29 March 2020*
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
