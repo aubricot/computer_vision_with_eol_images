@@ -28,6 +28,7 @@ Except for .py files, all files in this repository are run in [Google Colab](htt
 ---   
 
 ## References
+* Encyclopedia of Life. Available from http://eol.org. 
 * Hui 2018. Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, 
 FPN, RetinaNet and YOLOv3). Medium. 27 March 2018. [medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359](medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359).   
 * Lin et al. 2015. Microsoft COCO: Common Objects in Context. [arXiv:1405.0312](https://arxiv.org/pdf/1405.0312.pdf).   
