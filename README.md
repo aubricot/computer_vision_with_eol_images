@@ -2,17 +2,19 @@
 Testing different computer vision methods (object detection, image classification) to do customized, large-scale image processing for [Encyclopedia of Life v3 database images](https://eol.org/pages/2913056/media).   
 *Last updated 16 March 2020*
 
-The Encyclopedia of Life (EOL) is an online biodiversity resource that seeks to provide information about all ~1.9 million species known to science. A goal for the latest version of EOL (v3) is to better leverage the older, less structured image content. To improve discoverability and display of EOL images, automated image processing pipelines that use computer vision with the goal of being scalable to millions of diverse images are being developed and tested.   
-
 <p align="center">
-<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="700" ></a></p>   
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
 
 <sub><sup>Images a-c are hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (a. http://upload.wikimedia.org/wikipedia/commons/a/af/Choeronycteris_mexicana%2C_Mexican_long-tongued_bat_%287371567444%29.jpg , b. http://www.biolib.cz/IMG/GAL/34079.jpg, c. https://content.eol.org/data/media/7e/b3/54/542.16276541578.jpg).</sup></sub>
+
+The Encyclopedia of Life (EOL) is an online biodiversity resource that seeks to provide information about all ~1.9 million species known to science. A goal for the latest version of EOL (v3) is to better leverage the older, less structured image content. To improve discoverability and display of EOL images, automated image processing pipelines that use computer vision with the goal of being scalable to millions of diverse images are being developed and tested.   
 
 ## Project Structure
 * **Object detection for image cropping**: Three object detection frameworks (Faster-RCNN and SSD detection via the Tensorflow Object Detection API and YOLO via Darkflow) were used to perform customized, large-scale image processing for different groups of animals (birds, bats, butterflies & moths) found in the Encyclopedia of Life v3 database. The three frameworks differ in their speeds and accuracy: YOLO has been found to be the fastest but least accurate, while Faster RCNN was found to be the slowest but most accurate, with MobileNet SSD falling somewhere in between (Lin et al. 2017, Hui 2018, Redmon and Farhadi 2018). The model with the best trade-off between speed and accuracy for each group was selected to generate final cropping data for EOL images. The location and dimensions of the detected animals within each framework are used to crop images to square dimensions that are centered and padded around the detection box. For birds, pre-trained object detection models were used. For bats, butterflies and moths, object detection models were custom-trained using EOL user-generated cropping data (square coordinates around animal(s) of interest within each photo). [A model able to detect multiple taxonomic groups simultaneously is currently being developed and custom-trained].
 <p align="center">
-<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/detected_bat.jpg" align="middle" width="700" ></a></p>   
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/detected_bat.jpg" align="middle" width="700" ></a></p> 
+
+<sub><sup> Screenshot of object detection results using trained bat detector model displayed in a Jupyter Notebook running in Google Colab. Image is hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (https://content.eol.org/data/media/28/bc/cb/18.https___www_inaturalist_org_photos_1138413.jpg).</sup></sub>
 
 * **Classification for image tagging**: [Future steps, not yet in progress] Image tagging will further improve EOL user experience, allowing users to search for features within images that are not already noted in metadata. Image classification can be used to label images with flowers present, images of maps, collection labels, and illustrations, and to generate image quality ratings. EOL user-generated cropping and image quality datasets will be used to custom train image classifiers. 
 
