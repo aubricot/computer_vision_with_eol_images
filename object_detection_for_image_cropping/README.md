@@ -21,8 +21,6 @@ Results from the three different object detection models used for the different 
 ## Getting Started  
 Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_bboxdims.py, lepidoptera_convert_bboxdims.py) and merge_tsvs.py, all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, you run everything entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried. If running locally and using a GPU, there are several softwares that need to be installed first and take up ~10 GB and a few workarounds are required if running on a Windows OS. Working in the cloud eliminates these problems and makes it easier to collaborate if multiple users are on different operating systems. If you prefer to use your local machine for object detection, refer to the [Tensorflow Object Detection API Tutorial](https://github.com/tensorflow/models/blob/master/research/object_detection/object_detection_tutorial.ipynb). 
 
----
-
 ## Aves
 **Step 1) Object Detection:** For YOLO in Darkflow, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/aves/aves_yolo.ipynb). For SSD or Faster-RCNN with Tensorflow Object Detection API, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/aves/aves_tf_ssd_rcnn.ipynb). SSD and Faster-RCNN models are implemented in the same notebook and only require changing a few lines of code to switch between.
 
@@ -48,8 +46,6 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 <p align="center"> 
 <sub><sup>Image is hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (https://content.eol.org/data/media/7e/84/94/542.14577243646.jpg).</sup></sub>
 
----
-
 ## Chiroptera
 **Step 1) Split EOL user crops into train and test datasets:** Instead of creating image annotations from scratch, EOL user-generated cropping coordinates are used to create a training dataset (used to train the object detection models) and a test dataset (used to test performance and evaluate model accuracy). Following the [Pareto principle](https://en.wikipedia.org/wiki/Pareto_principle), 80% of the original EOL crops dataset (consisting of images and cropping dimensions) is randomly selected for the train dataset and the remaining 20% is used for the test dataset. To split EOL user-generated cropping coordinates into train and test datasets, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/chiroptera/chiroptera_split_train_test.ipynb).
 
@@ -66,8 +62,6 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 **Step 4) Convert bounding boxes to square, centered image cropping coordinates:** To convert bounding box coordinates to EOL crop coodinate formatting standards, use chiroptera_convert_bboxdims.py on chiroptera_det_crops_1000.tsv (for the 1,000 images dataset) and chiroptera_det_crops_20000.tsv (for the 20,000 images dataset) exported in Step 3c. Optional: the 20,000 image crop dataset can be exported in 4 batches (20000a.tsv, 20000b.tsv, etc.), then combined using combine_tsvs.py before converting coordinates in chiroptera_convert_bboxdims.py.
 
 **Step 5) Display converted cropping coordinates on images:** To display converted crop coordinates from Step 4 on images and verify that the transformations in chiroptera_convert_bboxdims.py are appropriate (or to fine tune accordingly, ex: add padding), click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/crop_coords_display_test.ipynb).
-
----
 
 ## Lepidoptera
 **Step 1) Split EOL user crops into train and test datasets:** Instead of creating image annotations from scratch, EOL user-generated cropping coordinates are used to create a training dataset (used to train the object detection models) and a test dataset (used to test performance and evaluate model accuracy). Following the [Pareto principle](https://en.wikipedia.org/wiki/Pareto_principle), 80% of the original EOL crops dataset (consisting of images and cropping dimensions) is randomly selected for the train dataset and the remaining 20% is used for the test dataset. To split EOL user-generated cropping coordinates into train and test datasets, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/lepidoptera/lepidoptera_split_train_test.ipynb).
@@ -86,8 +80,6 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 
 **Step 5) Display converted cropping coordinates on images:** To display converted crop coordinates from Step 4 on images and verify that the transformations in chiroptera_convert_bboxdims.py are appropriate (or to fine tune accordingly, ex: add padding), click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/crop_coords_display_test.ipynb).
 
----  
-
 ## References
 * Cartucho 2019. mAP (mean average precision). GitHub. https://github.com/Cartucho/mAP.   
 * Hui 2018. Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, 
@@ -104,4 +96,3 @@ Networks. [arXiv:1506.01497](https://arxiv.org/pdf/1506.01497.pdf).
 
 <p align="center"> 
 <sub><sup>Sample original and augmented images used to increase training data sample size and diversity to reduce overfitting when training object detection models. Images are hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (a. http://mothphotographersgroup.msstate.edu/Files1/JV/300/JV8022-300-33.jpg, b. http://www.biolib.cz/IMG/GAL/89243.jpg).</sup></sub> 
-
