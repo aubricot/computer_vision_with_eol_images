@@ -5,6 +5,7 @@ Testing different existing object detection frameworks (using Faster-RCNN and SS
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
 
+<p align="center">
 <sub><sup>Images a-c are hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (a. http://upload.wikimedia.org/wikipedia/commons/a/af/Choeronycteris_mexicana%2C_Mexican_long-tongued_bat_%287371567444%29.jpg , b. http://www.biolib.cz/IMG/GAL/34079.jpg, c. https://content.eol.org/data/media/7e/b3/54/542.16276541578.jpg).</sup></sub>   
 
 Testing different existing object detection frameworks (using Faster-RCNN and SSD detection via the Tensorflow Object Detection API and YOLO via Darkflow) as a method to do customized, large-scale image processing for different groups of animals (birds, bats, butterflies & moths) in the [Encyclopedia of Life v3 database](https://eol.org/pages/2913056/media). The three frameworks differ in their speeds and accuracy: YOLO has been found to be the fastest but least accurate, while Faster RCNN was found to be the slowest but most accurate, with MobileNet SSD falling somewhere in between (Lin et al. 2017, Hui 2018, Redmon and Farhadi 2018). Using the location and dimensions of the detected animals within each framework, images will be cropped to square dimensions that are centered and padded around the detection box. 
