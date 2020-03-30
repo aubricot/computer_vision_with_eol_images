@@ -1,5 +1,5 @@
 # Split EOL User-generated Crop Coordinates by taxa and reformat to Pascal VOC Annotation Style
-# 29 Mar 20
+# 30 Mar 20
 
 import csv
 import numpy as np
@@ -46,15 +46,15 @@ print(taxon1.info())
 # Export as csv
 taxon1.to_csv('object_detection_for_image_cropping/data_files/output/Crop_Data/coleoptera_crops.tsv', sep='\t', index=False)
 
-# Subset of only lemurs (Lemuriformes)
-taxon2 = crops.loc[crops.ancestry.str.contains('Lemurif', case=False, na=False)]
+# Subset of only carnivores (Carnivora)
+taxon2 = crops.loc[crops.ancestry.str.contains('Carnivora', case=False, na=False)]
 taxon2.drop(columns =["ancestry"], inplace = True) 
-taxon2['name'] = 'Lemuriformes'
+taxon2['name'] = 'Carnivora'
 print(taxon2.head())
 print(taxon2.info())
 
 # Export as csv
-taxon2.to_csv('object_detection_for_image_cropping/data_files/output/Crop_Data/lemuriformes_crops.tsv', sep='\t', index=False)
+taxon2.to_csv('object_detection_for_image_cropping/data_files/output/Crop_Data/carnivora_crops.tsv', sep='\t', index=False)
 
 
 # Subset of only frogs (Anura)
