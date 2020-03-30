@@ -5,6 +5,7 @@ Testing different computer vision methods (object detection, image classificatio
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
 
+<p align="center">
 <sub><sup>Images a-c are hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (a. http://upload.wikimedia.org/wikipedia/commons/a/af/Choeronycteris_mexicana%2C_Mexican_long-tongued_bat_%287371567444%29.jpg , b. http://www.biolib.cz/IMG/GAL/34079.jpg, c. https://content.eol.org/data/media/7e/b3/54/542.16276541578.jpg).</sup></sub>
 
 The Encyclopedia of Life (EOL) is an online biodiversity resource that seeks to provide information about all ~1.9 million species known to science. A goal for the latest version of EOL (v3) is to better leverage the older, less structured image content. To improve discoverability and display of EOL images, automated image processing pipelines that use computer vision with the goal of being scalable to millions of diverse images are being developed and tested.   
