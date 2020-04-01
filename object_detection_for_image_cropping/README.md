@@ -115,7 +115,7 @@ FPN, RetinaNet and YOLOv3). Medium. 27 March 2018. [medium.com/@jonathan_hui/obj
 Networks. [arXiv:1506.01497](https://arxiv.org/pdf/1506.01497.pdf).   
 
 <p align="center">
-<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/cham_aug.jpg" align="center" width="600" ></a></p>   
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/lep_aug.jpg" align="center" width="600" ></a></p>   
 
 <p align="center"> 
-<sub><sup>Sample original and augmented images used to increase training data sample size and diversity to reduce overfitting when training object detection models. Image hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (http://static.inaturalist.org/photos/404121/original.jpg?1373255943).</sup></sub> 
+<sub><sup>Sample original and augmented images used to increase training data sample size and diversity to reduce overfitting when training object detection models. Image hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (https://calphotos.berkeley.edu/cgi/img_query?seq_num=81811&one=T, CC BY-NC-SA 3.0 license https://creativecommons.org/licenses/by-nc-sa/3.0/).</sup></sub> 
