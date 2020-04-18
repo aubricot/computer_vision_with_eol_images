@@ -6,7 +6,7 @@ Testing different existing object detection frameworks using Faster-RCNN (built 
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
 
 <p align="center">
-<sub><sup>Images a-c are hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (a. http://upload.wikimedia.org/wikipedia/commons/a/af/Choeronycteris_mexicana%2C_Mexican_long-tongued_bat_%287371567444%29.jpg, CC BY 2.0 license https://creativecommons.org/licenses/by/2.0/legalcode, b. https://calphotos.berkeley.edu/cgi/img_query?seq_num=81811&one=T, CC BY-NC-SA 3.0 license https://creativecommons.org/licenses/by-nc-sa/3.0/, c. https://content.eol.org/data/media/7e/b3/54/542.16276541578.jpg, CC BY-SA 2.0 license https://creativecommons.org/licenses/by-sa/2.0/).</sup></sub>    
+<sub><sup>Images a-c are hosted by Encyclopedia of Life (a. <a href="http://upload.wikimedia.org/wikipedia/commons/a/af/Choeronycteris_mexicana%2C_Mexican_long-tongued_bat_%287371567444%29.jpg"><i>Choeronycteris mexicana</i></a>, licensed under <a href="https://creativecommons.org/licenses/by/2.0/legalcode"></a>CC BY 2.0</a>, b. <a href="https://calphotos.berkeley.edu/cgi/img_query?seq_num=81811&one=T"><i>Hippotion celerio</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>, c. <a href="https://content.eol.org/data/media/7e/b3/54/542.16276541578.jpg"><i>Cuculus solitarius</i></a> (left) and <a <i>Cossypha caffra</i></a> (right)</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>).</sup></sub> 
 
 Testing different existing object detection frameworks (using Faster-RCNN and SSD models via the Tensorflow Object Detection API and YOLO via Darkflow) as a method to do customized, large-scale image processing for different groups of animals (birds, bats, butterflies & moths, beetles, frogs, carnivores, snakes & lizards) in the [Encyclopedia of Life v3 database](https://eol.org/pages/2913056/media). The three frameworks differ in their speeds and accuracy: YOLO has been found to be the fastest but least accurate, while Faster-RCNN Resnet 50 was found to be the slowest but most accurate, with MobileNet SSD, R-FCN and Faster-RCNN Inception v2 falling somewhere in between (Lin et al. 2017, Hui 2018, Redmon and Farhadi 2018, github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). Using the location and dimensions of the detected animals within each framework, images will be cropped to square dimensions that are centered and padded around the detection box. 
 
@@ -31,7 +31,7 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/eagle_crop.jpg" align="center" width="500" ></a></p>   
 
 <p align="center"> 
-<sub><sup>Sample output from image (a) to object detection results (b) displayed in a Jupyter Notebook running in Google Colab. Image is hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (https://content.eol.org/data/media/7e/e7/0f/542.2324933039.jpg, CC BY 2.0 license https://creativecommons.org/licenses/by/2.0/legalcode).</sup></sub>
+<sub><sup>Sample output from image (a) to object detection results (b) displayed in a Jupyter Notebook running in Google Colab. Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/7e/e7/0f/542.2324933039.jpg"><i>Haliastur indus indus</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>).</sup></sub>
 
 **Step 2) Convert bounding boxes to square, centered image cropping coordinates and pad by 11%:** To convert bounding box coordinates to EOL crop coodinate formatting standards, use aves_convert_bboxdims.py on aves_det_crops.tsv exported from Google Colab in Step 1. You can export the 20,000 image crop dataset in 4 batches, then combine these using combine_tsvs.py before converting coordinates in aves_convert_bboxdims.py.
 
@@ -39,7 +39,7 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/bird_cropping.jpg" align="center" width="500" ></a></p>   
 
 <p align="center"> 
-<sub><sup>Sample output from original detection bounding box coordinates (a), to square, padded coordinates (b), and the final cropped image thumbnail (c). Image is hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (https://content.eol.org/data/media/7e/e8/24/542.2339379052.jpg, CC BY-NC 2.0 license https://creativecommons.org/licenses/by-nc/2.0/legalcode).</sup></sub>
+<sub><sup>Sample output from original detection bounding box coordinates (a), to square, padded coordinates (b), and the final cropped image thumbnail (c). Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/7e/e8/24/542.2339379052.jpg"><i>Asio flammeus sandwichensis</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc/2.0/legalcode">CC BY-NC 2.0</a>).</sup></sub>
 
 **Step 3) Display converted cropping coordinates on images:** To display converted crop coordinates from Step 2 on images and verify that the transformations in aves_convert_bboxdims.py are appropriate (or to fine tune accordingly, ex: adjust padding amount), click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/crop_coords_display_test.ipynb).
 
@@ -47,7 +47,7 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/6799399_5pad.jpg" align="middle" width="400" ></a></p>   
 
 <p align="center"> 
-<sub><sup>Image is hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (https://content.eol.org/data/media/7e/84/94/542.14577243646.jpg, CC BY-NC-SA 2.0 license https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode).</sup></sub>
+<sub><sup>Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/7e/84/94/542.14577243646.jpg"><i>Charadrius falklandicus</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode">CC BY-NC-SA 2.0</a>).</sup></sub>
 
 ## Chiroptera
 **Step 1) Split EOL user crops into train and test datasets:** Instead of creating image annotations from scratch, EOL user-generated cropping coordinates are used to create a training dataset (used to train the object detection models) and a test dataset (used to test performance and evaluate model accuracy). Following the [Pareto principle](https://en.wikipedia.org/wiki/Pareto_principle), 80% of the original EOL crops dataset (consisting of images and cropping dimensions) is randomly selected for the train dataset and the remaining 20% is used for the test dataset. To split EOL user-generated cropping coordinates into train and test datasets, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/chiroptera/chiroptera_split_train_test.ipynb).
@@ -101,21 +101,20 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 **Step 5) Display converted cropping coordinates on images:** To display converted crop coordinates from Step 4 on images and verify that the transformations in multitaxa_convert_bboxdims.py are appropriate (or to fine tune accordingly, ex: add padding), click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/crop_coords_display_test.ipynb).
 
 ## References
-* Cartucho 2019. mAP (mean average precision). GitHub. https://github.com/Cartucho/mAP.  
-* Dai et al. 2016. R-FCN: Object Detection via Region-based Fully Convolutional Networks. 
+* [Cartucho 2019]. mAP (mean average precision). GitHub. https://github.com/Cartucho/mAP.  
+* [Dai et al. 2016](https://arxiv.org/abs/1605.06409v2). R-FCN: Object Detection via Region-based Fully Convolutional Networks. 
 arXiv:1605.06409v2.   
-* Encyclopedia of Life. Available from http://eol.org.   
-* Hui 2018. Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, 
-FPN, RetinaNet and YOLOv3). Medium. 27 March 2018. [medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359](medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359).   
-* Jung 2019. imgaug-doc. GitHub. https://github.com/aleju/imgaug-doc.   
-* Lin et al. 2015. Microsoft COCO: Common Objects in Context. [arXiv:1405.0312](https://arxiv.org/pdf/1405.0312.pdf).   
-* Liu et al. 2015. SSD: Single Shot MultiBox Detector. [arXiv:1512.02325](https://arxiv.org/pdf/1512.02325.pdf).   
-* Redmon and Farhadi 2018. YOLOv3: An Incremental Improvement. [arXiv:1804.02767](https://arxiv.org/pdf/1804.02767.pdf).    
-* Ren et al. 2016. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal 
-Networks. [arXiv:1506.01497](https://arxiv.org/pdf/1506.01497.pdf).   
+* [Encyclopedia of Life](http://eol.org)   
+* [Hui 2018](medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359). Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, FPN, RetinaNet and YOLOv3). Medium. 27 March 2018. 
+* [Jung 2019](https://github.com/aleju/imgaug-doc). imgaug-doc. GitHub.   
+* [Lin et al. 2015](https://arxiv.org/pdf/1405.0312.pdf). Microsoft COCO: Common Objects in Context. arXiv:1405.0312.
+* [Liu et al. 2015](https://arxiv.org/pdf/1512.02325.pdf). SSD: Single Shot MultiBox Detector.
+* [Redmon and Farhadi 2018](https://arxiv.org/pdf/1804.02767.pdf). YOLOv3: An Incremental Improvement.
+* [Ren et al. 2016](https://arxiv.org/pdf/1506.01497.pdf). Faster R-CNN: Towards Real-Time Object Detection with Region Proposal 
+Networks.
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/lep_aug.jpg" align="center" width="600" ></a></p>   
 
-<p align="center"> 
-<sub><sup>Sample original and augmented images used to increase training data sample size and diversity to reduce overfitting when training object detection models. Image hosted on Encyclopedia of Life (EOL) and licensed under Creative Commons (https://calphotos.berkeley.edu/cgi/img_query?seq_num=81811&one=T, CC BY-NC-SA 3.0 license https://creativecommons.org/licenses/by-nc-sa/3.0/).</sup></sub> 
+<p align="center">  
+<sub><sup> Sample original and augmented images used to increase training data sample size and diversity to reduce overfitting when training object detection models. Image hosted by Encyclopedia of Life (<a href="https://calphotos.berkeley.edu/cgi/img_query?seq_num=81811&one=T"><i>Hippotion celerio</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"></a>CC BY-NC-SA 3.0</a>.</sup></sub></p>  
