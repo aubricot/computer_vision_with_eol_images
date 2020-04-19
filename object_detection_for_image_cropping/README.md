@@ -1,6 +1,6 @@
 # Object Detection for Image Cropping 
 Testing different existing object detection frameworks using Faster-RCNN (built on Resnet 50 and Inception v2) and SSD/R-FCN detection via the Tensorflow Object Detection API and YOLO via Darkflow) as a method to do customized, large-scale image processing for different groups of animals (birds, bats, butterflies & moths, beetles, frogs, carnivores, snakes & lizards).   
-*Last updated 13 April 2020*
+*Last updated 18 April 2020*
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -101,7 +101,7 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 **Step 5) Display converted cropping coordinates on images:** To display converted crop coordinates from Step 4 on images and verify that the transformations in multitaxa_convert_bboxdims.py are appropriate (or to fine tune accordingly, ex: add padding), click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/crop_coords_display_test.ipynb).
 
 ## References
-* [Cartucho 2019]. mAP (mean average precision). GitHub. https://github.com/Cartucho/mAP.  
+* [Cartucho 2019](https://github.com/Cartucho/mAP). mAP (mean average precision). GitHub.  
 * [Dai et al. 2016](https://arxiv.org/abs/1605.06409v2). R-FCN: Object Detection via Region-based Fully Convolutional Networks. 
 arXiv:1605.06409v2.   
 * [Encyclopedia of Life](http://eol.org)   
