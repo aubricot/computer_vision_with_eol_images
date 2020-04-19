@@ -1,5 +1,5 @@
 # Converting object detection bounding box coordinates to EOL crop format
-# Last modified 22 March 2020
+# Last modified 19 April 2020
 
 import time
 start = time.time()
@@ -9,6 +9,7 @@ import pandas as pd
 import os
 
 # Read in crops file exported from aves_yolo.ipynb
+# TO DO: Update filepath
 crops = pd.read_csv('object_detection_for_image_cropping/data_files/input/Aves/aves_det_crops_1000.tsv', sep='\t', header=0)
 print(crops.head())
 
@@ -60,134 +61,197 @@ df.to_csv('object_detection_for_image_cropping/data_files/output/Aves/aves_crops
 
 # Convert bounding box/cropping dimensions to square, add padding, and make sure crop boxes aren't out of image bounds
 for i, row in df.iterrows():
-    # Pad by 5% larger crop dimension (height)
-    pad = 0.05 * max(df.crop_height[i], df.crop_width[i])
-    df.ymin[i] = df.ymin[i] - pad
-    df.xmin[i] = df.xmin[i] - pad
-    # Assign crop height and width values for use filtering data through loops below
-    crop_h = df.crop_height[i]
-    crop_w = df.crop_width[i]
+    # Pad by 2.5% larger crop dimension
+    pad = 0.025 * max(df.crop_height[i], df.crop_width[i])    
+    # Define variables for use filtering data through loops below
+    crop_h0 = df.crop_height[i]
+    crop_w0 = df.crop_width[i]
+    im_h = df.im_height[i]
+    im_w = df.im_width[i]
+    xmin0 = df.xmin[i]
+    ymin0 = df.ymin[i]
+    xmax0 = df.xmax[i]
+    ymax0 = df.ymax[i]
 
     # Crop Height > Crop Width
     # See project wiki "Detailed explanation with drawings: convert_bboxdims.py", Scenario 1
-    # Where crop height is greater than crop width and is smaller than image dimensions
-    if crop_h > crop_w and \
-    (crop_h + pad) <= min(df.im_height[i], df.im_width[i]):
-        # Make new crop dimensions square by setting crop width equal to crop height
-        df.crop_height[i] = df.crop_height[i] + pad
-        df.crop_width[i] = df.crop_height[i]       
-        # X and Y dims not OOB (out of bounds)
-        if (df.xmax[i] + 0.5*(crop_h - crop_w) + pad) <= df.im_width[i] and \
-        (df.ymax[i] + pad) <= df.im_height[i]:
-            df.xmin[i] = df.xmin[i] - 0.5*(crop_h - crop_w)
-        # X dims OOB (+), shift cropping box left
-        elif (df.xmax[i] + 0.5*(crop_h - crop_w) + pad) > df.im_width[i] and \
-        (df.ymax[i] + pad) <= df.im_height[i]:
-            df.xmin[i] = df.xmin[i] - (df.xmax[i] + 0.5*(crop_h - crop_w) + pad - df.im_width[i])
-        # Y dims OOB (+), shift cropping box down
-        elif (df.xmax[i] + 0.5*(crop_h - crop_w) + pad) <= df.im_width[i] and \
-        (df.ymax[i] + pad) > df.im_height[i]:  
-            df.xmin[i] = df.xmin[i] - 0.5*(crop_h - crop_w)
-            df.ymin[i] = df.ymin[i] - (df.ymax[i] + pad - df.im_height[i])
-        # X and Y dims OOB (+), shift cropping box down and left   
-        elif (df.xmax[i] + 0.5*(crop_h - crop_w) + pad) > df.im_width[i] and \
-        (df.ymax[i] + pad) > df.im_height[i]:
-            df.xmin[i] = df.xmin[i] - (df.xmax[i] + 0.5*(crop_h - crop_w) + pad - df.im_width[i])
-            df.ymin[i] = df.ymin[i] - (df.ymax[i] + pad - df.im_height[i])
-    # Where crop height is greater than crop width, but is not within image dimensions	
-    elif crop_h > crop_w and \
-    (crop_h + pad) > min(df.im_height[i], df.im_width[i]):
-        # Make square by setting crop dims equal to smaller image dim (width)
-        df.crop_width[i] = df.im_width[i]
-        df.crop_height[i] = df.im_width[i] 
-        # Make crop x dims equal to image x dims
-        df.xmin[i] = 0
-        # Center crop x dims
-        df.ymin[i] = df.ymin[i] + 0.5*(crop_h - df.im_width[i]) 
-    # Where crop height is greater than crop width, but neither is smaller than image dimensions
-    elif crop_h > crop_w and \
-    min(crop_h, crop_w) <= min(df.im_height[i], df.im_width[i]):
-        # Do not crop, set values equal to image dimensions
-        df.crop_width[i] = df.im_width[i]
-        df.crop_height[i] = df.im_height[i] 
-        df.ymin[i] = 0
-        df.xmin[i] = 0   
+    if crop_h0 > crop_w0:
+        # Where padded crop height is within image dimensions
+        if (crop_h0 + 2*pad) <= min(im_h, im_w):   
+            # Make new crop dimensions square by setting crop height equal to crop width
+            df.crop_height[i] = crop_h1 = crop_h0 + 2*pad  
+            df.crop_width[i] = crop_w1 = df.crop_height[i]
+            # X and Y dims not OOB (out of bounds)
+            if (xmax0 + 0.5*(crop_h0 - crop_w0) + pad) <= im_w and \
+            (ymax0 + pad) <= im_h:
+                df.xmin[i] = xmin0 - 0.5*(crop_h0 - crop_w0) - pad
+                df.ymin[i] = ymin0 - pad
+            # X dims OOB (+), shift cropping box left
+            elif (xmax0 + 0.5*(crop_h0 - crop_w0) + pad) > im_w and \
+            (ymax0 + pad) <= im_h:
+                df.xmin[i] = 0.5*(im_w - crop_w1)
+                df.ymin[i] = ymin0 - pad
+            # Y dims OOB (+), shift cropping box down
+            elif (xmax0 + 0.5*(crop_h0 - crop_w0) + pad) <= im_w and \
+            (ymax0 + pad) > im_h:  
+                df.xmin[i] = xmin0 - 0.5*(crop_h0 - crop_w0) - pad
+                df.ymin[i] = ymin0 - (ymax0 + pad - im_h)
+            # X and Y dims OOB (+), shift cropping box down and left   
+            elif (xmax0 + 0.5*(crop_h0 - crop_w0) + pad) > im_w and \
+            (ymax0 + pad) > im_h:
+                df.xmin[i] = 0.5*(im_w - crop_w1)
+                df.ymin[i] = ymin0 - (ymax0 + pad - im_h)  
+        # Where padded crop height is not within image dimensions, but un-padded is
+        elif (crop_h0 + 2*pad) > min(im_h, im_w) and \
+        crop_h0 <= min(im_h, im_w):
+            # Make new crop dimensions square by setting crop height equal to crop width
+            df.crop_height[i] = crop_h1 = min(im_h, im_w)
+            df.crop_width[i] = crop_w1 = df.crop_height[i]   
+            # Center cropping coordinates
+            df.xmin[i] = xmin0 - 0.5*(min(im_h, im_w) - crop_w0)
+            df.ymin[i] = 0
+        # Where crop height is not within image dimensions, but padded crop width is
+        elif crop_h0 > min(im_h, im_w) and \
+            (crop_w0 + 2*pad) <= min(im_h, im_w):    
+            # Make new crop dimensions square by setting crop height equal to crop width
+            df.crop_width[i] = crop_w1 = crop_w0 + 2*pad
+            df.crop_height[i] = crop_h1 = df.crop_width[i]  
+            # Center crop dimensions
+            df.xmin[i] = xmin0 - pad
+            df.ymin[i] = ymin0 + 0.5*(crop_h0 - crop_w0) - pad   
+        # Where crop height is not within image dimensions, but un-padded crop width is
+        elif crop_h0 > min(im_h, im_w) and \
+            (crop_w0 + 2*pad) > min(im_h, im_w) and \
+            crop_w0 <= min(im_h, im_w):    
+            # Make new crop dimensions square by setting crop height equal to image width
+            df.crop_width[i] = crop_w1 = min(im_h, im_w)
+            df.crop_height[i] = crop_h1 = df.crop_width[i]  
+            # Center crop dimensions (note that min(im_w, im_h) is cancelled out b/c was + and - to get new ymin) 
+            df.ymin[i] = ymin0 + 0.5*(crop_h0 - crop_w0 - pad)     
+            df.xmin[i] = 0          
+        # Where crop height is greater than width, but neither is within than image dimensions
+        elif min(crop_h0, crop_w0) > min(im_h, im_w):
+            # Do not crop, set values equal to image dimensions
+            df.crop_width[i] = crop_w1 = im_w
+            df.crop_height[i] = crop_h1 = im_h 
+            df.ymin[i] = 0
+            df.xmin[i] = 0  
     
     # Crop Width > Crop Height
     # See project wiki "Detailed explanation with drawings: convert_bboxdims.py", Scenario 2
-    # Where crop width is greater than crop height and is smaller than image dimensions
-    elif crop_w > crop_h and \
-    (crop_w + pad) <= min(df.im_height[i], df.im_width[i]):
-        # Make new crop dimensions square by setting crop height equal to crop width
-        df.crop_width[i] = df.crop_width[i] + pad  
-        df.crop_height[i] = df.crop_width[i]   
-        # X and Y dims not OOB (out of bounds)
-        if (df.ymax[i] + 0.5*(crop_w - crop_h) + pad) <= df.im_height[i] and \
-        (df.xmax[i] + pad) <= df.im_width[i]:
-            df.ymin[i] = df.ymin[i] - 0.5*(crop_w - crop_h)
-        # X dims OOB (+), shift cropping box left
-        elif (df.ymax[i] + 0.5*(crop_w - crop_h) + pad) > df.im_height[i] and \
-        (df.xmax[i] + pad) <= df.im_width[i]:
-            df.ymin[i] = df.ymin[i] - (df.ymax[i] + 0.5*(crop_w - crop_h) + pad - df.im_height[i])
-        # Y dims OOB (+), shift cropping box down
-        elif (df.ymax[i] + 0.5*(crop_w - crop_h) + pad) <= df.im_height[i] and \
-        (df.xmax[i] + pad) > df.im_width[i]:  
-            df.ymin[i] = df.ymin[i] - 0.5*(crop_w - crop_h)
-            df.xmin[i] = df.xmin[i] - (df.xmax[i] + pad - df.im_width[i])
-        # X and Y dims OOB (+), shift cropping box down and left   
-        elif (df.ymax[i] + 0.5*(crop_w - crop_h) + pad) > df.im_height[i] and \
-        (df.xmax[i] + pad) > df.im_width[i]:
-            df.ymin[i] = df.ymin[i] - (df.ymax[i] + 0.5*(crop_w - crop_h) + pad - df.im_height[i])
-            df.xmin[i] = df.xmin[i] - (df.xmax[i] + pad - df.im_width[i])
-    # Where crop width is greater than crop height, but is not within image dimensions
-    elif crop_w > crop_h and \
-    (crop_w + pad) > min(df.im_height[i], df.im_width[i]):
-        # Make square by setting crop dims equal to smaller image dim (height)
-        df.crop_width[i] = df.im_height[i]
-        df.crop_height[i] = df.im_height[i] 
-        # Make crop y dims equal to image ydims
-        df.ymin[i] = 0
-        # Center crop x dims
-        df.xmin[i] = df.xmin[i] + 0.5*(crop_w - df.im_height[i]) 
-    # Where crop width is greater than crop height, but neither is smaller than image dimensions
-    elif crop_w > crop_h and \
-    min(crop_w, crop_h) <= min(df.im_height[i], df.im_width[i]):
-        # Do not crop, set values equal to image dimensions
-        df.crop_width[i] = df.im_width[i]
-        df.crop_height[i] = df.im_height[i] 
-        df.ymin[i] = 0
-        df.xmin[i] = 0  
+    elif crop_w0 > crop_h0:
+        # Where padded crop width is within image dimensions 
+        if (crop_w0 + 2*pad) <= min(im_h, im_w):    
+            # Make new crop dimensions square by setting crop height equal to crop width
+            df.crop_width[i] = crop_w1 = crop_w0 + 2*pad  
+            df.crop_height[i] = crop_h1 = df.crop_width[i] 
+            # X and Y dims not OOB (out of bounds)
+            if (ymax0 + 0.5*(crop_w0 - crop_h0) + pad) <= im_h and \
+            (xmax0 + pad) <= im_w:
+                df.ymin[i] = ymin0 - 0.5*(crop_w0 - crop_h0) - pad
+                df.xmin[i] = xmin0 - pad
+            # X dims OOB (+), shift cropping box left
+            elif (ymax0 + 0.5*(crop_w0 - crop_h0) + pad) <= im_h and \
+            (xmax0 + pad) > im_w:  
+                df.ymin[i] = ymin0 - 0.5*(crop_w0 - crop_h0) - pad
+                df.xmin[i] = xmin0 - (xmax0 + pad - im_w)
+            # Y dims OOB (+), shift cropping box down
+            elif (ymax0 + 0.5*(crop_w0 - crop_h0) + pad) > im_h and \
+            (xmax0 + pad) <= im_w:
+                df.ymin[i] = 0.5*(im_h - crop_h1)
+                df.xmin[i] = xmin0 - pad
+            # X and Y dims OOB (+), shift cropping box down and left   
+            elif (ymax0 + 0.5*(crop_w0 - crop_h0) + pad) > im_h and \
+            (xmax0 + pad) > im_w:
+                df.ymin[i] = 0.5*(im_h - crop_h1)
+                df.xmin[i] = xmin0 - (xmax0 + pad - im_w)
+        # Where padded crop width is not within image dimensions, but un-padded is
+        elif (crop_w0 + 2*pad) > min(im_h, im_w) and \
+        crop_w0 <= min(im_h, im_w):    
+            # Make new crop dimensions square by setting crop height equal to image width
+            df.crop_width[i] = crop_w1 = min(im_h, im_w)
+            df.crop_height[i] = crop_h1 = df.crop_width[i]
+            # Center cropping coordinates
+            df.ymin[i] = ymin0 - 0.5*(min(im_h, im_w) - crop_h0)
+            df.ymin[i] = 0
+        # Where crop width is not within image dimensions, but padded crop height is
+        elif crop_w0 > min(im_h, im_w) and \
+        (crop_h0 + 2*pad) <= min(im_h, im_w):           
+            # Make new crop dimensions square by setting crop height equal to crop width
+            df.crop_height[i] = crop_h1 = crop_h0 + 2*pad
+            df.crop_width[i] = crop_w1 = df.crop_height[i] 
+            # Center crop dimensions
+            df.ymin[i] = ymin0 - pad
+            df.xmin[i] = xmin0 + 0.5*(crop_w0 - crop_h0) - pad 
+        # Where crop width is not within image dimensions, but un-padded crop height is
+        elif crop_w0 > min(im_h, im_w) and \
+        (crop_h0 + 2*pad) > min(im_h, im_w) and \
+        crop_h0 <= min(im_h, im_w):           
+            # Make new crop dimensions square by setting crop height equal to image width
+            df.crop_height[i] = crop_h1 = min(im_h, im_w)
+            df.crop_width[i] = crop_w1 = df.crop_height[i] 
+            # Center crop dimensions
+            df.xmin[i] = xmin0 + 0.5*(crop_w0 - crop_h0 - pad)
+            df.ymin[i] = 0
+        # Where crop width is greater than height, but neither is within than image dimensions
+        elif min(crop_w0, crop_h0) > min(im_h, im_w):
+            # Do not crop, set values equal to image dimensions
+            df.crop_width[i] = crop_w1 = im_w
+            df.crop_height[i] = crop_h1 = im_h 
+            df.ymin[i] = 0
+            df.xmin[i] = 0  
 
     # Crop Width == Crop Height
     # See project wiki "Detailed explanation with drawings: convert_bboxdims.py", Scenario 3
-    # Where crop width equals crop height and both/either are smaller than image dimensions
-    elif crop_w == crop_h and \
-    (crop_h + pad) <= min(df.im_height[i], df.im_width[i]):  
-        # X and Y dims not OOB (out of bounds)
-        if (df.ymax[i] + pad) <= df.im_height[i] and \
-        (df.xmax[i] + pad) <= df.im_width[i]:
-            pass # do nothing, padding already included in ymin/xmin values
-        # X dims OOB (+), shift cropping box left
-        elif (df.ymax[i] + pad) > df.im_height[i] and \
-        (df.xmax[i] + pad) <= df.im_width[i]:
-            df.ymin[i] = df.ymin[i] - (df.ymax[i] + pad - df.im_height[i])
-        # Y dims OOB (+), shift cropping box down
-        elif (df.ymax[i] + pad) <= df.im_height[i] and \
-        (df.xmax[i] + pad) > df.im_width[i]:  
-            df.xmin[i] = df.xmin[i] - (df.xmax[i] + pad - df.im_width[i])
-        # X and Y dims OOB (+), shift cropping box down and left   
-        elif (df.ymax[i] + pad) > df.im_height[i] and \
-        (df.xmax[i] + pad) > df.im_width[i]:
-            df.ymin[i] = df.ymin[i] - (df.ymax[i] + pad - df.im_height[i])
-            df.xmin[i] = df.xmin[i] - (df.xmax[i] + pad - df.im_width[i])
-    # Where crop height equals crop width, but neither are within image dimensions
-    elif crop_w == crop_h and \
-    min(crop_w, crop_h) <= min(df.im_height[i], df.im_width[i]):
-        # Do not crop, set values equal to image dimensions
-        df.crop_width[i] = df.im_width[i]
-        df.crop_height[i] = df.im_height[i] 
-        df.ymin[i] = 0
-        df.xmin[i] = 0 
+    elif crop_w0 == crop_h0: 
+        # Where padded crop height/width is within image dimensions
+        if (crop_h0 + 2*pad) <= min(im_h, im_w):
+            # Make new crop dimensions square by setting crop height equal to crop width 
+            df.crop_height[i] = crop_h1 = crop_h0 + 2*pad
+            df.crop_width[i] = crop_w1 = df.crop_height[i] 
+            # X and Y dims not OOB (out of bounds)
+            if (ymax0 + pad) <= im_h and \
+            (xmax0 + pad) <= im_w:
+                df.ymin[i] = ymin0 - pad
+                df.xmin[i] = xmin0 - pad
+            # X dims OOB (+), shift cropping box left
+            elif (ymax0 + pad) <= im_h and \
+            (xmax0 + pad) > im_w:  
+                df.xmin[i] = xmin0 - (xmax0 + pad - im_w)
+                df.ymin[i] = ymin0 - pad
+            # Y dims OOB (+), shift cropping box down
+            elif (ymax0 + pad) > im_h and \
+            (xmax0 + pad) <= im_w:
+                df.ymin[i] = ymin0 - (ymax0 + pad - im_h)
+                df.xmin[i] = xmin0 - pad
+            # X and Y dims OOB (+), shift cropping box down and left   
+            elif (ymax0 + pad) > im_h and \
+            (xmax0 + pad) > im_w:
+                df.ymin[i] = ymin0 - (ymax0 + pad - im_h)
+                df.xmin[i] = xmin0 - (xmax0 + pad - im_w)
+        # Where padded crop height/width is not within image dimensions, but un-padded is
+        elif (crop_h0 + 2*pad) > min(im_h, im_w) and \
+        crop_h0 <= min(im_h, im_w):
+            # Make new crop dimensions square by setting crop height equal to smaller image dim 
+            df.crop_width[i] = crop_w1 = min(im_h, im_w) 
+            df.crop_height[i] = crop_h1 = min(im_h, im_w) 
+            # X and Y dims not OOB (out of bounds)
+            if ymax0 <= im_h and \
+            xmax0 <= im_w:
+                pass
+            # X dims OOB (+), shift cropping box left
+            elif ymax0 <= im_h and \
+            xmax0 > im_w:  
+                df.xmin[i] = xmin0 - (xmax0 - im_w)
+            # Y dims OOB (+), shift cropping box down
+            elif ymax0 > im_h and \
+            xmax0 <= im_w:
+                df.ymin[i] = ymin0 - (ymax0 - im_h)
+            # X and Y dims OOB (+), shift cropping box down and left   
+            elif ymax0 > im_h and \
+            xmax0 > im_w:
+                df.ymin[i] = ymin0 - (ymax0 - im_h)
+                df.xmin[i] = xmin0 - (xmax0 - im_w)
 
 ## Image coordinates should be positive, set negative xmin and ymin values to 0
 df.xmin[df.xmin < 0] = 0
