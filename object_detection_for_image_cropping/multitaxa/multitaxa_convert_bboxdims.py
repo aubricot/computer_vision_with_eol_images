@@ -113,7 +113,7 @@ for i, row in df.iterrows():
         # Where padded crop height is not within image dimensions, but un-padded is
         elif (crop_h0 + 2*pad) > min(im_h, im_w) and \
         crop_h0 <= min(im_h, im_w):
-            # Make new crop dimensions square by setting crop height equal to crop width
+            # Make new crop dimensions square by setting crop height equal to smaller image dimension
             df.crop_height[i] = crop_h1 = min(im_h, im_w)
             df.crop_width[i] = crop_w1 = df.crop_height[i]   
             # Center cropping coordinates
@@ -132,11 +132,11 @@ for i, row in df.iterrows():
         elif crop_h0 > min(im_h, im_w) and \
             (crop_w0 + 2*pad) > min(im_h, im_w) and \
             crop_w0 <= min(im_h, im_w):    
-            # Make new crop dimensions square by setting crop height equal to image width
+            # Make new crop dimensions square by setting crop height equal to smaller image dimension
             df.crop_width[i] = crop_w1 = min(im_h, im_w)
             df.crop_height[i] = crop_h1 = df.crop_width[i]  
-            # Center crop dimensions (note that min(im_w, im_h) is cancelled out b/c was + and - to get new ymin) 
-            df.ymin[i] = ymin0 + 0.5*(crop_h0 - crop_w0 - pad)     
+            # Center crop dimensions 
+            df.ymin[i] = ymin0 + 0.5*(crop_h0 - crop_w1)     
             df.xmin[i] = 0          
         # Where crop height is greater than width, but neither is within than image dimensions
         elif min(crop_h0, crop_w0) > min(im_h, im_w):
@@ -177,12 +177,12 @@ for i, row in df.iterrows():
         # Where padded crop width is not within image dimensions, but un-padded is
         elif (crop_w0 + 2*pad) > min(im_h, im_w) and \
         crop_w0 <= min(im_h, im_w):    
-            # Make new crop dimensions square by setting crop height equal to image width
+            # Make new crop dimensions square by setting crop height equal to smaller image dimension
             df.crop_width[i] = crop_w1 = min(im_h, im_w)
             df.crop_height[i] = crop_h1 = df.crop_width[i]
             # Center cropping coordinates
             df.ymin[i] = ymin0 - 0.5*(min(im_h, im_w) - crop_h0)
-            df.ymin[i] = 0
+            df.xmin[i] = 0
         # Where crop width is not within image dimensions, but padded crop height is
         elif crop_w0 > min(im_h, im_w) and \
         (crop_h0 + 2*pad) <= min(im_h, im_w):           
@@ -196,11 +196,11 @@ for i, row in df.iterrows():
         elif crop_w0 > min(im_h, im_w) and \
         (crop_h0 + 2*pad) > min(im_h, im_w) and \
         crop_h0 <= min(im_h, im_w):           
-            # Make new crop dimensions square by setting crop height equal to image width
+            # Make new crop dimensions square by setting crop height equal to smaller image dimension
             df.crop_height[i] = crop_h1 = min(im_h, im_w)
             df.crop_width[i] = crop_w1 = df.crop_height[i] 
             # Center crop dimensions
-            df.xmin[i] = xmin0 + 0.5*(crop_w0 - crop_h0 - pad)
+            df.xmin[i] = xmin0 + 0.5*(crop_w0 - crop_h1)
             df.ymin[i] = 0
         # Where crop width is greater than height, but neither is within than image dimensions
         elif min(crop_w0, crop_h0) > min(im_h, im_w):
