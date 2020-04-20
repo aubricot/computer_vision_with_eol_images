@@ -1,6 +1,6 @@
 # Object Detection for Image Cropping 
 Testing different existing object detection frameworks using Faster-RCNN (built on Resnet 50 and Inception v2) and SSD/R-FCN detection via the Tensorflow Object Detection API and YOLO via Darkflow) as a method to do customized, large-scale image processing for different groups of animals (birds, bats, butterflies & moths, beetles, frogs, carnivores, snakes & lizards).   
-*Last updated 18 April 2020*
+*Last updated 20 April 2020*
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -33,7 +33,7 @@ Except convert_bboxdims.py files (aves_convert_bboxdims.py, chiroptera_convert_b
 <p align="center"> 
 <sub><sup>Sample output from image (a) to object detection results (b) displayed in a Jupyter Notebook running in Google Colab. Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/7e/e7/0f/542.2324933039.jpg"><i>Haliastur indus indus</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>).</sup></sub>
 
-**Step 2) Convert bounding boxes to square, centered image cropping coordinates and pad by 11%:** To convert bounding box coordinates to EOL crop coodinate formatting standards, use aves_convert_bboxdims.py on aves_det_crops.tsv exported from Google Colab in Step 1. You can export the 20,000 image crop dataset in 4 batches, then combine these using combine_tsvs.py before converting coordinates in aves_convert_bboxdims.py.
+**Step 2) Convert bounding boxes to square, centered image cropping coordinates and pad by 2.5%:** To convert bounding box coordinates to EOL crop coodinate formatting standards, use aves_convert_bboxdims.py on aves_det_crops.tsv exported from Google Colab in Step 1. You can export the 20,000 image crop dataset in 4 batches, then combine these using combine_tsvs.py before converting coordinates in aves_convert_bboxdims.py.
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/bird_cropping.jpg" align="center" width="500" ></a></p>   
