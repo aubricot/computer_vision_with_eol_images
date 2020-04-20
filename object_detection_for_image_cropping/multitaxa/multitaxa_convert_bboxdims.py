@@ -70,7 +70,7 @@ print(df.head())
 # Convert bounding box/cropping dimensions to square, add padding, and make sure crop boxes aren't out of image bounds
 for i, row in df.iterrows():
     # Optional: Pad by xx% larger crop dimension (height)
-    # Note: 0% pad chosen for Coleoptera, Anura, Carnivora; X% for Squamata
+    # Note: 0% pad chosen for Coleoptera, Anura, Carnivora, Squamata
     pad = 0 * max(df.crop_height[i], df.crop_width[i])
     # Define variables for use filtering data through loops below
     crop_h0 = df.crop_height[i]
