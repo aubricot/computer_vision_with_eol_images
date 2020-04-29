@@ -1,6 +1,6 @@
 # Computer Vision with EOL v3 Images 
 Testing different computer vision methods (object detection, image classification) to do customized, large-scale image processing for [Encyclopedia of Life v3 database images](https://eol.org/pages/2913056/media).   
-*Last updated 15 April 2020*
+*Last updated 29 April 2020*
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -29,6 +29,6 @@ Except for .py files, all files in this repository are run in [Google Colab](htt
 ## References
 * [Encyclopedia of Life](http://eol.org) 
 * [Hui 2018](medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359). Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, 
-FPN, RetinaNet and YOLOv3). Medium. 27 March 2018. [medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359].   
+FPN, RetinaNet and YOLOv3). Medium. 27 March 2018.   
 * [Lin et al. 2015](https://arxiv.org/pdf/1405.0312.pdf). Microsoft COCO: Common Objects in Context.  
 * [Redmon and Farhadi 2018](https://arxiv.org/pdf/1804.02767.pdf). YOLOv3: An Incremental Improvement.    
