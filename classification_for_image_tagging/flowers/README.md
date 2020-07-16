@@ -14,7 +14,7 @@ Results from image classification models used for the different tasks can be use
 ## Getting Started  
 Except preprocessing.py files (plantclef_preprocessing.py, tbd_preprocessing.py), all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, everything is run entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried.   
 
-[To be written after 20K flower tags bundle created]For additional details on steps below, see the [project wiki](https://github.com/aubricot/computer_vision_with_eol_images/wiki).
+For additional details on steps below, see the [project wiki](https://github.com/aubricot/computer_vision_with_eol_images/wiki).
 
 ## Flowers
 **Step 1) Pre-process training data locally and upload to Google Drive:** Download the [PlantCLEF 2016 Image dataset](https://www.imageclef.org/lifeclef/2016/plant) locally. Then run use [plantclef_preprocessing.py](https://github.com/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/flowers/plantclef_preprocessing.py) to randomly select 6,000 images and sort them into folders based on image classes contained within xmls of the training dataset (flower, fruit, entire, stem, leaf, branch). After running plantclef_preprocessing.py, zip the folder containing all image class subfolders. Upload the zipped folder to Google Drive (uploading the zipped folder will save time, because uploading to Drive can be slow) and unzip before running the notebook in Step 2 (use a command like this in a Colab notebook: !unzip images.zip -d images).
