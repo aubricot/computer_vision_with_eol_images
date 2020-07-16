@@ -1,5 +1,5 @@
 # Classification for Image Tagging
-Testing different image classification frameworks as a method to automatically generate tags for flowers, maps/labels/illustrations, and image ratings within EOL images. Such tags will improve user experience by enabling search of information not included in metadata and further facilitate use of EOL’s less structured image content.
+Testing different image classification frameworks as a method to automatically generate tags for flowers, maps/labels/illustrations, and image ratings within EOL images. Such tags will improve user experience by enabling search of information not included in metadata and further facilitate use of EOL’s less structured image content.   
 *Last updated 15 July 2020*
 
 ## Project Structure
