@@ -30,10 +30,14 @@ Except preprocessing.py files (plantclef_preprocessing.py, tbd_preprocessing.py)
 [to be written following an initial research phase on existing models and datasets]
 
 ## References
-* https://www.tensorflow.org/tutorials/customization/custom_training_walkthrough
-* https://www.tensorflow.org/tutorials/images/classification
-* https://medium.com/analytics-vidhya/create-tensorflow-image-classification-model-with-your-own-dataset-in-google-colab-63e9d7853a3e
-* https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/tf2_image_retraining.ipynb#scrollTo=umB5tswsfTEQ
-* https://medium.com/analytics-vidhya/how-to-do-image-classification-on-custom-dataset-using-tensorflow-52309666498e
-* https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html
-* https://www.pyimagesearch.com/2018/12/31/keras-conv2d-and-convolutional-layers/
+* [Çakır 2019](https://medium.com/analytics-vidhya/create-tensorflow-image-classification-model-with-your-own-dataset-in-google-colab-63e9d7853a3e). Create Tensorflow Image Classification Model with Your Own Dataset in Google Colab. Medium. 31 Oct 2019.
+* [Chollet 2016](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html). Building powerful image classification models using very little data. The Keras Blog. 5 Jun 2016.
+* [Custom training: walkthrough 2020](https://www.tensorflow.org/tutorials/customization/custom_training_walkthrough). Tensorflow Core. 12 Jun 2020.
+* [Encyclopedia of Life](eol.org)
+* [Pegwar 2020](https://medium.com/analytics-vidhya/how-to-do-image-classification-on-custom-dataset-using-tensorflow-52309666498e). How to do Image Classification on custom Dataset using TensorFlow. Medium. 1 Apr 2020.
+* [PlantCLEF 2016 Image dataset](https://www.imageclef.org/lifeclef/2016/plant)
+* [Rosebrock 2018](https://www.pyimagesearch.com/2018/12/31/keras-conv2d-and-convolutional-layers/). Keras Conv2D and Convolutional Layers. pyimagesearch. 31 Dec 2018.
+* [Sandler et al. 2018](https://arxiv.org/abs/1801.04381). Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentation." arXiv.
+* [Sharma 2019](medium.com/analytics-vidhya/image-classification-vs-object-detection-vs-image-segmentation-f36db85fe81). Image Classification vs. Object Detection vs. Image Segmentation. Medium. 23 Feb 2020.
+* [Szegedy et al. 2015](https://arxiv.org/abs/1512.00567). Rethinking the Inception Architecture for Computer Vision. arXiv.
+* [Tensorflow Image Classification Tutorial 2020](https://www.tensorflow.org/tutorials/images/classification). Tensorflow Core. 10 Jul 2020.
