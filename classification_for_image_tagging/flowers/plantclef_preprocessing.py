@@ -1,5 +1,5 @@
 # Preprocessing PlantCLEF 2016 dataset
-# 29 Jun 2020
+# 15 Jul 2020
 
 import os, random, shutil
 
