@@ -23,6 +23,12 @@ For additional details on steps below, see the [project wiki](https://github.com
 
 **Step 3) Display classification results on images:** To display classification results from Step 2 on images and verify that they are as expected (or to further fine tune the classification model accordingly, ex: adjust hyperparameters from drop-down menus and re-train), click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/flowers/classification_display_test.ipynb).
 
+<p align="center">
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/images/classification_example.jpg" align="middle" width="300" ></a></p>   
+
+<p align="center">
+<sub><sup>Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/66/a1/2a/509.63397702.jpg"><i>Leucopogon tenuicaulis</i></a>, licensed under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>).</sup></sub>
+
 ## Maps, Labels, and Illustrations
 [to be written following an initial research phase on existing models and datasets]
 
