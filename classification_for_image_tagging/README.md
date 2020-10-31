@@ -69,7 +69,7 @@ Run images through cartoonization and classification pipelines. Then post-proces
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/images/sample_map.jpg" align="middle" width="500" ></a></p>   
 
 <p align="center">
-<sub><sup>Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/56/65/2f/509.15852359.jpg"><i>Curtisia assegai</i></a>, licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY SA 3.0</a>).</sup></sub>
+<sub><sup>Image is hosted by Wikimedia Commons user: Ikonact (<a href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/New_York_state_geographic_map-en.svg/800px-New_York_state_geographic_map-en.svg.png">New York state geographic map-en.svg</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a>).</sup></sub>
 
 ## Image Ratings
 [to be written following an initial research phase on existing models and datasets]
