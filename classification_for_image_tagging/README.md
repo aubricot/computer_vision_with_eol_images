@@ -78,6 +78,8 @@ Run images through cartoonization and classification pipelines. Then post-proces
 
 **Step 3) Determine model prediction confidence thresholds to use for classification:** Click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/rating/inspect_train_results.ipynb) to review false and positive detections by class for attempts/models chosen in Step 2. Choose which trained model and confidence threshold values to use for classifying EOL images by rating. Threshold values should be chosen that maximize coverage and minimize error. Additional option to inspect results by taxon. 
 
+Training results were not consistent despite large datset sizes (7k images per class), likely attributed to wide observed variation and subjective nature of user quality ratings. The model and hyperparameter combinations with the best trade-off between speed and accuracy - Inception v3 training attempt 20 - was selected and used to generate image tags for sample datasets of 50 EOL images that were manually inspected. Future efforts to train image rating classifiers should use highly curated training datasets to acheive reliable results. As a result, there is currently no "classify_images.ipynb" script or wiki page for this module. Once reliable results are acheived, these steps will be added.
+
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/images/goodbad_rating_ex.jpg" align="middle" width="500" ></a></p>   
 
