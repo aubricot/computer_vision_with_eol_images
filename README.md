@@ -39,6 +39,7 @@ Results from object detection and image classification tasks will be used to inf
 Except for .py files, all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, everything runs entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried. Working in the cloud also makes it easier to collaborate if multiple users are on different operating systems. 
 
 ## References
+* [AlexeyAB 2020](https://github.com/AlexeyAB/darknet). Darknet. GitHub.
 * [Bochkovskiy et al. 2020](https://arxiv.org/abs/2004.10934). YOLOv4: Optimal Speed and Accuracy of Object Detection. arXiv.
 * [Encyclopedia of Life](http://eol.org) 
 * [Goeau et al. 2016](http://ceur-ws.org/Vol-1609/16090428.pdf). Plant identification in an open-world (LifeCLEF 2016). CEUR Workshop Proceedings. 
