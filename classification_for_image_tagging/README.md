@@ -14,7 +14,7 @@ Testing different image classification frameworks as a method to automatically g
 Results from image classification models used for the different tasks can be used to inform future large-scale image processing and user features for EOLv3 images.
 
 ## Getting Started  
-Except preprocessing.py files (plantclef_preprocessing.py, tbd_preprocessing.py), all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, everything is run entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried.   
+Except preprocessing.py files (plantclef_preprocessing.py), all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, everything is run entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried.   
 
 For additional details on steps below, see the [project wiki](https://github.com/aubricot/computer_vision_with_eol_images/wiki).
 
