@@ -18,7 +18,7 @@ For additional details on steps below, see the [project wiki](https://github.com
 **Step 1) Run images through model, post-process and display results:** To run EOL Angiosperm images through pre-trained YOLOv3 model, post-process results (only keep predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' and convert to "pollinator present"), and display detected tags on images, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/plant_pollinator/plant_poll_cooccurrence_yolov3.ipynb).
 
 <p align="center">
-<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/plantpoll_tag_ex.jpg" align="middle" width="300" ></a></p>   
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/plantpoll_tag_ex.jpg" align="middle" width="500" ></a></p>   
 
 <p align="center">
 <sub><sup>Image is hosted by Flickr (<a href="https://www.flickr.com/photos/37089490@N06/3714515042">another flower - insect photo! by thart2009</a>, licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=rich">CC BY 2.0</a>).</sup></sub>
@@ -27,7 +27,7 @@ For additional details on steps below, see the [project wiki](https://github.com
 **Step 1) Run images through model, post-process and display results:** To run EOL Angiosperm images through pre-trained YOLOv3 model, post-process results ( keep predictions for predictions for 'Ant', 'Bee', 'Beetle', 'Butterfly', 'Dragonfly', 'Insect', 'Invertebrate', 'Moths and butterflies' and convert to "adult"; keep pedictions for 'Caterpillar', 'Centipede', 'Worm' and convert to "juvenile"), and display detected tags on images, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/life_stages/insect_lifestages_yolov3.ipynb).
 
 <p align="center">
-<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/lifestage_tag_ex.jpg" align="middle" width="300" ></a></p>   
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/lifestage_tag_ex.jpg" align="middle" width="500" ></a></p>   
 
 <p align="center">
 <sub><sup>Image is hosted by Flickr (<a href="https://c3.staticflickr.com/7/6117/6376974667_631f1dea71_o.jpg">Frangipani Hawkmoth Caterpillar. Pseudosphinx tetrio by galehampshire</a>, licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=rich">CC BY 2.0</a>).</sup></sub>
