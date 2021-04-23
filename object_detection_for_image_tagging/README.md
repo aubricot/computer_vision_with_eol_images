@@ -1,11 +1,12 @@
 # Object Detection for Image Tagging
 Testing different object detection frameworks as a method to automatically generate tags for plant-pollinator co-ocurrence, insect life stages, and scat/footprints present within EOL images. Such tags will improve user experience by enabling search of information not included in metadata and further facilitate use of EOL’s less structured image content.   
-*Last updated 2 March 2021*
+*Last updated 23 April 2021*
 
 ## Project Structure
 * **Plant/pollintor**: YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights). EOL Angiosperm images are run through the model and predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' were kept and then converted to "pollinator present" during post-processing.
 * **Insect life stages**: YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights). EOL Insect images are run through the model and predictions for 'Ant', 'Bee', 'Beetle', 'Butterfly', 'Dragonfly', 'Insect', 'Invertebrate', 'Moths and butterflies' were kept and then converted to "adult" during post-processing. Predictions for 'Caterpillar', 'Centipede', 'Worm' were converted to "juvenile" during post-processing.
 * **Scat/footprint**: Pre-trained [MobileNet SSD v2](https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4) and [YOLO v4](https://github.com/AlexeyAB/darknet) models downloaded from [Tensorflow Hub](https://www.tensorflow.org/hub) and [AlexeyAB](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights) were re-trained using transfer learning based on advice from the [Tensorflow Image Classification Tutorial](https://www.tensorflow.org/tutorials/images/classification) and [Darknet Github](https://github.com/AlexeyAB/darknet) using iNaturalist images to detect scat or footprints from EOL images. Models never learned despite adjusting augmentation and model hyperparameters for many training sessions. Pipelines should be revisted in the future with different approaches.
+* **Human Present**: YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights). EOL Chiroptera images are run through the model and predictions for 'Person' or any string containing 'Human' ('Body', 'Eye', 'Head', 'Hand', 'Foot', 'Face', 'Arm', 'Leg', 'Ear', 'Eye', 'Face', 'Nose', 'Beard') were kept and then converted to "human present" during post-processing.   
 
 Results from object detection models used for the different tasks can be used to inform future large-scale image processing and user features for EOLv3 images.
 
@@ -38,6 +39,15 @@ For additional details on steps below, see the [project wiki](https://github.com
 **Step 2) Build & train classification models:** After pre-processing the training dataset in Step 1, build and train classification models in YOLOv2 implemented in darkflow by clicking here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/cobject_detection_for_image_tagging/scat_footprint/fscat_footprint_train_yolo_darkflow.ipynb) or in AlexeyAB's fork of YOLOv4 here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/cobject_detection_for_image_tagging/scat_footprint/fscat_footprint_train_yolov4.ipynb). Form fields and dropdown menus within the notebook walk you through model selection, adjusting hyperparameters, training, and the display of trained models. 
 
 Scat/footprint object detection models never learned despite adjusting augmentation and model hyperparameters for many training sessions. If successful approaches are found at a later date, steps for adding tags to images will be included.
+
+## Human Present
+**Step 1) Run images through model, post-process and display results:** To run EOL Chiroptera images through pre-trained YOLOv3 model, post-process results (only keep predictions for for 'Person' or any string containing 'Human' ['Body', 'Eye', 'Head', 'Hand', 'Foot', 'Face', 'Arm', 'Leg', 'Ear', 'Eye', 'Face', 'Nose', 'Beard'] and convert to "pollinator present"), and display detected tags on images, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/human_present/human_present_yolov3.ipynb).
+
+<p align="center">
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/human_present_tag_ex.jpg" align="middle" width="500" ></a></p>   
+
+<p align="center">
+<sub><sup>Image is hosted by [EOL](https://content.eol.org/data/media/33/de/7d/18.https___www_inaturalist_org_photos_2979499.jpg).</sup></sub>
  
 ## References
 * [AlexeyAB 2020](https://github.com/AlexeyAB/darknet). darknet. GitHub.
