@@ -1,6 +1,6 @@
 # Computer Vision with EOL v3 Images 
 Testing different computer vision methods (object detection, image classification) to do customized, large-scale image processing for [Encyclopedia of Life v3 database images](https://eol.org/pages/2913056/media).   
-*Last updated 2 March 2021*
+*Last updated 23 April 2021*
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -32,6 +32,7 @@ The Encyclopedia of Life (EOL) is an online biodiversity resource that seeks to 
 * For <ins>plant-pollinator coocurrence</ins>, AlexeyAB's YOLO v3 fork (a fast, small, less accurate model by Redmon and Farhadi 2018) pretrained on Google OpenImages (Krasin et al. 2017) was used. EOL Angiosperm images are run through the model and predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' were kept and then converted to "pollinator present" during post-processing.    
 * For <ins>insect life stages</ins>, AlexeyAB's YOLO v3 fork (a fast, small, less accurate model by Redmon and Farhadi 2018) pretrained on Google OpenImages (Krasin et al. 2017) was used. EOL Insect images are run through the model and predictions for 'Ant', 'Bee', 'Beetle', 'Butterfly', 'Dragonfly', 'Insect', 'Invertebrate', 'Moths and butterflies' were kept and then converted to "adult" during post-processing. Predictions for 'Caterpillar', 'Centipede', 'Worm' were converted to "juvenile" during post-processing.
 * For <ins>scat/footprint present</ins>, pre-trained MobileNetSSD v2 (an intermediate speed, size, and accuracy model by Sandler et al. 2018) and YOLOv4 (a faster, smaller, less accurate model by Bochkovskiy et al. 2020) classification models were used. Scat/footprint models were trained to detect scat or footprints from EOL images, but never learned despite adjusting augmentation and model hyperparameters for many training sessions. Pipelines should be revisted in the future with different approaches.
+* For <ins>human present</ins>, AlexeyAB's YOLO v3 fork (a fast, small, less accurate model by Redmon and Farhadi 2018) pretrained on Google OpenImages (Krasin et al. 2017) was used. EOL Chiroptera images are run through the model and predictions for 'Person' or any string containing 'Human' ('Body', 'Eye', 'Head', 'Hand', 'Foot', 'Face', 'Arm', 'Leg', 'Ear', 'Eye', 'Face', 'Nose', 'Beard') were kept and then converted to "human present" during post-processing. 
 
 Results from object detection and image classification tasks will be used to inform future large-scale image processing and user features for EOLv3 images.
 
