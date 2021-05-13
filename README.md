@@ -37,7 +37,7 @@ The Encyclopedia of Life (EOL) is an online biodiversity resource that seeks to 
 Results from object detection and image classification tasks will be used to inform future large-scale image processing and user features for EOLv3 images.
 
 ## Getting Started  
-Except for .py files, all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, everything runs entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried. Working in the cloud also makes it easier to collaborate if multiple users are on different operating systems. 
+Except for .py files, all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, everything runs entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried. Working in the cloud also makes it easy to collaborate if multiple users are on different operating systems. 
 
 ## References
 * [AlexeyAB 2020](https://github.com/AlexeyAB/darknet). Darknet. GitHub.
@@ -52,3 +52,9 @@ Except for .py files, all files in this repository are run in [Google Colab](htt
 * [Sandler et al. 2018](https://arxiv.org/abs/1801.04381). Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentation." arXiv.
 * [Sharma 2019](medium.com/analytics-vidhya/image-classification-vs-object-detection-vs-image-segmentation-f36db85fe81). Image Classification vs. Object Detection vs. Image Segmentation. Medium. 23 Feb 2020.
 * [Szegedy et al. 2015](https://arxiv.org/abs/1512.00567). Rethinking the Inception Architecture for Computer Vision. arXiv.
+
+## License
+**Code**  
+Code in this repository is released under the [MIT license](https://github.com/aubricot/computer_vision_with_eol_images/blob/master/LICENSE). More information is available at the [Open Source Initiative](https://opensource.org/licenses/MIT).   
+**Images**  
+All images used in this repository and notebooks contained therein are licensed under [Creative Commons](https://creativecommons.org/licenses/). EOL content is freely available to the public. More information about re-use of content hosted by EOL is available at [EOL Terms of Use](https://eol.org/docs/what-is-eol/terms-of-use) and [EOL API Terms of Use](https://eol.org/docs/what-is-eol/terms-of-use-for-eol-application-programming-interfaces). Specific attribution information for EOL images used for training and testing models is available in bundle URLs containing "breakdown_download" found within notebooks.
