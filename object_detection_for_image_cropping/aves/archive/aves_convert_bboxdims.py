@@ -1,5 +1,6 @@
 # Converting object detection bounding box coordinates to EOL crop format
 # Last modified 19 April 2020
+# Functions are now embedded in aves_generate_crops_tf2.ipynb (21 May 2021)
 
 import time
 start = time.time()
