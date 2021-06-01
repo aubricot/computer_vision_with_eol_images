@@ -95,6 +95,7 @@ More info: Google Colaboratory is "a free cloud service, based on Jupyter Notebo
 * [Dai et al. 2016](https://arxiv.org/abs/1605.06409v2). R-FCN: Object Detection via Region-based Fully Convolutional Networks. 
 arXiv:1605.06409v2.   
 * [Encyclopedia of Life](http://eol.org)   
+* [Huang et al. 2017](https://arxiv.org/abs/1611.10012). Speed/accuracy trade-offs for modern convolutional object detectors. CVPR.
 * [Hui 2018](medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359). Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, FPN, RetinaNet and YOLOv3). Medium. 27 March 2018. 
 * [Jung 2019](https://github.com/aleju/imgaug-doc). imgaug-doc. GitHub.   
 * [Lin et al. 2015](https://arxiv.org/pdf/1405.0312.pdf). Microsoft COCO: Common Objects in Context. arXiv:1405.0312.
@@ -102,7 +103,8 @@ arXiv:1605.06409v2.
 * [Redmon and Farhadi 2018](https://arxiv.org/pdf/1804.02767.pdf). YOLOv3: An Incremental Improvement.
 * [Ren et al. 2016](https://arxiv.org/pdf/1506.01497.pdf). Faster R-CNN: Towards Real-Time Object Detection with Region Proposal 
 Networks.
-
+* [Tensorflow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection). GitHub.
+                                                                                              
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/lep_aug.jpg" align="center" width="600" ></a></p>   
 
