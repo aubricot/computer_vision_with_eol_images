@@ -37,7 +37,12 @@ The Encyclopedia of Life (EOL) is an online biodiversity resource that seeks to 
 Results from object detection and image classification tasks will be used to inform future large-scale image processing and user features for EOLv3 images.
 
 ## Getting Started  
-Except for .py files, all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, everything runs entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried. Working in the cloud also makes it easy to collaborate if multiple users are on different operating systems. 
+All files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html)*. This repository is set up so that each notebook can be run as a standalone script. It is not necessary to clone the entire repository. Instead, you can just find project sections that are interesting and direclty try for yourself! Any needed files and directories are set up within the notebook.
+
+For additional details on steps below, see the [project wiki](https://github.com/aubricot/computer_vision_with_eol_images/wiki).
+
+**New to Google Colab?   
+More info: Google Colaboratory is "a free cloud service, based on Jupyter Notebooks for machine-learning education and research." Notebooks run entirely on VMs in the cloud and links to you Google Drive for accessing files. This means no local software or library installs are requried. If running locally and using a GPU, there are several softwares that need to be installed first and take up ~10 GB and a few workarounds are required if running on a Windows OS. Working in the cloud eliminates these problems and makes it easier to collaborate if multiple users are on different operating systems. If you prefer to use your local machine for object detection, refer to the [Tensorflow Object Detection API Tutorial](https://github.com/tensorflow/models/blob/master/research/object_detection/object_detection_tutorial.ipynb).*   
 
 ## References
 * [AlexeyAB 2020](https://github.com/AlexeyAB/darknet). Darknet. GitHub.
