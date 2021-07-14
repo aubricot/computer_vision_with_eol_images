@@ -37,7 +37,7 @@ The Encyclopedia of Life (EOL) is an online biodiversity resource that seeks to 
 Results from object detection and image classification tasks will be used to inform future large-scale image processing and user features for EOLv3 images.
 
 ## Getting Started  
-All files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html)*. This repository is set up so that each notebook can be run as a standalone script. It is not necessary to clone the entire repository. Instead, you can just find project sections that are interesting and direclty try for yourself! Any needed files and directories are set up within the notebook.
+All files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html)*. This repository is set up so that each notebook can be run as a standalone script. It is not necessary to clone the entire repository. Instead, you can find project sections that are interesting and directly try the notebooks for yourself! All needed files and directories are set up within the notebook.
 
 For additional details on steps below, see the [project wiki](https://github.com/aubricot/computer_vision_with_eol_images/wiki).
 
