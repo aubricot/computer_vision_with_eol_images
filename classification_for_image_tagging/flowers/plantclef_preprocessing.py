@@ -1,5 +1,8 @@
 # Preprocessing PlantCLEF 2016 dataset
 # 15 Jul 2020
+#--Update as of 14 Oct 2021--Flower classification pipelines are no longer being updated. 
+#  As a result, this script is left in its state from 15 Jul 2020. Functions may become deprecated or lose functionality. 
+#  For updated classificaiton of Flowers/Fruits, see https://github.com/aubricot/computer_vision_with_eol_images/tree/master/classification_for_image_tagging/flower_fruit--
 
 import os, random, shutil
 
