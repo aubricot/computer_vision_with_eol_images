@@ -56,6 +56,12 @@ Scat/footprint object detection models never learned despite adjusting augmentat
 ## Flower/fruit
 **Step 1) Run images through model, post-process and display results:** To run EOL Angiosperm images through pre-trained YOLOv3 model, post-process results (only keep predictions for 'Flower', 'Fruit', or 'Food' and convert to "Flower", "Fruit", or "Reproductive structures present"), and display detected tags on images, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/plant_pollinator/plant_poll_generate_tags_yolov3.ipynb).
  
+<p align="center">
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/flower_classif_tag_ex.jpg" align="middle" width="500" ></a></p>   
+
+<p align="center">
+<sub><sup>Image is hosted by [EOL](https://content.eol.org/data/media/81/3c/f3/542.8209936861.jpg).</sup></sub>
+ 
 ## References
 * [AlexeyAB 2020](https://github.com/AlexeyAB/darknet). darknet. GitHub.
 * [Custom training: walkthrough 2020](https://www.tensorflow.org/tutorials/customization/custom_training_walkthrough). Tensorflow Core. 12 Jun 2020.
