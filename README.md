@@ -1,6 +1,6 @@
 # Computer Vision with EOL v3 Images 
 Testing different computer vision methods (object detection, image classification) to do customized, large-scale image processing for [Encyclopedia of Life v3 database images](https://eol.org/pages/2913056/media) (square, centered crops; image content tags; etc). Runs in Tensorflow 2 and Python 3.  
-*Last updated 17 May 2022*
+*Last updated 18 May 2022*
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -28,11 +28,14 @@ After detection, bounding boxes of detected animals are converted to square, cen
 
 :arrow_right: :seedling: [Click here](https://github.com/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_cropping) to get started.
 
-<p align="right"> 
-<sub><sup> Screenshot of object detection results using trained multitaxa detector model displayed in a Jupyter Notebook running in Google Colab. Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/28/09/c5/18.https___www_inaturalist_org_photos_1003389.jpg"><i>Lampropeltis californiae</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/"></a>CC BY-NC 4.0</a>.</sup></sub></p>  
+<p align="center"> 
+<sub><sup> Object detection results using trained multitaxa detector model displayed in a Google Colab Notebook. Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/28/09/c5/18.https___www_inaturalist_org_photos_1003389.jpg"><i>Lampropeltis californiae</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/"></a>CC BY-NC 4.0</a>.</sup></sub></p>  
 
 # 
 **Classification for image tagging** 
+
+<p align="center">
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/images/classification_example.jpg" align="right" width="300" ></a></p> 
 
 Two classification frameworks (MobileNetSSD v2, Inception v3) were used to perform image tagging for different classes of EOL images (flowers, maps/labels/illustrations, image ratings) by using transfer learning and/or fine-tuning. 
 
@@ -47,15 +50,21 @@ While object detection includes classification and localization of the object of
 
 :arrow_right: :seedling: [Click here](https://github.com/aubricot/computer_vision_with_eol_images/tree/master/classification_for_image_tagging) to get started.
 
+<p align="center">
+<sub><sup>Image classification results using trained flower/fruit classification model displayed in a Google Colab Notebook. Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/66/a1/2a/509.63397702.jpg"><i>Leucopogon tenuicaulis</i></a>, licensed under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>).</sup></sub>
+
 #
-**Object detection for image tagging**  
+**Object detection for image tagging**    
+
+<p align="center">
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/plantpoll_tag_ex.jpg" align="right" width="400" ></a></p>   
 
 Three object detection frameworks (YOLO v3 in darknet, MobileNetSSD v2, and YOLO v4) were used to perform image tagging for different classes of EOL images (flowers, insects, mammals/amphibians/reptiles/birds). 
 
 Frameworks differ in their speeds and accuracy: YOLO v4 is the fastest with intermediate accuracy, MobileNetSSD v2 is intermediate speed and accuracy, and YOLO v3 is somewhere in between (Bochkovskiy et al. 2020, Sandler et al. 2018, Redmon and Farhadi 2018). The model with the best trade-off between speed and accuracy for each group was selected to generate final tagging data for EOL images.
 
 For tagging, only the class of detected objects are kept and their locations are discarded. Object detection is used to identify plant-pollinator coocurrence, insect life stage, the presence of mammal, amphibian, reptile, or bird scat and/or footprints, and when a human (or body part, like 'hand') is present. These tags will allow users to search for features not already included in image metadata. 
-
+  
 * For <ins>plant-pollinator coocurrence</ins>, a model pre-trained on Google OpenImages (Krasin et al. 2017) was used. EOL images are run through the model and predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' were kept and then converted to "pollinator present" during post-processing.    
 * For <ins>insect life stages</ins>, a model pre-trained on Google OpenImages (Krasin et al. 2017) was used. EOL images are run through the model and predictions for 'Ant', 'Bee', 'Beetle', 'Butterfly', 'Dragonfly', 'Insect', 'Invertebrate', 'Moths and butterflies' were kept and then converted to "adult" during post-processing. Predictions for 'Caterpillar', 'Centipede', 'Worm' were converted to "juvenile" during post-processing.
 * For <ins>scat/footprint present</ins>, models were custom-trained to detect scat or footprints from EOL images, but never learned despite adjusting augmentation and model hyperparameters for many training sessions. Pipelines and datasets should be revisted in the future with different approaches.
@@ -63,6 +72,9 @@ For tagging, only the class of detected objects are kept and their locations are
 
 :arrow_right: :seedling: [Click here](https://github.com/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_tagging) to get started.
 
+<p align="center">
+<sub><sup>Object detection for image tagging results using pre-trained plant-pollinator coocurrence model displayed in a Google Colab Notebook. Image is hosted by Flickr (<a href="https://www.flickr.com/photos/37089490@N06/3714515042">another flower - insect photo! by thart2009</a>, licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=rich">CC BY 2.0</a>).</sup></sub>
+  
 ## Getting Started  
 All files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html)*. This repository is set up so that each notebook can be run as a standalone script. It is not necessary to clone the entire repository. Instead, you can navigate project sections (ie. GitHub folders) that are interesting and directly try the notebooks for yourself! All needed files and directories are set up within the notebook.
 
