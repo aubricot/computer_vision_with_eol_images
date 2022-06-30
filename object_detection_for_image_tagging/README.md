@@ -1,6 +1,6 @@
 # Object Detection for Image Tagging
 Testing different object detection frameworks as a method to automatically generate tags for plant-pollinator co-ocurrence, insect life stages, scat/footprints, and humans present within EOL images. Runs in YOLO v3 and Python 3.  
-*Last updated 31 May 2022*
+*Last updated 30 Jun 2022*
 
 ## Project Structure
 **Plant/pollintor**
@@ -65,7 +65,7 @@ Scat/footprint object detection models never learned despite adjusting augmentat
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/human_present_tag_ex.jpg" align="middle" width="500" ></a></p>   
 
 <p align="center">
-<sub><sup>Image is hosted by [EOL](https://content.eol.org/data/media/33/de/7d/18.https___www_inaturalist_org_photos_2979499.jpg).</sup></sub>
+<sub><sup>Image is hosted by <a href="https://content.eol.org/data/media/33/de/7d/18.https___www_inaturalist_org_photos_2979499.jpg">EOL</a>.</sup></sub>
 
 ## Flower/fruit
 **Step 1) Run images through model, post-process and display results:** To run EOL Angiosperm images through pre-trained YOLOv3 model, post-process results (only keep predictions for 'Flower', 'Fruit', or 'Food' and convert to "Flower", "Fruit", or "Reproductive structures present"), and display detected tags on images, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/flower_fruit/flower_fruit_generate_tags_yolov3.ipynb).
@@ -74,7 +74,7 @@ Scat/footprint object detection models never learned despite adjusting augmentat
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/flower_classif_tag_ex.jpg" align="middle" width="500" ></a></p>   
 
 <p align="center">
-<sub><sup>Image is hosted by [EOL](https://content.eol.org/data/media/81/3c/f3/542.8209936861.jpg).</sup></sub>
+<sub><sup>Image is hosted by <a href="https://content.eol.org/data/media/81/3c/f3/542.8209936861.jpg">EOL</a>.</sup></sub>
  
 ## References
 * [AlexeyAB 2020](https://github.com/AlexeyAB/darknet). darknet. GitHub.
