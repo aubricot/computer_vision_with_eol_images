@@ -1,6 +1,6 @@
 # Classification for Image Tagging
-Testing different image classification frameworks as a method to automatically generate tags for flowers, image type (map/herbarium sheet/phylogeny/illustration), and image ratings within EOL images.   
-*Last updated 31 May 2022*
+Testing different image classification frameworks as a method to automatically generate tags for image type (map/herbarium sheet/phylogeny/illustration) and image quality ratings for EOL images.   
+*Last updated 31 July 2022*
 
 ## Project Structure
 **Flowers**
@@ -11,17 +11,17 @@ Testing different image classification frameworks as a method to automatically g
 **Flowers/Fruits**
 * Pre-trained [MobileNet SSD v2](https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4) and [Inception v3](https://tfhub.dev/google/imagenet/inception_v3/classification/4) models downloaded from [Tensorflow Hub](https://www.tensorflow.org/hub) were trained on EOL Angiosperm images (evenly distributed across taxonomic groups) to classify images into flower/fruit or not flower/fruit. The model and hyperparameter combinations with the best trade-off between speed and accuracy - MobileNet SSD v2 training attempts 7 and 11 - were selected and used to generate image tags for a bundle of 20,000 EOL flowering plant images. For test images, training attempt 7 performed better at identifying reproductive structures (flower/fruit) and attemt 11 performed better at identifying images without reproductive structures. Confidence thresholds to maximize coverage and minimize error for both model's predictions were used to post-process and filter classification results and produce final tags.
 
-:arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/flower_fruit/classify_images.ipynb) Click here to start generating crops.
+:arrow_right: :seedling: Because better results were obtained using object detection than image classification for flowers/fruits, see object detection for image tagging notebook [here](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/flower_fruit/flower_fruit_generate_tags_yolov3.ipynb).
 
 **Image Type**
 * Pre-trained [MobileNet SSD v2](https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4) and [Inception v3](https://tfhub.dev/google/imagenet/inception_v3/classification/4) models downloaded from [Tensorflow Hub](https://www.tensorflow.org/hub) were trained on EOL, Wikimedia Commons, and Flicker BHL images to classify EOL images as a map, phylogeny, illustration, herbarium sheet, or none. The model and hyperparameter combinations with the best trade-off between speed and accuracy - MobileNet SSD v2 training attempt 13 - was selected and used to generate image tags for a bundle of 20,000 EOL images. Images are pre-processed to add photographic or non-photographic tags using a "cartoonization" image processing approach. Then image tags are added using image classification with MobileNet SSD v2. 
 
-:arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/image_type/classify_images.ipynb) Click here to start generating crops.
+:arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/image_type/classify_images.ipynb) Click here to start generating tags.
 
 **Image Ratings**
 * Pre-trained [MobileNet SSD v2](https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4) and [Inception v3](https://tfhub.dev/google/imagenet/inception_v3/classification/4) models downloaded from [Tensorflow Hub](https://www.tensorflow.org/hub) were trained using EOL user generated image rating and exemplar datasets to and used to classify EOL images into quality rating categories 1-5 (worst to best). Training results were not consistent despite large datset sizes (7k images per class), likely attributed to the subjective nature of user quality ratings for what defines a "good" image. The model and hyperparameter combinations with the best trade-off between speed and accuracy - Inception v3 training attempt 20 - was selected and used to generate image tags. Results were consistent for "bad" images (ie users were more unified on what they don't like), so this was leveraged to keep model outputs for "bad" (classes 1-2) and tag remaining images as "good." 
 
-:arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/rating/classify_images.ipynb) Click here to start generating crops.
+:arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/rating/classify_images.ipynb) Click here to start generating tags.
 
 ## Getting Started  
 Except preprocessing.py files (plantclef_preprocessing.py), all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, everything is run entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried.   
