@@ -1,12 +1,10 @@
 # Classification for Image Tagging
 Testing different image classification frameworks as a method to automatically generate tags for image type (map/herbarium sheet/phylogeny/illustration) and image quality ratings for EOL images.   
-*Last updated 31 July 2022*
+*Last updated 17 August 2022*
 
 ## Project Structure
 **Flowers**
 * Pre-trained [MobileNet SSD v2](https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4) and [Inception v3](https://tfhub.dev/google/imagenet/inception_v3/classification/4) models downloaded from [Tensorflow Hub](https://www.tensorflow.org/hub) and a custom-built model made from scratch based on advice from the [Tensorflow Image Classification Tutorial](https://www.tensorflow.org/tutorials/images/classification) and [pyimagesearch](https://www.pyimagesearch.com/2018/12/31/keras-conv2d-and-convolutional-layers/) were trained on the [PlantCLEF 2016 Image dataset](https://www.imageclef.org/lifeclef/2016/plant) (Goeau et al. 2016) to classify images into flower, fruit, stem, branch, entire or leaf. Model results were inconsistent and a flower/fruit classifier was built for use instead.
-
-:arrow_right: :seedling: Because trained model results were inconsistent, use flowers/fruits pipeline below to add flower tags to images.
 
 **Flowers/Fruits**
 * Pre-trained [MobileNet SSD v2](https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4) and [Inception v3](https://tfhub.dev/google/imagenet/inception_v3/classification/4) models downloaded from [Tensorflow Hub](https://www.tensorflow.org/hub) were trained on EOL Angiosperm images (evenly distributed across taxonomic groups) to classify images into flower/fruit or not flower/fruit. The model and hyperparameter combinations with the best trade-off between speed and accuracy - MobileNet SSD v2 training attempts 7 and 11 - were selected and used to generate image tags for a bundle of 20,000 EOL flowering plant images. For test images, training attempt 7 performed better at identifying reproductive structures (flower/fruit) and attemt 11 performed better at identifying images without reproductive structures. Confidence thresholds to maximize coverage and minimize error for both model's predictions were used to post-process and filter classification results and produce final tags.
