@@ -1,9 +1,7 @@
-name: Bug Report
+name: "Bug Report"
 description: File a bug report
 title: "[Bug]: "
 labels: ["bug", "triage"]
-assignees:
-  - octocat
 body:
   - type: markdown
     attributes:
@@ -45,27 +43,27 @@ body:
         - Chiroptera
         - Lepidoptera
         - Multitaxa
-        - Plant-pollinator
+        - Plant pollinator
         - Insect life stages
         - Human present
-        - Flower/fruit
+        - Flower fruit
         - Image type
         - Image ratings
   - type: textarea
     id: filename
     attributes:
       label: filename
-      description: What is the filename of the script that is giving you touble?
+      description: What is the filename of the script that is giving you trouble?
       placeholder: Type your filename here
       value: "Ex. classify_images.ipynb"
     validations:
       required: true
-- type: textarea
+  - type: textarea
     id: version
     attributes:
       label: Version
       description: What version of Tensorflow are you running?
-      placeholder: Tensorflow version prints out at the end of Installs & Imports code blocks at the beggining of each notebook.
+      placeholder: Tensorflow version prints out at the end of Installs & Imports code blocks at the beginning of each notebook.
       value: "Ex. Version 2.8"
     validations:
       required: true
