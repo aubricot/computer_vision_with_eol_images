@@ -1,6 +1,6 @@
 # Object Detection for Image Tagging
 Testing different object detection frameworks as a method to automatically generate tags for plant-pollinator co-ocurrence, insect life stages, scat/footprints, and humans present within EOL images. Runs in YOLO v3 and Python 3.  
-*Last updated 30 Jun 2022*
+*Last updated 17 Aug 2022*
 
 ## Project Structure
 **Plant/pollintor**
@@ -15,8 +15,6 @@ Testing different object detection frameworks as a method to automatically gener
 
 **Scat/footprint**
 * Pre-trained [MobileNet SSD v2](https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4) and [YOLO v4](https://github.com/AlexeyAB/darknet) models downloaded from [Tensorflow Hub](https://www.tensorflow.org/hub) and [AlexeyAB](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights) were re-trained using transfer learning based on advice from the [Tensorflow Image Classification Tutorial](https://www.tensorflow.org/tutorials/images/classification) and [Darknet Github](https://github.com/AlexeyAB/darknet) using iNaturalist images to detect scat or footprints from EOL images. Models never learned despite adjusting augmentation and model hyperparameters for many training sessions. Pipelines should be revisted in the future with different approaches.
-
-:arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/scat_footprint/scat_footprint_train_yolov3.ipynb) Click here to start generating crops.
 
 **Human Present**
 * YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights). EOL Chiroptera images are run through the model and predictions for 'Person' or any string containing 'Human' ('Body', 'Eye', 'Head', 'Hand', 'Foot', 'Face', 'Arm', 'Leg', 'Ear', 'Eye', 'Face', 'Nose', 'Beard') were kept and then converted to "human present" during post-processing.   
