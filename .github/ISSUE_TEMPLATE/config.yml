@@ -1,7 +1,7 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
-  - name: GitHub Community Support
-    url: https://github.com/orgs/community/discussions
+  - name: CV with EOL Images Community Support
+    url: https://github.com/aubricot/computer_vision_with_eol_images/issues
     about: Please ask and answer questions here.
   - name: GitHub Security Bug Bounty
     url: https://bounty.github.com/
