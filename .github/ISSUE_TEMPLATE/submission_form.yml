@@ -56,7 +56,7 @@ body:
       label: filename
       description: What is the filename of the script that is giving you touble?
       placeholder: Type your filename here
-      value: Ex: classify_images.ipynb
+      value: Ex. classify_images.ipynb
     validations:
       required: true
 - type: textarea
@@ -65,7 +65,7 @@ body:
       label: Version
       description: What version of Tensorflow are you running?
       placeholder: Tensorflow version prints out at the end of Installs & Imports code blocks at the beggining of each notebook.
-      value: Ex: Version 2.8
+      value: Ex. Version 2.8
     validations:
       required: true
   - type: dropdown
