@@ -24,6 +24,13 @@ body:
       value: "A bug happened!"
     validations:
       required: true
+  - type: textarea
+    id: i-tried
+    attributes:
+      label: How did you try to fix it?
+      description: Any specific functions, trying previous versions, etc.
+    validations:
+      required: true
   - type: dropdown
     id: cv-type
     attributes:
@@ -52,7 +59,7 @@ body:
   - type: textarea
     id: filename
     attributes:
-      label: filename
+      label: Filename
       description: What is the filename of the script that is giving you trouble?
       placeholder: Type your filename here
       value: "Ex. classify_images.ipynb"
