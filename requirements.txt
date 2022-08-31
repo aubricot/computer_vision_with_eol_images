@@ -1,0 +1,23 @@
+# Last updated on 31 Aug 2022 for all generate_crops, generate_tags, and classify_images notebooks
+
+# For working with data
+matplotlib==3.2.2
+numpy==1.21.6
+pandas==1.3.5
+scipy==1.7.3
+six==1.15.0
+
+# For object detection and image classification with Tensorflow
+object_detection==0.0.3
+tensorflow_hub==0.12.0
+tensorflow==2.8.2+zzzcolab20220719082949
+
+# For working with images
+opencv_contrib_python==4.6.0.66
+opencv_python_headless==4.6.0.66
+Pillow==9.2.0
+imageio==2.9.0
+
+# For working in Colab Notebooks
+ipython==8.4.0
+protobuf==4.21.5
