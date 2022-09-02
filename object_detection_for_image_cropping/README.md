@@ -1,6 +1,6 @@
 # Object Detection for Image Cropping 
 Testing different existing object detection frameworks using Faster-RCNN (built on Resnet 50 and Inception v2) and SSD (built on MobileNet v2) via the Tensorflow Object Detection API as a method to do customized, large-scale image cropping for different groups of animals for [EOL.org](https://eol.org/pages/2913056/media). Now runs in TF2 and Python 3.   
-*Last updated 31 May 2022*  
+*Last updated 2 September 2022*  
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
