@@ -17,7 +17,8 @@ opencv_contrib_python==4.6.0.66
 opencv_python_headless==4.6.0.66
 Pillow==9.2.0
 imageio==2.9.0
+imgaug==0.4.0
 
 # For working in Colab Notebooks
 ipython==8.4.0
-protobuf==4.21.5
+protobuf==4.21.7
