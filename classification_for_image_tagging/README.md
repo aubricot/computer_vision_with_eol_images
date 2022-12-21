@@ -1,6 +1,6 @@
 # Classification for Image Tagging
 Testing different image classification frameworks as a method to automatically generate tags for image type (map/herbarium sheet/phylogeny/illustration) and image quality ratings for EOL images.   
-*Last updated 17 August 2022*
+*Last updated 21 December 2022*
 
 ## Project Structure
 **Flowers**
@@ -22,7 +22,7 @@ Testing different image classification frameworks as a method to automatically g
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/rating/classify_images.ipynb) Click here to start generating tags.
 
 ## Getting Started  
-Except preprocessing.py files (plantclef_preprocessing.py), all files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"). Using Colab, everything is run entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried.   
+All files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html) (Google Colaboratory, "a free cloud service, based on Jupyter Notebooks for machine-learning education and research"), except plantclef_preprocessing.py. Using Colab, everything is run entirely in the cloud (and can link to Google Drive) and no local software or library installs are requried.   
 
 For additional details on steps below, see the [project wiki](https://github.com/aubricot/computer_vision_with_eol_images/wiki).
 
