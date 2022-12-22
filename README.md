@@ -89,7 +89,7 @@ For additional details on steps below, see the [project wiki](https://github.com
 * <a id="note2" href="#note2ref"><sup>2</sup></a>[Hui 2018](medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359). Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, FPN, RetinaNet and YOLOv3). Medium. 27 March 2018.  
 * <a id="note3" href="#note3ref"><sup>3</sup></a>[Redmon and Farhadi 2018](https://arxiv.org/pdf/1804.02767.pdf). YOLOv3: An Incremental Improvement. 
 * <a id="note4" href="#note4ref"><sup>4</sup></a>[Lin et al. 2015](https://arxiv.org/pdf/1405.0312.pdf). Microsoft COCO: Common Objects in Context.  
-* <a id="note5" href="#note5ref"><sup>5</sup></a>[Sandler et al. 2018](https://arxiv.org/abs/1801.04381). Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentation." arXiv.
+* <a id="note5" href="#note5ref"><sup>5</sup></a>[Sandler et al. 2018](https://arxiv.org/abs/1801.04381). MobileNetV2: Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentation." arXiv.
 * <a id="note6" href="#note6ref"><sup>6</sup></a>[Szegedy et al. 2015](https://arxiv.org/abs/1512.00567). Rethinking the Inception Architecture for Computer Vision. arXiv.
 * <a id="note7" href="#note7ref"><sup>7</sup></a>[Sharma 2019](medium.com/analytics-vidhya/image-classification-vs-object-detection-vs-image-segmentation-f36db85fe81). Image Classification vs. Object Detection vs. Image Segmentation. Medium. 23 Feb 2020.
 * <a id="note8" href="#note8ref"><sup>8</sup></a>[Goeau et al. 2016](http://ceur-ws.org/Vol-1609/16090428.pdf). Plant identification in an open-world (LifeCLEF 2016). CEUR Workshop Proceedings. 
