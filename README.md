@@ -1,6 +1,6 @@
 # Computer Vision with EOL v3 Images 
 Testing different computer vision methods (object detection, image classification) to do customized, large-scale image processing for [Encyclopedia of Life v3 database images](https://eol.org/pages/2913056/media) (square, centered crops; image content tags; etc). Runs in Tensorflow 2 and Python 3.  
-*Last updated 21 December 2022*
+*Last updated 23 February 2023*
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -26,7 +26,12 @@ After detection, bounding boxes of detected animals are converted to square, cen
 * For <ins>bats and butterflies & moths</ins>, object detection models were custom-trained to detect one class (either bats or butterflies & moths) using EOL user-generated cropping data (square coordinates around animal(s) of interest within each photo).    
 * For <ins>beetles, frogs, carnivores and snakes & lizards</ins>, object detection models were custom-trained to detect all classes simultaneously using EOL user-generated cropping data.  
 
+
 :arrow_right: :seedling: [Click here](https://github.com/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_cropping) to get started.
+
+<p align="center">Demo video: Run your own images through the pre-trained EOL object detector in under 2 minutes.</p> 
+<p align="center">
+<a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/objdet_demo_sm.gif" align="center" width="800" ></a></p> 
 
 <p align="center"> 
 <sub><sup> Object detection results using trained multitaxa detector model displayed in a Google Colab Notebook. Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/28/09/c5/18.https___www_inaturalist_org_photos_1003389.jpg"><i>Lampropeltis californiae</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/"></a>CC BY-NC 4.0</a>.</sup></sub></p>  
