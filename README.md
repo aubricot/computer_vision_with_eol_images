@@ -79,6 +79,11 @@ For tagging, only the class of detected objects are kept and their locations are
 
 <p align="center">
 <sub><sup>Object detection for image tagging results using pre-trained plant-pollinator coocurrence model displayed in a Google Colab Notebook. Image is hosted by Flickr (<a href="https://www.flickr.com/photos/37089490@N06/3714515042">another flower - insect photo! by thart2009</a>, licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=rich">CC BY 2.0</a>).</sup></sub>
+
+#
+**Utils**    
+This folder contains Colab Notebooks and Google Chrome developer console scripts with useful functions for building on existing EOL computer vision pipelines or for developing your own from scratch.
+#
   
 ## Getting Started  
 All files in this repository are run in [Google Colab](https://research.google.com/colaboratory/faq.html)*. This repository is set up so that each notebook can be run as a standalone script. It is not necessary to clone the entire repository. Instead, you can navigate project sections (ie. GitHub folders) that are interesting and directly try the notebooks for yourself! All needed files and directories are set up within the notebook.
