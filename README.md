@@ -1,6 +1,6 @@
 # Computer Vision with EOL v3 Images 
 Testing different computer vision methods (object detection, image classification) to do customized, large-scale image processing for [Encyclopedia of Life v3 database images](https://eol.org/pages/2913056/media) (square, centered crops; image content tags; etc). Runs in Tensorflow 2 and Python 3.  
-*Last updated 23 February 2023*
+*Last updated 1 March 2023*
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -91,7 +91,7 @@ All files in this repository are run in [Google Colab](https://research.google.c
 For additional details on steps below, see the [project wiki](https://github.com/aubricot/computer_vision_with_eol_images/wiki).
 
 >New to Google Colab?   
->Google Colaboratory is "a free cloud service, based on Jupyter Notebooks for machine-learning education and research." Notebooks run >entirely on VMs in the cloud and links to you Google Drive for accessing files. This means no local software or library installs are >requried. If running locally and using a GPU, there are several softwares that need to be installed first and take up ~10 GB and a >few workarounds are required if running on a Windows OS. Working in the cloud eliminates these problems and makes it easier to >collaborate if multiple users are on different operating systems. If you prefer to use your local machine for object detection, refer >to the [Tensorflow Object Detection API Tutorial](https://github.com/tensorflow/models/blob/master/research/object_detection/object_detection_tutorial.ipynb).*   
+>Google Colaboratory is "a free cloud service, based on Jupyter Notebooks for machine-learning education and research." Notebooks run >entirely on VMs in the cloud and links to you Google Drive for accessing files. This means no local software or library installs are >requried. If running locally and using a GPU, there are several softwares that need to be installed first and take up ~10 GB and a >few workarounds are required if running on a Windows OS. Working in the cloud eliminates these problems and makes it easier to >collaborate if multiple users are on different operating systems. If you prefer to use your local machine for object detection, refer to the [Tensorflow Object Detection API Tutorial](https://github.com/tensorflow/models/blob/master/research/object_detection/object_detection_tutorial.ipynb).*   
 
 ## References
 
