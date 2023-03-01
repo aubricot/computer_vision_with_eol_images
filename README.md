@@ -95,18 +95,18 @@ For additional details on steps below, see the [project wiki](https://github.com
 
 ## References
 
-* <a id="note1" href="#note1ref"><sup>1</sup></a>[Ren et al. 2017](https://doi.org/10.1109/TPAMI.2016.2577031). Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. IEEE Transactions on Pattern Analysis and Machine Intelligence.
-* <a id="note2" href="#note2ref"><sup>2</sup></a>[Hui 2018](medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359). Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, FPN, RetinaNet and YOLOv3). Medium. 27 March 2018.  
-* <a id="note3" href="#note3ref"><sup>3</sup></a>[Redmon and Farhadi 2018](https://arxiv.org/pdf/1804.02767.pdf). YOLOv3: An Incremental Improvement. 
-* <a id="note4" href="#note4ref"><sup>4</sup></a>[Lin et al. 2015](https://arxiv.org/pdf/1405.0312.pdf). Microsoft COCO: Common Objects in Context.  
-* <a id="note5" href="#note5ref"><sup>5</sup></a>[Sandler et al. 2018](https://arxiv.org/abs/1801.04381). MobileNetV2: Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentation." arXiv.
-* <a id="note6" href="#note6ref"><sup>6</sup></a>[Szegedy et al. 2015](https://arxiv.org/abs/1512.00567). Rethinking the Inception Architecture for Computer Vision. arXiv.
-* <a id="note7" href="#note7ref"><sup>7</sup></a>[Sharma 2019](medium.com/analytics-vidhya/image-classification-vs-object-detection-vs-image-segmentation-f36db85fe81). Image Classification vs. Object Detection vs. Image Segmentation. Medium. 23 Feb 2020.
-* <a id="note8" href="#note8ref"><sup>8</sup></a>[Goeau et al. 2016](http://ceur-ws.org/Vol-1609/16090428.pdf). Plant identification in an open-world (LifeCLEF 2016). CEUR Workshop Proceedings. 
-* <a id="note9" href="note9ref"><sup>9</sup></a>[AlexeyAB 2020](https://github.com/AlexeyAB/darknet). Darknet. GitHub.
-* <a id="note10" href="#note10ref"><sup>10</sup></a>[Bochkovskiy et al. 2020](https://arxiv.org/abs/2004.10934). YOLOv4: Optimal Speed and Accuracy of Object Detection. arXiv.
-* <a id="note11" href="#note11ref"><sup>11</sup></a>[Liu et al. 2016](https://doi.org/10.1007/978-3-319-46448-0_2). SSD: Single shot multibox detector. Lecture Notes in Computer Science.  
-* <a id="note12" href="#note12ref"><sup>12</sup></a>[Krasin et al. 2017](https://github.com/openimages). Open images: A public dataset for large-scale multi-label and multi-class image classification. GitHub.
+<a id="note1" href="#note1ref"><sup>1</sup></a>[Ren et al. 2017](https://doi.org/10.1109/TPAMI.2016.2577031). Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. IEEE Transactions on Pattern Analysis and Machine Intelligence.   
+<a id="note2" href="#note2ref"><sup>2</sup></a>[Hui 2018](medium.com/@jonathan_hui/object-detection-speed-and-accuracy-comparison-faster-r-cnn-r-fcn-ssd-and-yolo-5425656ae359). Object detection: speed and accuracy comparison (Faster R-CNN, R-FCN, SSD, FPN, RetinaNet and YOLOv3). Medium. 27 March 2018.   
+<a id="note3" href="#note3ref"><sup>3</sup></a>[Redmon and Farhadi 2018](https://arxiv.org/pdf/1804.02767.pdf). YOLOv3: An Incremental Improvement.    
+<a id="note4" href="#note4ref"><sup>4</sup></a>[Lin et al. 2015](https://arxiv.org/pdf/1405.0312.pdf). Microsoft COCO: Common Objects in Context.   
+<a id="note5" href="#note5ref"><sup>5</sup></a>[Sandler et al. 2018](https://arxiv.org/abs/1801.04381). MobileNetV2: Inverted Residuals and Linear Bottlenecks: Mobile Networks for Classification, Detection and Segmentation. arXiv.   
+<a id="note6" href="#note6ref"><sup>6</sup></a>[Szegedy et al. 2015](https://arxiv.org/abs/1512.00567). Rethinking the Inception Architecture for Computer Vision. arXiv.   
+<a id="note7" href="#note7ref"><sup>7</sup></a>[Sharma 2019](medium.com/analytics-vidhya/image-classification-vs-object-detection-vs-image-segmentation-f36db85fe81). Image Classification vs. Object Detection vs. Image Segmentation. Medium. 23 Feb 2020.   
+<a id="note8" href="#note8ref"><sup>8</sup></a>[Goeau et al. 2016](http://ceur-ws.org/Vol-1609/16090428.pdf). Plant identification in an open-world (LifeCLEF 2016). CEUR Workshop Proceedings.    
+<a id="note9" href="note9ref"><sup>9</sup></a>[AlexeyAB 2020](https://github.com/AlexeyAB/darknet). Darknet. GitHub.   
+<a id="note10" href="#note10ref"><sup>10</sup></a>[Bochkovskiy et al. 2020](https://arxiv.org/abs/2004.10934). YOLOv4: Optimal Speed and Accuracy of Object Detection. arXiv.   
+<a id="note11" href="#note11ref"><sup>11</sup></a>[Liu et al. 2016](https://doi.org/10.1007/978-3-319-46448-0_2). SSD: Single shot multibox detector. Lecture Notes in Computer Science.   
+<a id="note12" href="#note12ref"><sup>12</sup></a>[Krasin et al. 2017](https://github.com/openimages). Open images: A public dataset for large-scale multi-label and multi-class image classification. GitHub.   
 
 
 ## License
