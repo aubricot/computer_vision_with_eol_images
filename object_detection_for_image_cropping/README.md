@@ -16,7 +16,7 @@ The tested frameworks differ in their speeds and accuracy: YOLO has been found t
 
 ## Project Structure
 **Aves**
-* Pre-trained models are used for "out of the box" inference on images of birds (Aves) of varying dimensions and resolutions. The model with the best trade-off between speed and accuracy - YOLO - was selected and used to generate cropping data for sets of 1,000 and 20,000 EOL bird images. Detection are consolidated to one box per image, converted to square, and padded by 11% to ensure that beaks are not cropped out.
+* Pre-trained models are used for "out of the box" inference on images of birds (Aves) of varying dimensions and resolutions. The model with the best trade-off between speed and accuracy - SSD and/or Faster-RCNN - was selected and used to generate cropping data for sets of 1,000 and 20,000 EOL bird images. Detection are consolidated to one box per image, converted to square, and padded by 11% to ensure that beaks are not cropped out.
 
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/aves/aves_generate_crops_tf2.ipynb) Click here to start generating crops.
 
