@@ -1,6 +1,6 @@
 # Object Detection for Image Cropping 
 Testing different existing object detection frameworks using Faster-RCNN (built on Resnet 50 and Inception v2) and SSD (built on MobileNet v2) via the Tensorflow Object Detection API as a method to do customized, large-scale image cropping for different groups of animals for [EOL.org](https://eol.org/pages/2913056/media). Now runs in TF2 and Python 3.   
-*Last updated 23 February 2023*  
+*Last updated 15 March 2023*  
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -16,7 +16,7 @@ The tested frameworks differ in their speeds and accuracy: YOLO has been found t
 
 ## Project Structure
 **Aves**
-* Pre-trained models are used for "out of the box" inference on images of birds (Aves) of varying dimensions and resolutions. The model with the best trade-off between speed and accuracy - SSD and/or Faster-RCNN - was selected and used to generate cropping data for sets of 1,000 and 20,000 EOL bird images. Detection are consolidated to one box per image, converted to square, and padded by 11% to ensure that beaks are not cropped out.
+* Pre-trained models are used for "out of the box" inference on images of birds (Aves) of varying dimensions and resolutions. The model with the best trade-off between speed and accuracy - SSD and/or Faster-RCNN - was selected and used to generate cropping data for sets of 1,000 and 20,000 EOL bird images. Detection are consolidated to one box per image, converted to square, and padded by 2.5% to ensure that beaks are not cropped out.
 
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/aves/aves_generate_crops_tf2.ipynb) Click here to start generating crops.
 
