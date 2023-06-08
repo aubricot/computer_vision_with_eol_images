@@ -1,6 +1,6 @@
 # Object Detection for Image Tagging
 Testing different object detection frameworks as a method to automatically generate tags for plant-pollinator co-ocurrence, insect life stages, scat/footprints, and humans present within EOL images. Runs in YOLO v3 and Python 3.  
-*Last updated 17 Aug 2022*
+*Last updated 8 June 2023*
 
 ## Project Structure
 **Plant/pollintor**
@@ -57,7 +57,7 @@ For additional details on steps below, see the [project wiki](https://github.com
 Scat/footprint object detection models never learned despite adjusting augmentation and model hyperparameters for many training sessions. If successful approaches are found at a later date, steps for adding tags to images will be included.
 
 ## Human Present
-**Step 1) Run images through model, post-process and display results:** To run EOL Chiroptera images through pre-trained YOLOv3 model, post-process results (only keep predictions for for 'Person' or any string containing 'Human' ['Body', 'Eye', 'Head', 'Hand', 'Foot', 'Face', 'Arm', 'Leg', 'Ear', 'Eye', 'Face', 'Nose', 'Beard'] and convert to "pollinator present"), and display detected tags on images, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/human_present/human_present_generate_tags_yolov3.ipynb).
+**Step 1) Run images through model, post-process and display results:** To run EOL Chiroptera images through pre-trained YOLOv3 model, post-process results (only keep predictions for for 'Person' or any string containing 'Human' ['Body', 'Eye', 'Head', 'Hand', 'Foot', 'Face', 'Arm', 'Leg', 'Ear', 'Eye', 'Face', 'Nose', 'Beard'] and convert to "human present"), and display detected tags on images, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/human_present/human_present_generate_tags_yolov3.ipynb).
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/human_present_tag_ex.jpg" align="middle" width="500" ></a></p>   
