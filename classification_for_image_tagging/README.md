@@ -1,6 +1,6 @@
 # Classification for Image Tagging
 Testing different image classification frameworks as a method to automatically generate tags for image type (map/herbarium sheet/phylogeny/illustration) and image quality ratings for EOL images.   
-*Last updated 21 December 2022*
+*Last updated 12 July 2023*
 
 ## Project Structure
 **Flowers**
