@@ -1,0 +1,11 @@
+url_path,views_total,views_unique
+/aubricot/computer_vision_with_eol_images,7,5
+/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_tagging,7,2
+/aubricot/computer_vision_with_eol_images/tree/master/classification_for_image_tagging,6,2
+/aubricot/computer_vision_with_eol_images/tree/master/classification_for_image_tagging/image_type,4,2
+/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_cropping,4,1
+/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_cropping/multitaxa,4,1
+/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/url,3,1
+/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_tagging/plant_pollinator,3,1
+/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/image_type/cartoonify_images.ipynb,2,1
+/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/multitaxa/multitaxa_generate_crops_tf2.ipynb,2,1
