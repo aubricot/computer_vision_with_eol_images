@@ -1,6 +1,6 @@
 # Object Detection for Image Tagging
 Testing different object detection frameworks as a method to automatically generate tags for plant-pollinator co-ocurrence, insect life stages, scat/footprints, and humans present within EOL images. Runs in YOLO v3 and Python 3.  
-*Last updated 8 June 2023*
+*Last updated 15 October 2024*
 
 ## Project Structure
 **Plant/pollintor**
@@ -73,6 +73,9 @@ Scat/footprint object detection models never learned despite adjusting augmentat
 
 <p align="center">
 <sub><sup>Image is hosted by <a href="https://content.eol.org/data/media/81/3c/f3/542.8209936861.jpg">EOL</a>.</sup></sub>
+
+## Data and model availability
+EOL image tags and square cropping coordinates produced using these pipelines are available on [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). EOL trained models are currently set to directly download within Colab Notebooks, but will be deposited on other websites for download shortly.
  
 ## References
 * [AlexeyAB 2020](https://github.com/AlexeyAB/darknet). darknet. GitHub.
