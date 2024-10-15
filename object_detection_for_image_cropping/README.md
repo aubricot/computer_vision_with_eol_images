@@ -1,6 +1,6 @@
 # Object Detection for Image Cropping 
 Testing different existing object detection frameworks using Faster-RCNN (built on Resnet 50 and Inception v2) and SSD (built on MobileNet v2) via the Tensorflow Object Detection API as a method to do customized, large-scale image cropping for different groups of animals for [EOL.org](https://eol.org/pages/2913056/media). Now runs in TF2 and Python 3.   
-*Last updated 15 March 2023*  
+*Last updated 15 October 2024*  
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -89,6 +89,9 @@ For additional details on steps below, see the [project wiki](https://github.com
 **Step 3) Generate square cropping coordinates around beetles, frogs, carnivores, and snakes & lizards in EOL images:** The model with the best trade-off between speed and accuracy - Faster-RCNN Inception v2 - was selected and used to generate cropping data for sets 20,000 EOL beetle, frog, carnivore, snake & lizard images in the Faster-RCNN training notebook here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/multitaxa/multitaxa_generate_crops_tf2.ipynb).
                                                                                               
 *--Note on framework versions: Tensorflow pipelines were built in TF1 in 2020 and updated to TF2 in 2021. YOLO pipelines were built with YOLO v2 in Darkflow and are no long being updated because darkflow does not support newer versions of YOLO. For object detection with a native implementation of YOLO v3, see [Object Detection for Image Tagging pipelines](https://github.com/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_tagging)--*
+
+## Data and model availability
+EOL image tags and square cropping coordinates produced using these pipelines are available on [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). EOL trained models are currently set to directly download within Colab Notebooks, but will be deposited on other websites for download shortly.
 
 ## References
 * [Cartucho 2019](https://github.com/Cartucho/mAP). mAP (mean average precision). GitHub.  
