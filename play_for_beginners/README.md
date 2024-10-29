@@ -1,8 +1,8 @@
 # Play for Beginners 
 Try out scripts you find here to identify objects in your images. No coding knowledge needed!   
-*Last updated 12 July 2023*  
+*Last updated 29 October 2024*  
 
-:arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/play_for_beginners/yolo_demo_v2.ipynb) Click here to start using object detection on your images.
+:arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/play_for_beginners/yolo_demo_v2.ipynb) Click here to start using object detection on your images using our 5 minute demo.
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/play_for_beginners/objdet_509.67a3c831deb818de140b79d9d393a666.png" align="middle" width="400" ></a></p>   
