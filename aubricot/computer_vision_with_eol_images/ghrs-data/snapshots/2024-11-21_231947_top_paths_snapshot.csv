@@ -1,0 +1,11 @@
+url_path,views_total,views_unique
+/aubricot/computer_vision_with_eol_images,7,4
+/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_cropping,3,1
+/aubricot/computer_vision_with_eol_images/tree/master/classification_for_image_tagging,2,2
+/aubricot/computer_vision_with_eol_images/tree/master/classification_for_image_tagging/rating,2,2
+/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_cropping/chiroptera,2,1
+/aubricot/computer_vision_with_eol_images/blob/fe4862199f773baca9f214312c42224abed3ef59/object_detection_for_image_cropping/multitaxa/.archive/multitaxa_convert_bboxdims.py,1,1
+/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/rating/classify_images.ipynb,1,1
+/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/rating/inspect_train_results.ipynb,1,1
+/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/chiroptera/chiroptera_generate_crops_tf2.ipynb,1,1
+/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/chiroptera/chiroptera_preprocessing.ipynb,1,1
