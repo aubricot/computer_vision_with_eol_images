@@ -1,12 +1,10 @@
 # Utility functions for running inference
-# Last updated 28 Oct 2024 by K Wolcott
+# Last updated 2 Dec 2024 by K Wolcott
 import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import tensorflow as tf
-import tensorflow_hub as hub
-import tf_keras
 
 # To read in EOL formatted data files
 def read_datafile(fpath, sep="\t", header=0, disp_head=True, lineterminator='\n', encoding='latin1', dtype=None):
@@ -37,17 +35,6 @@ def set_start_stop(run, df):
 
     return start, stop, cutoff
 
-# Load saved model from directory
-def load_saved_model(models_wd, TRAIN_SESS_NUM, module_selection):
-    # Load saved/pre-trained model from path
-    saved_model_path = models_wd + '/' + TRAIN_SESS_NUM
-    # Load the SavedModel as a tf hub layer (Keras 3 patch)
-    model = tf_keras.Sequential([hub.KerasLayer(saved_model_path)])
-    # Get name and image size for model type
-    handle_base, pixels = module_selection
-
-    return model, pixels, handle_base
-
 # Load in image from URL
 # Modified from https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/guide/saved_model.ipynb#scrollTo=JhVecdzJTsKE
 def image_from_url(url, fn, pixels):
@@ -61,10 +48,17 @@ def image_from_url(url, fn, pixels):
     return image, disp_img
 
 # Get info from predictions to display on images
-def get_predict_info(predictions, i, stop, start, dataset_labels):
+def get_predict_info(predictions, url, i, stop, start, dataset_labels):
     # Get info from predictions
     label_num = np.argmax(predictions[0], axis=-1)
     conf = predictions[0][label_num]
     im_class = dataset_labels[label_num]
-
+    
     return label_num, conf, im_class
+
+# To display loaded image with results
+def plot_image_results(i, disp_img, tag):
+        _, ax = plt.subplots(figsize=(10, 10))
+        ax.imshow(disp_img)
+        plt.axis('off')
+        plt.title("{}) Image type: {} ".format(i+1, tag))
