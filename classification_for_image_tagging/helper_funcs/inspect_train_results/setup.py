@@ -58,12 +58,12 @@ def unpack_EOL_model(use_EOL_model, trained_model_dir, basewd, TRAIN_SESS_NUM, c
                   shutil.move(os.path.join(zipped_model_dir, fn), trained_model_dir)
               shutil.rmtree(TRAIN_SESS_NUM + '/')
               os.remove(zipped_model_fn)
-              print("\033[92m Model {} successfully unpacked at {}".format(TRAIN_SESS_NUM, trained_model_dir))
+              print("\033[92m Model {} successfully unpacked at {}\033[0m".format(TRAIN_SESS_NUM, trained_model_dir))
 
           else:
-              print("\033[93m trained_models_dir already exists at: ", trained_model_dir)
+              print("\033[93m trained_models_dir already exists at: \033[0m", trained_model_dir)
     else:
-        print("\033[93m use_EOL_model set to False. Adjust parameters if using your own custom model or an EOL model.")
+        print("\033[93m use_EOL_model set to False. Adjust parameters if using your own custom model or an EOL model.\033[0m")
 
 # Load saved model from directory
 def load_saved_model(models_wd, TRAIN_SESS_NUM, module_selection):
