@@ -1,6 +1,6 @@
 # Classification for Image Tagging
 Testing different image classification frameworks as a method to automatically generate tags for image type (map/herbarium sheet/phylogeny/illustration) and image quality ratings for EOL images.   
-*Last updated 15 October 2024*
+*Last updated 3 December 2024*
 
 ## Project Structure
 **Flowers**
@@ -18,7 +18,6 @@ Testing different image classification frameworks as a method to automatically g
 
 **Image Ratings**
 * Pre-trained [MobileNet SSD v2](https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4) and [Inception v3](https://tfhub.dev/google/imagenet/inception_v3/classification/4) models downloaded from [Tensorflow Hub](https://www.tensorflow.org/hub) were trained using EOL user generated image rating and exemplar datasets to and used to classify EOL images into quality rating categories 1-5 (worst to best). Training results were not consistent despite large datset sizes (7k images per class), likely attributed to the subjective nature of user quality ratings for what defines a "good" image. The model and hyperparameter combinations with the best trade-off between speed and accuracy - Inception v3 training attempt 20 - was selected and used to generate image tags. Results were consistent for "bad" images (ie users were more unified on what they don't like), so this was leveraged to keep model outputs for "bad" (classes 1-2) and tag remaining images as "good." 
-* Pre-trained models available for download on Kaggle.com, [click here](https://www.kaggle.com/models/eolorg/image-quality-rating-bad-vs-good).
 
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/classification_for_image_tagging/rating/classify_images.ipynb) Click here to start generating tags.
 
@@ -99,7 +98,7 @@ Run images through classification models using confidence values for "bad" image
 <sub><sup>Are the shown images good or bad? EOL users rated the left image of a goat as bad (1) and the right image of a Collared Peccary as good (5). Images are hosted by Flickr (<a href="http://farm2.staticflickr.com/1421/5177003577_d5c66874a7_o.jpg"><i>Pecari tajacuas</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/">CC-BY-NC-SA-2.0</a>) and Wikimedia commons (<a href="https://commons.wikimedia.org/wiki/File:Nederlandse_witte_geit.jpg"><i>Capra sp.</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-3.0</a>).</sup></sub> 
 
 ## Data and model availability
-EOL image tags and square cropping coordinates produced using these pipelines are available on [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). EOL trained models are currently set to directly download within Colab Notebooks, but will be deposited on other websites for download shortly.
+EOL image tags and square cropping coordinates produced using these pipelines are available on [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). EOL trained models are currently set to directly download within Colab Notebooks. We are in the process of adding all of our trained models to Kaggle, [check EOL's Kaggle Model Zoo here](https://www.kaggle.com/eolorg/models). Currently, Image Type and Image Quality Rating models are available. If there is a specific model file you would like, [open a feature request](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose) and we will push it to the top of our list for upload.
   
 ## References
 * [Çakır 2019](https://medium.com/analytics-vidhya/create-tensorflow-image-classification-model-with-your-own-dataset-in-google-colab-63e9d7853a3e). Create Tensorflow Image Classification Model with Your Own Dataset in Google Colab. Medium. 31 Oct 2019.
