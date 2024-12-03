@@ -68,7 +68,7 @@ def unpack_EOL_model(use_EOL_model, trained_model_dir, basewd, TRAIN_SESS_NUM, c
 # Load saved model from directory
 def load_saved_model(models_wd, TRAIN_SESS_NUM, module_selection):
     # Load saved/pre-trained model from path
-    saved_model_path = models_wd + '/' + TRAIN_SESS_NUM
+    saved_model_path = models_wd + TRAIN_SESS_NUM
     # Load the SavedModel as a tf hub layer (Keras 3 patch)
     model = tf_keras.Sequential([hub.KerasLayer(saved_model_path)])
     # Get name and image size for model type

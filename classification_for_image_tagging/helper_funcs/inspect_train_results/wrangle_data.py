@@ -41,11 +41,12 @@ def image_from_url(url, fn, pixels):
     file = tf.keras.utils.get_file(fn, url) # Filename doesn't matter
     disp_img = tf.keras.preprocessing.image.load_img(file)
     image = tf.keras.preprocessing.image.load_img(file, target_size=[pixels, pixels])
+    colormode = image.getbands()
     image = tf.keras.preprocessing.image.img_to_array(image)
     image = tf.keras.applications.mobilenet_v2.preprocess_input(
         image[tf.newaxis,...])
 
-    return image, disp_img
+    return image, disp_img, colormode
 
 # Get info from predictions to display on images
 def get_predict_info(predictions, url, i, stop, start, dataset_labels):
