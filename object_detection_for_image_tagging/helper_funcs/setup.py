@@ -36,7 +36,7 @@ def setup(cwd, basewd):
         print("\n~~~Making darknet...~~~\n")
         subprocess.call('make', stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
         if os.path.exists('./darknet'):
-            print("\nDarknet successfully installed! Move onto next steps to do object detection with YOLOv3.")
+            print("\n \033[92m Darknet successfully installed! Move onto next steps to do object detection with YOLOv3.")
 
         return cwd
 

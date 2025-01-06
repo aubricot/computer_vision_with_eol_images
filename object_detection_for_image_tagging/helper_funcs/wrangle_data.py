@@ -8,6 +8,9 @@ import numpy as np
 import cv2
 import os
 
+# Display full URLs in outputs so you can click them and inspect images
+pd.set_option('display.max_colwidth', None)
+
 # To read in EOL formatted data files
 def read_datafile(fpath, sep="\t", header=0, disp_head=True, lineterminator='\n', encoding='latin1', dtype=None):
     try:
@@ -54,7 +57,7 @@ def combine_predictions(imgs_dir, outfpath):
                     outfile.writelines(newlines)
     # Load all_predictions.txt
     df = pd.read_csv('data/results/all_predictions.txt')
-    print("Model predictions: \n", df.head())
+    print("Model predictions by class id: \n", df.head())
 
     return df
 
@@ -100,7 +103,7 @@ def add_class_names(all_predictions):
     # Model predictions with number-coded classes
     numbered_tags = pd.read_csv(all_predictions, header=0, sep=" ")
     numbered_tags.class_id = numbered_tags.class_id - 1 # python counts from 0, Yolo from 1
-    print("\nModel predictions by class id (number): \n", numbered_tags)
+    #print("\nModel predictions by class id (open images number (YOLO - 1)): \n", numbered_tags)
 
     # Add class names to model predictions
     classes = pd.read_table('data/openimages.names')
@@ -132,3 +135,11 @@ def add_eolMediaURLs(tags, bundle):
     print("\nModel predictions with EOL media URL's added: \n", final_tags.head())
 
     return final_tags
+
+# Set filename for saving classification results
+def set_outpath(tags_file, cwd):
+    tags_file = os.path.splitext(tags_file)[0]
+    outpath = cwd + '/data/results/' + tags_file + '.tsv'
+    print("Saving results to: \n", outpath)
+
+    return outpath
