@@ -6,7 +6,9 @@ import matplotlib
 import matplotlib.pyplot as plt
 import tempfile
 from six.moves.urllib.request import urlopen
+import urllib
 from six import BytesIO
+import cv2
 
 # For running inference
 import tensorflow as tf
@@ -211,7 +213,7 @@ def make_superboxes(crops):
     return superbox_df
 
 # Add EOL img identifying info from breakdown file to cropping data
-def add_identifiers(*, bundle_info, crops):
+def add_identifiers(superboxes, bundle_info):
     # Get dataObjectVersionIDs, identifiers, and eolMediaURLS from indexed cols
     ids = bundle_info.iloc[:, np.r_[0:2,-2]]
     ids.set_index('eolMediaURL', inplace=True, drop=True)
@@ -230,7 +232,7 @@ def add_identifiers(*, bundle_info, crops):
     return crops_w_identifiers
 
 # Check if dimensions are out of bounds
-def are_dims_oob(dim):
+def are_dims_oob(dim, im_h, im_w):
     # Check if square dimensions are out of image bounds (OOB)
     if dim > min(im_h, im_w):
         return True
@@ -293,7 +295,41 @@ def make_small_square(dim):
     return sm_square
 
 # Add x% padding to bounding box dimensions
-def add_padding(dim):
+def add_padding(dim, percent_pad=0):
     # Add padding on all sides of square
-    padded_dim = dim + 2*percent_pad*dim
+    padded_dim = dim + 2 * percent_pad * dim
     return padded_dim
+
+# For uploading an image from url
+# Modified from https://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/
+def url_to_image(url):
+    resp = urllib.request.urlopen(url)
+    image = np.asarray(bytearray(resp.read()), dtype="uint8")
+    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    im_h, im_w = image.shape[:2]
+
+    return image
+
+# Draw cropping box on image
+def draw_box_on_image(df, i, img):
+    # Get box coordinates
+    xmin = df['xmin'][i].astype(int)
+    ymin = df['ymin'][i].astype(int)
+    xmax = df['xmax'][i].astype(int)
+    ymax = df['ymax'][i].astype(int)
+    boxcoords = [xmin, ymin, xmax, ymax]
+
+    # Set box/font color and size
+    maxdim = max(df['im_height'][i],df['im_width'][i])
+    fontScale = maxdim/600
+    box_col = (255, 0, 157)
+
+    # Add label to image
+    tag = df['class_name'][i]
+    image_wbox = cv2.putText(img, tag, (xmin+7, ymax-12), cv2.FONT_HERSHEY_SIMPLEX, fontScale, box_col, 2, cv2.LINE_AA)
+
+    # Draw box label on image
+    image_wbox = cv2.rectangle(img, (xmin, ymax), (xmax, ymin), box_col, 5)
+
+    return image_wbox, boxcoords
