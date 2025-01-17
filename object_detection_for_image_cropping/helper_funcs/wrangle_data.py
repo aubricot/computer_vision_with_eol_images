@@ -262,3 +262,51 @@ def draw_box_on_image(df, i, img):
     image_wbox = cv2.rectangle(img, (xmin, ymax), (xmax, ymin), box_col, 5)
 
     return image_wbox, boxcoords
+
+# Convert rectangles to square crops that are within image bounds (Optional: add padding)
+def make_square_crops(df, pad=0):
+    print("Before making square: \n", df.head())
+    start_time = time.time()
+    df['crop_height'] = None
+    df['crop_width'] = None
+    for i, row in df.iterrows():
+        # Calculate original (rectangular) crop bounding box dimensions
+        crop_h0 = round(df['ymax'][i] - df['ymin'][i], 1)
+        crop_w0 = round(df['xmax'][i] - df['xmin'][i], 1)
+        # Define image dimensions
+        im_h = df.im_height[i]
+        im_w = df.im_width[i]
+        # Define original (rectangular) crop bounding box coordinates
+        xmin0 = df.xmin[i]
+        ymin0 = df.ymin[i]
+        xmax0 = df.xmax[i]
+        ymax0 = df.ymax[i]
+
+        # Calculate the center of the crop bounding box
+        center_x = (xmin0 + xmax0) // 2
+        center_y = (ymin0 + ymax0) // 2
+
+        # Make crop square using the longer bounding box side length
+        side = max(crop_h0, crop_w0) + 2 * pad
+
+        # Ensure the square stays within image bounds
+        df.loc[i, 'xmin'] = xmin1 = max(0, center_x - side // 2)
+        df.loc[i, 'ymin'] = ymin1 = max(0, center_y - side // 2)
+        xmax1 = min(im_w, center_x + side // 2)
+        ymax1 = min(im_h, center_y + side // 2)
+
+        # Define new crop width and height that are within bounds
+        crop_h1 = round(ymax1 - ymin1, 1)
+        crop_w1 = round(xmax1 - xmin1, 1)
+        crop_final = min(crop_h1, crop_w1)
+        df.loc[i, 'crop_height'] = crop_final
+        df.loc[i, 'crop_width'] = crop_final
+        df.loc[i, 'xmax'] = xmin1 + crop_final
+        df.loc[i, 'ymax'] = ymin1 + crop_final
+
+    # Print progress message
+    print("Cropping coordinates, made square and with {}% padding: \n{}".format(pad*100, df.head()))
+    # Print time to run script
+    print('Run time: {} seconds'.format(format(time.time()- start_time, '.2f')))
+
+    return df
