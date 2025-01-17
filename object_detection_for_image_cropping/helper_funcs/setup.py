@@ -1,4 +1,4 @@
-# Functions to set up directory structure and load models
+# Functions to set up directory structure and load models - Aves
 # Last updated 14 Jan 2025 by K Wolcott
 import os
 import subprocess
@@ -15,12 +15,6 @@ def setup_dirs(cwd):
                 os.mkdir('tf_models')
                 os.mkdir('results')
                 os.chdir('tf_models')
-                # Clone the Tensorflow Model Garden
-                #repoPath = 'https://github.com/tensorflow/models'
-                #subprocess.check_call(['git', 'clone', repoPath, '--depth=1'])
-                #os.chdir('models')
-                #commitHash = '5ccb93fbb349cde0b4907a260689a7e63bce24a6'
-                #subprocess.check_call(['git', 'checkout', commitHash])
 
         return cwd
 
