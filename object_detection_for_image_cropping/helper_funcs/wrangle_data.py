@@ -1,5 +1,5 @@
 # Utility functions for running inference
-# Last updated 14 Jan 2025 by K Wolcott
+# Last updated 16 Jan 2025 by K Wolcott
 
 # For downloading and displaying images
 import matplotlib
@@ -16,8 +16,6 @@ import tensorflow as tf
 # For working with data
 import pandas as pd
 import numpy as np
-# Suppress pandas warning about writing over a copy of data
-pd.options.mode.chained_assignment = None  # default='warn'
 from functools import reduce
 from urllib.error import HTTPError
 # So URL's don't get truncated in display
@@ -230,75 +228,6 @@ def add_identifiers(superboxes, bundle_info):
     print("\n Crops with added EOL identifiers: \n", crops_w_identifiers.head())
 
     return crops_w_identifiers
-
-# Check if dimensions are out of bounds
-def are_dims_oob(dim, im_h, im_w):
-    # Check if square dimensions are out of image bounds (OOB)
-    if dim > min(im_h, im_w):
-        return True
-    else:
-        return False
-
-# Center padded, square coordinates around object midpoint
-def center_coords(coord_a, coord_b, crop_w, crop_h, im_dim_a, im_dim_b, pad):
-    # Centered, padded top-right coordinates
-    tr_coord_a = coord_a + 0.5*(abs(crop_h - crop_w)) + pad
-    tr_coord_b = coord_a + pad
-    # Adjust coordinate positions if OOB (out of bounds)
-    if crop_h != crop_w: # for cond 1 and 2
-        # Both coords not OOB
-        if (tr_coord_a <= im_dim_a) and (tr_coord_b <= im_dim_b):
-            bl_coord_a = coord_a - 0.5*(abs(crop_h - crop_w)) - pad
-            bl_coord_b = coord_b - pad
-        # Topright coord_a OOB (+), shift cropping box down/left a-axis
-        elif (tr_coord_a > im_dim_a) and (tr_coord_b <= im_dim_b):
-            bl_coord_a = 0.5*(abs(im_dim_a - crop_w))
-            bl_coord_b = coord_b - pad
-        # Topright coord_b OOB (+), shift cropping box down/left b-axis
-        elif (tr_coord_a <= im_dim_a) and (tr_coord_b > im_dim_b):
-            bl_coord_a = coord_a - 0.5*(abs(crop_h - crop_w)) - pad
-            bl_coord_b = coord_b - (tr_coord_b - im_dim_b + pad)
-        # Both coords OOB (+), shift cropping box down/left both axes
-        elif (tr_coord_a > im_dim_a) and (tr_coord_b > im_dim_b):
-            bl_coord_a = 0.5*(abs(im_dim_a - crop_w))
-            bl_coord_b = coord_b - (tr_coord_b - im_dim_b + pad)
-    else: # for cond 3
-        # Both coords not OOB
-        if (tr_coord_a <= im_dim_a) and (tr_coord_b <= im_dim_b):
-            bl_coord_a = coord_a - pad
-            bl_coord_b = coord_b - pad
-        # Topright coord_a OOB (+), shift cropping box down/left a-axis
-        elif (tr_coord_a > im_dim_a) and (tr_coord_b <= im_dim_b):
-            bl_coord_a = coord_a - (tr_coord_a - im_dim_a + pad)
-            bl_coord_b = coord_b - pad
-        # Topright coord_b OOB (+), shift cropping box down/left b-axis
-        elif (tr_coord_a <= im_dim_a) and (tr_coord_b > im_dim_b):
-            bl_coord_a = coord_a - pad
-            bl_coord_b = coord_b - (tr_coord_b - im_dim_b + pad)
-        # Both coords OOB (+), shift cropping box down/left both axes
-        elif (tr_coord_a > im_dim_a) and (tr_coord_b > im_dim_b):
-            bl_coord_a = coord_a - (tr_coord_a - im_dim_a + pad)
-            bl_coord_b = coord_b - (tr_coord_b - im_dim_b + pad)
-
-    return bl_coord_a, bl_coord_b
-
-# Set square dimensions = larger bounding box side
-def make_large_square(dim):
-    # Set new square crop dims = original larger crop dim
-    lg_square = crop_w1 = crop_h1 = dim
-    return lg_square
-
-# Set square dimensions = smaller bounding box side
-def make_small_square(dim):
-    # Set new square crop dims = original smaller crop dim
-    sm_square = crop_w1 = crop_h1 = dim
-    return sm_square
-
-# Add x% padding to bounding box dimensions
-def add_padding(dim, percent_pad=0):
-    # Add padding on all sides of square
-    padded_dim = dim + 2 * percent_pad * dim
-    return padded_dim
 
 # For uploading an image from url
 # Modified from https://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/
