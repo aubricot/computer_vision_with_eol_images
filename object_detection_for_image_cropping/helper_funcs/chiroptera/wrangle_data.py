@@ -1,5 +1,5 @@
-# Utility functions for running inference
-# Last updated 16 Jan 2025 by K Wolcott
+# Utility functions for running inference - Chiroptera
+# Last updated 19 Jan 2025 by K Wolcott
 
 # For downloading and displaying images
 import matplotlib
@@ -48,6 +48,7 @@ def display_image(image):
     fig = plt.figure(figsize=(20, 15))
     plt.grid(False)
     plt.imshow(image)
+    plt.show()
 
 # To load image in and do something with it
 def load_img(path):
@@ -126,7 +127,7 @@ def draw_bounding_box_on_image(image, ymin, xmin, ymax, xmax,
 
 # Filter detections and annotate images with results 
 # Modified from TF Hub https://www.tensorflow.org/hub/tutorials/object_detection
-def draw_boxes(image, boxes, class_names, scores, max_boxes, min_score, filter, label_map):
+def draw_boxes(image, boxes, class_names, scores, max_boxes, min_score, filter, label_map, category_index):
     # Format text above boxes
     colors = list(ImageColor.colormap.values())
     try:
@@ -154,7 +155,7 @@ def draw_boxes(image, boxes, class_names, scores, max_boxes, min_score, filter, 
 
 # For running inference
 # Modified from TF Hub https://www.tensorflow.org/hub/tutorials/object_detection
-def run_detector_tf(detection_graph, image_url, outfpath, filter, label_map, max_boxes, min_score):
+def run_detector_tf(detection_graph, image_url, outfpath, filter, label_map, max_boxes, min_score, category_index):
     image_np, im_h, im_w = url_to_image(image_url)
     with detection_graph.as_default():
         with tf.compat.v1.Session(graph=detection_graph) as sess:
@@ -180,7 +181,7 @@ def run_detector_tf(detection_graph, image_url, outfpath, filter, label_map, max
             # Draw detection boxes on image
             image_wboxes = draw_boxes(image_np, result["detection_boxes"],
                                       result["detection_classes"], result["detection_scores"], 
-                                      max_boxes, min_score, filter, label_map)
+                                      max_boxes, min_score, filter, label_map, category_index)
 
     return image_wboxes, result, im_h, im_w
 
@@ -246,9 +247,10 @@ def url_to_image(url):
     image = np.asarray(bytearray(resp.read()), dtype="uint8")
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    image_np = np.expand_dims(image, axis=0)
     im_h, im_w = image.shape[:2]
-
-    return image
+  
+    return image_np, im_h, im_w
 
 # Draw cropping box on image
 def draw_box_on_image(df, i, img):
@@ -266,6 +268,7 @@ def draw_box_on_image(df, i, img):
 
     # Add label to image
     tag = df['class_name'][i]
+    img = np.squeeze(img)
     image_wbox = cv2.putText(img, tag, (xmin+7, ymax-12), cv2.FONT_HERSHEY_SIMPLEX, fontScale, box_col, 2, cv2.LINE_AA)
 
     # Draw box label on image
