@@ -1,5 +1,5 @@
-# Utility functions for running inference
-# Last updated 2 Dec 2024 by K Wolcott
+# Utility functions for running inference - Classification for image tagging
+# Last updated 28 Jan 2025 by K Wolcott
 import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -22,16 +22,20 @@ def set_start_stop(run, df):
     # To test with a tiny subset, use 5 random bundle images
     N = len(df)
     if "tiny subset" in run:
+        cutoff = 5
+        N = N - cutoff
         start = np.random.choice(a=N, size=1)[0]
         max_predictions = 50
         stop = start + max_predictions
-        cutoff = 5
+
     # To run for a larger set, use 500 random images
     else:
+        cutoff = 1000
+        N = max(N - cutoff, 0)
         start = np.random.choice(a=N, size=1)[0]
         prediction_pool = 10000 # Many URLs broken, so initiate run for up to 10000 samples, then stop loop once it hits 500 samples
         stop = start + prediction_pool
-        cutoff = 500
+
 
     return start, stop, cutoff
 
