@@ -1,5 +1,5 @@
 # Functions to set up directory structure and load models - Chiroptera
-# Last updated 17 Jan 2025 by K Wolcott
+# Last updated 1 February 2025 by K Wolcott
 import os
 import subprocess
 import shutil
@@ -15,7 +15,7 @@ def setup_dirs(cwd):
                 os.makedirs(cwd)
                 os.chdir(cwd)
                 os.mkdir('tf_models')
-                os.mkdir('results')
+                os.makedirs('results/inspect_results')
                 os.chdir('tf_models')
                 # Clone the Tensorflow Model Garden
                 repoPath = 'https://github.com/tensorflow/models'

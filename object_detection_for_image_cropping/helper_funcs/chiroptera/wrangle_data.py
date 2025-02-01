@@ -1,5 +1,5 @@
 # Utility functions for running inference - Chiroptera
-# Last updated 19 Jan 2025 by K Wolcott
+# Last updated 1 Feb 2025 by K Wolcott
 
 # For downloading and displaying images
 import matplotlib
@@ -18,6 +18,7 @@ import pandas as pd
 import numpy as np
 from functools import reduce
 from urllib.error import HTTPError
+import math
 # So URL's don't get truncated in display
 pd.set_option('display.max_colwidth',1000)
 pd.options.display.max_columns = None
@@ -210,9 +211,10 @@ def make_superboxes(crops):
     im_h = pd.DataFrame(crops.groupby(['url'])['im_height'].max())
     im_w = pd.DataFrame(crops.groupby(['url'])['im_width'].max())
     im_class = pd.DataFrame(crops.groupby(['url'])['class_name'].max())
+    confidence = pd.DataFrame(crops.groupby(['url'])['confidence'].max())
 
     # Make list of superboxes
-    superbox_list = [im_h, im_w, xmin, ymin, xmax, ymax, im_class]
+    superbox_list = [im_h, im_w, xmin, ymin, xmax, ymax, im_class, confidence]
 
     # Make a new dataframe with 1 superbox per image
     superbox_df = reduce(lambda  left, right: pd.merge(left, right, on=['url'],
@@ -253,7 +255,7 @@ def url_to_image(url):
     return image_np, im_h, im_w
 
 # Draw cropping box on image
-def draw_box_on_image(df, i, img):
+def draw_box_on_image(df, i, img, tag):
     # Get box coordinates
     xmin = df['xmin'][i].astype(int)
     ymin = df['ymin'][i].astype(int)
@@ -262,17 +264,20 @@ def draw_box_on_image(df, i, img):
     boxcoords = [xmin, ymin, xmax, ymax]
 
     # Set box/font color and size
-    maxdim = max(df['im_height'][i],df['im_width'][i])
-    fontScale = maxdim/600
+    mindim = min(df['im_height'][i], df['im_width'][i])
+    thicknessScale = 1e-3  # Adjust for larger thickness in all images
+    fontScale = 2e-3
+    fontsize = mindim * fontScale
+    thickness = math.ceil(mindim * thicknessScale)
     box_col = (255, 0, 157)
 
     # Add label to image
-    tag = df['class_name'][i]
     img = np.squeeze(img)
-    image_wbox = cv2.putText(img, tag, (xmin+7, ymax-12), cv2.FONT_HERSHEY_SIMPLEX, fontScale, box_col, 2, cv2.LINE_AA)
+    buffer = int(mindim * 0.01) # some of the boxes are not drawing on images by edges,makes easier to see
+    image_wbox = cv2.putText(img, tag, ((xmin+buffer), (ymax-buffer)), cv2.FONT_HERSHEY_SIMPLEX, fontsize, box_col, 2, cv2.LINE_AA)
 
     # Draw box label on image
-    image_wbox = cv2.rectangle(img, (xmin, ymax), (xmax, ymin), box_col, 5)
+    image_wbox = cv2.rectangle(img, ((xmin+buffer), (ymax-buffer)), ((xmax-buffer), (ymin+buffer)), box_col, thickness)
 
     return image_wbox, boxcoords
 
