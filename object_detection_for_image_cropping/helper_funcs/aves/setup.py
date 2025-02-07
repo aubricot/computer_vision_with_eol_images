@@ -1,5 +1,5 @@
 # Functions to set up directory structure and load models - Aves
-# Last updated 14 Jan 2025 by K Wolcott
+# Last updated 6 Feb 2025 by K Wolcott
 import os
 import subprocess
 import tensorflow as tf
@@ -13,7 +13,7 @@ def setup_dirs(cwd):
                 os.makedirs(cwd)
                 os.chdir(cwd)
                 os.mkdir('tf_models')
-                os.mkdir('results')
+                os.makedirs('results/inspect_results')
                 os.chdir('tf_models')
 
         return cwd
