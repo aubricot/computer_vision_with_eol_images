@@ -1,5 +1,5 @@
 # Utility functions for running inference - Multitaxa
-# Last updated 1 Feb 2025 by K Wolcott
+# Last updated 13 Feb 2025 by K Wolcott
 
 # For downloading and displaying images
 import matplotlib
@@ -96,7 +96,7 @@ def download_and_resize_image(url, new_width=256, new_height=256,
 # To draw bounding boxes on an image
 # Modified from TF Hub https://www.tensorflow.org/hub/tutorials/object_detection
 def draw_bounding_box_on_image(image, ymin, xmin, ymax, xmax,
-                               color, font, thickness=4, display_str_list=()):
+                               color, font, display_str_list=(), thickness=4):
     draw = ImageDraw.Draw(image)
     im_width, im_height = image.size
     (left, right, top, bottom) = (xmin * im_width, xmax * im_width,
@@ -120,13 +120,13 @@ def draw_bounding_box_on_image(image, ymin, xmin, ymax, xmax,
         text_width = font.getbbox(ds)[2] - font.getbbox(ds)[0]
         margin = np.ceil(0.05 * text_height)
         draw.rectangle([(left, text_bottom - text_height - 2 * margin),
-                    (left + text_width, text_bottom)],
-                   fill=color)
+                        (left + text_width, text_bottom)],
+                        fill=color)
         draw.text((left + margin, text_bottom - text_height - margin),
                   ds, fill="black", font=font)
         text_bottom -= text_height - 2 * margin
 
-# Filter detections and annotate images with results 
+# Filter detections and annotate images with results
 # Modified from TF Hub https://www.tensorflow.org/hub/tutorials/object_detection
 def draw_boxes(image, boxes, class_names, scores, max_boxes, min_score, filters, label_map, category_index):
     # Format text above boxes
@@ -138,7 +138,7 @@ def draw_boxes(image, boxes, class_names, scores, max_boxes, min_score, filters,
         font = ImageFont.load_default()
 
     # Draw up to N-max boxes with confidence > score threshold
-    for i in range(0, max_boxes):
+    for i in range(0, min(max_boxes, len(boxes[0]))):
         if scores[0][i] >= min_score:
             ymin, xmin, ymax, xmax = tuple(boxes[0][i])
             display_str = "{}: {}%".format(category_index[class_names[0][i]]['name'],
@@ -176,12 +176,12 @@ def run_detector_tf(detection_graph, image_url, outfpath, filters, label_map, ma
             result = {"detection_boxes": result[0], "detection_scores": result[1],
                       "detection_classes": result[2], "num_detections": result[3]}
 
-            print("Found %d objects with > %s confidence" % (min(result["num_detections"], max_boxes), min_score))
+            print("Found %d objects with > %s confidence" % (min(result["num_detections"][0], max_boxes), min_score))
             print("Inference time: %s sec" % format(end_time-start_time, '.2f'))
 
             # Draw detection boxes on image
             image_wboxes = draw_boxes(image_np, result["detection_boxes"],
-                                      result["detection_classes"], result["detection_scores"], 
+                                      result["detection_classes"], result["detection_scores"],
                                       max_boxes, min_score, filters, label_map, category_index)
 
     return image_wboxes, result, im_h, im_w
@@ -255,13 +255,18 @@ def url_to_image(url):
     return image_np, im_h, im_w
 
 # Draw cropping box on image
-def draw_box_on_image(df, i, img, tag):
+def draw_box_on_image(df, i, img, tags):
     # Get box coordinates
     xmin = df['xmin'][i].astype(int)
     ymin = df['ymin'][i].astype(int)
     xmax = df['xmax'][i].astype(int)
     ymax = df['ymax'][i].astype(int)
     boxcoords = [xmin, ymin, xmax, ymax]
+    class_name = str(df['class_name'][i])
+    if any(tag in class_name for tag in tags):
+        tag = class_name
+    else:
+        tag = "None"
 
     # Set box/font color and size
     mindim = min(df['im_height'][i], df['im_width'][i])
