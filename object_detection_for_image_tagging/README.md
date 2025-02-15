@@ -76,8 +76,8 @@ For additional details on steps below, see the [project wiki](https://github.com
 
 *Scat/footprint object detection models never learned despite adjusting augmentation and model hyperparameters for many training sessions. If successful approaches are found at a later date, steps for adding tags to images will be included.*
 
-## Data and model availability
-EOL image tags and square cropping coordinates produced using these pipelines are available on [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). EOL trained models are currently set to directly download within Colab Notebooks, but will be deposited on other websites for download shortly.
+## Data availability
+EOL image tags produced using these pipelines are in the process of being uploaded to [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). If there is a specific model file or dataset you would like that is not available through the sites listed above, [open a feature request](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose).
  
 ## References
 * [AlexeyAB 2020](https://github.com/AlexeyAB/darknet). darknet. GitHub.
