@@ -1,10 +1,10 @@
 # Object Detection for Image Tagging
-Testing different object detection frameworks as a method to automatically generate tags for plant-pollinator co-ocurrence, insect life stages, scat/footprints, and humans present within EOL images. Runs in YOLO v3 and Python 3.  
+Testing different object detection frameworks as a method to automatically generate tags for plant-insect co-ocurrence, insect life stages, scat/footprints, and humans present within EOL images. Runs in YOLO v3 and Python 3.  
 *Last updated 6 January 2025*
 
 ## Project Structure
-**Plant/pollintor**
-* YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights). EOL Angiosperm images are run through the model and predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' were kept and then converted to "pollinator present" during post-processing.
+**Plant/insect**
+* YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights). EOL Angiosperm images are run through the model and predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' were kept and then converted to "insect visitor" during post-processing.
 
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/plant_pollinator/plant_poll_generate_tags_yolov3.ipynb) Click here to start generating crops.
 
@@ -33,8 +33,8 @@ All files in this repository are run in [Google Colab](https://research.google.c
 
 For additional details on steps below, see the [project wiki](https://github.com/aubricot/computer_vision_with_eol_images/wiki).
 
-## Plant/pollinator
-**Step 1) Run images through model, post-process and display results:** To run EOL Angiosperm images through pre-trained YOLOv3 model, post-process results (only keep predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' and convert to "pollinator present"), and display detected tags on images, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/plant_pollinator/plant_poll_generate_tags_yolov3.ipynb).
+## Plant/insect
+**Step 1) Run images through model, post-process and display results:** To run EOL Angiosperm images through pre-trained YOLOv3 model, post-process results (only keep predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' and convert to "insect visitor"), and display detected tags on images, click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/plant_pollinator/plant_poll_generate_tags_yolov3.ipynb).
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/images/plantpoll_tag_ex.jpg" align="middle" width="500" ></a></p>   
