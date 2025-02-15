@@ -34,7 +34,7 @@ After detection, bounding boxes of detected animals are converted to square, cen
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/objdet_demo_sm.gif" align="center" width="800" ></a></p> 
 
 <p align="center"> 
-<sub><sup> Object detection results using trained multitaxa detector model displayed in a Google Colab Notebook. Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/28/09/c5/18.https___www_inaturalist_org_photos_1003389.jpg"><i>Lampropeltis californiae</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/"></a>CC BY-NC 4.0</a>.</sup></sub></p>  
+<sub><sup> Object detection results using trained multitaxon detector model displayed in a Google Colab Notebook. Image is hosted by Encyclopedia of Life (<a href="https://content.eol.org/data/media/28/09/c5/18.https___www_inaturalist_org_photos_1003389.jpg"><i>Lampropeltis californiae</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/"></a>CC BY-NC 4.0</a>.</sup></sub></p>  
 
 # 
 **Classification for image tagging** 
@@ -68,9 +68,9 @@ Three object detection frameworks (YOLO v3 in darknet <a href="#note9" id="note9
 
 Frameworks differ in their speeds and accuracy: YOLO v4 is the fastest with intermediate accuracy, MobileNetSSD v2 is intermediate speed and accuracy, and YOLO v3 is somewhere in between <a href="#note10" id="note10ref"><sup>10</sup></a> <a href="#note3" id="note3ref"><sup></sup></a> <a href="#note6" id="note6ref"><sup>6</sup></a>). The model with the best trade-off between speed and accuracy for each group was selected to generate final tagging data for EOL images.
 
-For tagging, only the class of detected objects are kept and their locations are discarded. Object detection is used to identify plant-pollinator coocurrence, insect life stage, the presence of mammal, amphibian, reptile, or bird scat and/or footprints, and when a human (or body part, like 'hand') is present. These tags will allow users to search for features not already included in image metadata. 
+For tagging, only the class of detected objects are kept and their locations are discarded. Object detection is used to identify plant-insect coocurrence, insect life stage, the presence of mammal, amphibian, reptile, or bird scat and/or footprints, and when a human (or body part, like 'hand') is present. These tags will allow users to search for features not already included in image metadata. 
   
-* For <ins>plant-pollinator coocurrence</ins>, a model pre-trained on Google OpenImages <a href="#note12" id="note12ref"><sup>12</sup></a> was used. EOL images are run through the model and predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' were kept and then converted to "pollinator present" during post-processing.    
+* For <ins>plant-insect coocurrence</ins>, a model pre-trained on Google OpenImages <a href="#note12" id="note12ref"><sup>12</sup></a> was used. EOL images are run through the model and predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' were kept and then converted to "insect visitor" during post-processing.    
 * For <ins>insect life stages</ins>, a model pre-trained on Google OpenImages <a href="#note12" id="note12ref"><sup>12</sup></a> was used. EOL images are run through the model and predictions for 'Ant', 'Bee', 'Beetle', 'Butterfly', 'Dragonfly', 'Insect', 'Invertebrate', 'Moths and butterflies' were kept and then converted to "adult" during post-processing. Predictions for 'Caterpillar', 'Centipede', 'Worm' were converted to "juvenile" during post-processing.
 * For <ins>scat/footprint present</ins>, models were custom-trained to detect scat or footprints from EOL images, but never learned despite adjusting augmentation and model hyperparameters for many training sessions. Pipelines and datasets should be revisted in the future with different approaches.
 * For <ins>human present</ins>, a model pre-trained on Google OpenImages <a href="#note12" id="note12ref"><sup>12</sup></a> was used. EOL images are run through the model and predictions for 'Person' or any string containing 'Human' ('Body', 'Eye', 'Head', 'Hand', 'Foot', 'Face', 'Arm', 'Leg', 'Ear', 'Eye', 'Face', 'Nose', 'Beard') were kept and then converted to "human present" during post-processing. 
@@ -78,7 +78,7 @@ For tagging, only the class of detected objects are kept and their locations are
 :arrow_right: :seedling: [Click here](https://github.com/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_tagging) to get started.
 
 <p align="center">
-<sub><sup>Object detection for image tagging results using pre-trained plant-pollinator coocurrence model displayed in a Google Colab Notebook. Image is hosted by Flickr (<a href="https://www.flickr.com/photos/37089490@N06/3714515042">another flower - insect photo! by thart2009</a>, licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=rich">CC BY 2.0</a>).</sup></sub>
+<sub><sup>Object detection for image tagging results using pre-trained plant-insect coocurrence model displayed in a Google Colab Notebook. Image is hosted by Flickr (<a href="https://www.flickr.com/photos/37089490@N06/3714515042">another flower - insect photo! by thart2009</a>, licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=rich">CC BY 2.0</a>).</sup></sub>
 
 #
 **Utils**    
