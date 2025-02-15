@@ -1,6 +1,6 @@
 # Object Detection for Image Tagging
 Testing different object detection frameworks as a method to automatically generate tags for plant-insect co-ocurrence, insect life stages, scat/footprints, and humans present within EOL images. Runs in YOLO v3 and Python 3.  
-*Last updated 6 January 2025*
+*Last updated 15 February 2025*
 
 ## Project Structure
 **Plant/insect**
