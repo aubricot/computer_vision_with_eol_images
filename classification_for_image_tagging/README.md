@@ -1,6 +1,6 @@
 # Classification for Image Tagging
 Testing different image classification frameworks as a method to automatically generate tags for image type (map/herbarium sheet/phylogeny/illustration) and image quality ratings for EOL images.   
-*Last updated 3 December 2024*
+*Last updated 15 February 2025*
 
 ## Project Structure
 **Flowers**
@@ -98,7 +98,7 @@ Run images through classification models using confidence values for "bad" image
 <sub><sup>Are the shown images good or bad? EOL users rated the left image of a goat as bad (1) and the right image of a Collared Peccary as good (5). Images are hosted by Flickr (<a href="http://farm2.staticflickr.com/1421/5177003577_d5c66874a7_o.jpg"><i>Pecari tajacuas</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/">CC-BY-NC-SA-2.0</a>) and Wikimedia commons (<a href="https://commons.wikimedia.org/wiki/File:Nederlandse_witte_geit.jpg"><i>Capra sp.</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-3.0</a>).</sup></sub> 
 
 ## Data and model availability
-EOL image tags and square cropping coordinates produced using these pipelines are available on [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). EOL trained models are currently set to directly download within Colab Notebooks. We are in the process of adding all of our trained models to Kaggle, [check EOL's Kaggle Model Zoo here](https://www.kaggle.com/eolorg/models). Currently, Image Type and Image Quality Rating models are available. If there is a specific model file you would like, [open a feature request](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose) and we will push it to the top of our list for upload.
+EOL image tags and square cropping coordinates produced using these pipelines are available on [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). EOL trained models are currently set to directly download within Colab Notebooks. Our trained models used to generate tags and crops are available on Kaggle, [check EOL's Kaggle Model Zoo here](https://www.kaggle.com/eolorg/models). If there is a specific model file or dataset you would like that is not available through the sites listed above, [open a feature request](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose).
   
 ## References
 * [Çakır 2019](https://medium.com/analytics-vidhya/create-tensorflow-image-classification-model-with-your-own-dataset-in-google-colab-63e9d7853a3e). Create Tensorflow Image Classification Model with Your Own Dataset in Google Colab. Medium. 31 Oct 2019.
