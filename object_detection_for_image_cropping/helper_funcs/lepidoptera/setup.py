@@ -1,5 +1,5 @@
 # Functions to set up directory structure and load models - Lepidoptera
-# Last updated 1 February 2025 by K Wolcott
+# Last updated 6 March 2025 by K Wolcott
 import os
 import subprocess
 import shutil
@@ -20,6 +20,9 @@ def setup_dirs(cwd):
                 # Clone the Tensorflow Model Garden
                 repoPath = 'https://github.com/tensorflow/models'
                 subprocess.check_call(['git', 'clone', repoPath, '--depth=1'])
+                print("\033[92m Directory structure made with cwd set to: \033[0m", cwd)
+        else:
+                print("\033[93m Cwd already exists at: \033[0m", cwd)
 
 # Get info about trained classification model
 def unpack_EOL_model(use_EOL_model, saved_models_dir, PATH_TO_CKPT, cwd):
@@ -35,6 +38,7 @@ def unpack_EOL_model(use_EOL_model, saved_models_dir, PATH_TO_CKPT, cwd):
                         # Download frozen_inference_graph.pb
                         subprocess.check_call(['gdown', '1DfdZXFwEuCHt8htJ-o4brY9-p65kfELW']) 
                         os.chdir(cwd)
+                        print("\033[92m trained models downloaded to and trained_models_dir made at: \033[0m", saved_models_dir)
 
                 else:
                         print("\033[93m trained_models_dir already exists at: \033[0m", saved_models_dir)
