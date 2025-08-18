@@ -1,10 +1,10 @@
 # Object Detection for Image Tagging
 Testing different object detection frameworks as a method to automatically generate tags for plant-insect co-ocurrence, insect life stages, scat/footprints, and humans present within EOL images. Runs in YOLO v3 and Python 3.  
-*Last updated 15 February 2025*
+*Last updated 18 August 2025*
 
 ## Project Structure
 **Plant/insect**
-* YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights). EOL Angiosperm images are run through the model and predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' were kept and then converted to "insect visitor" during post-processing.
+* YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights)*. EOL Angiosperm images are run through the model and predictions for 'Butterfly', 'Insect', 'Beetle', 'Ant', 'Bat (Animal)', 'Bird', 'Bee', or 'Invertebrate' were kept and then converted to "insect visitor" during post-processing.
 
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/plant_pollinator/plant_poll_generate_tags_yolov3.ipynb) Click here to start generating crops.
 
@@ -14,12 +14,12 @@ Testing different object detection frameworks as a method to automatically gener
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/life_stages/insect_life_stages_generate_tags_yolov3.ipynb) Click here to start generating crops.
 
 **Human Present**
-* YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights). EOL Chiroptera images are run through the model and predictions for 'Person' or any string containing 'Human' ('Body', 'Eye', 'Head', 'Hand', 'Foot', 'Face', 'Arm', 'Leg', 'Ear', 'Eye', 'Face', 'Nose', 'Beard') were kept and then converted to "human present" during post-processing.   
+* YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights)*. EOL Chiroptera images are run through the model and predictions for 'Person' or any string containing 'Human' ('Body', 'Eye', 'Head', 'Hand', 'Foot', 'Face', 'Arm', 'Leg', 'Ear', 'Eye', 'Face', 'Nose', 'Beard') were kept and then converted to "human present" during post-processing.   
 
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/human_present/human_present_generate_tags_yolov3.ipynb) Click here to start generating crops.
 
 **Flower/Fruit**
-* YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights). EOL Angiosperm images are run through the model and predictions for 'Flower', 'Fruit,' or 'Food' were kept and then converted to "Flower", "Fruit", or "Reproductive structure present" during post-processing. 
+* YOLO v3 pre-trained on [Google OpenImages](https://storage.googleapis.com/openimages/web/index.html) using a config file downloaded from [here](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-openimages.cfg) and weights from [here](https://pjreddie.com/media/files/yolov3-openimages.weights)*. EOL Angiosperm images are run through the model and predictions for 'Flower', 'Fruit,' or 'Food' were kept and then converted to "Flower", "Fruit", or "Reproductive structure present" during post-processing. 
 
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_tagging/plant_pollinator/plant_poll_generate_tags_yolov3.ipynb) Click here to start generating crops.
 
@@ -77,7 +77,7 @@ For additional details on steps below, see the [project wiki](https://github.com
 *Scat/footprint object detection models never learned despite adjusting augmentation and model hyperparameters for many training sessions. If successful approaches are found at a later date, steps for adding tags to images will be included.*
 
 ## Data availability
-EOL image tags produced using these pipelines are in the process of being uploaded to [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). If there is a specific model file or dataset you would like that is not available through the sites listed above, [open a feature request](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose).
+EOL image tags produced using these pipelines are in the process of being uploaded to [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). If there is a specific model file or dataset you would like that is not available through the sites listed above, [open a feature request](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose). *Note about YOLO v3 weights files: Weights were previously downloaded from [here](https://pjreddie.com/media/files/yolov3-openimages.weights), however the link delivers a broken file as of Aug 2025. Weights files are now directly downloaded into Colab Notebooks from our own copy in Google Drive.
  
 ## References
 * [AlexeyAB 2020](https://github.com/AlexeyAB/darknet). darknet. GitHub.
