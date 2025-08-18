@@ -1,15 +1,54 @@
-# Utility functions for running inference
-# Last updated 3 January 2024 by K Wolcott
+# Define functions
+import os
+import requests
+import cv2
 import matplotlib
 import matplotlib.pyplot as plt
 import six.moves.urllib as urllib
 import pandas as pd
 import numpy as np
-import cv2
-import os
-
 # Display full URLs in outputs so you can click them and inspect images
 pd.set_option('display.max_colwidth', None)
+
+# For uploading an image from url
+def image_from_url(image_url, cwd):
+    os.chdir(cwd)
+    os.chdir("data/imgs")
+    image_filename = image_url.rsplit('/', 1)[-1]
+    img_fpath = 'data/imgs/' + image_filename
+    img_data = requests.get(image_url).content
+    with open(image_filename, 'wb') as handler:
+        handler.write(img_data)
+    print("\033[92m Successfully downloaded image from URL\033[0m")
+    os.chdir(cwd)
+
+    return img_fpath
+
+# To display loaded image with results
+def imShow(fpath):
+    image = cv2.imread(fpath)
+    height, width = image.shape[:2]
+    resized_image = cv2.resize(image,(3*width, 3*height), interpolation = cv2.INTER_CUBIC)
+    fig = plt.gcf()
+    fig.set_size_inches(9, 9)
+    plt.axis("off")
+    plt.imshow(cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB))
+    plt.show()
+
+# use this to upload files
+# Modified from https://colab.research.google.com/drive/12QusaaRj_lUwCGDvQNfICpa7kA7_a2dE#scrollTo=G9Fv0wjCMPYY
+def upload():
+    from google.colab import files
+    uploaded = files.upload() 
+    for name, data in uploaded.items():
+        with open(name, 'wb') as f:
+            f.write(data)
+            print ('Uploaded file', name)
+
+# use this to download a file  
+def download(path):
+    from google.colab import files
+    files.download(path)
 
 # To read in EOL formatted data files
 def read_datafile(fpath, sep="\t", header=0, disp_head=True, lineterminator='\n', encoding='latin1', dtype=None):
@@ -71,17 +110,6 @@ def url_to_image(url):
     im_h, im_w = image.shape[:2]
 
     return image
-
-# To display loaded image with results
-def imShow(fpath):
-    image = cv2.imread(fpath)
-    height, width = image.shape[:2]
-    resized_image = cv2.resize(image,(3*width, 3*height), interpolation = cv2.INTER_CUBIC)
-    fig = plt.gcf()
-    fig.set_size_inches(9, 9)
-    plt.axis("off")
-    plt.imshow(cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB))
-    plt.show()
 
 # Combine tagging files for batches A-D
 def combine_tag_files(tags_fpath):

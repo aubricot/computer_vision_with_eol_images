@@ -1,9 +1,11 @@
 import os
 import subprocess
+import shutil
 
 # Set up directory structure & make darknet
-def setup(cwd, basewd):
+def setup_darknet(basewd = "/content/drive/MyDrive/train", folder = "darknet"):
         # Make folders if they don't already exist
+        cwd = basewd + '/' + folder
         if not os.path.exists(cwd):
                 os.makedirs(basewd)
                 os.chdir(basewd)
@@ -17,10 +19,7 @@ def setup(cwd, basewd):
                 os.makedirs('data/imgs')
                 os.makedirs('data/img_info')
                 os.makedirs('data/results')
-                # Download pretrained YOLOv3 weights for Open Images
-                weightsPath = 'https://pjreddie.com/media/files/yolov3-openimages.weights'
-                subprocess.Popen(['wget', weightsPath])
-
+                
         # Change makefile to have GPU and OPENCV enabled
         os.chdir(cwd)
         print("\nEnabling GPU and OpenCV in makefile...")
@@ -36,10 +35,9 @@ def setup(cwd, basewd):
         print("\n~~~Making darknet...~~~\n")
         subprocess.call('make', stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
         if os.path.exists('./darknet'):
-            print("\n \033[92m Darknet successfully installed! Move onto next steps to do object detection with YOLOv3.")
+            # Move weights file to darknet
+            weights_path = cwd + '/' + 'yolov3-openimages.weights'
+            shutil.move("/content/yolov3-openimages.weights", weights_path)
+            print("\n\033[92m Darknet successfully installed! Move onto next steps to do object detection with YOLOv3.")
 
-        return cwd
-
-if __name__ == "__main__":
-    import sys
-    setup(sys.argv[1], sys.argv[2])
+        return cwd, basewd

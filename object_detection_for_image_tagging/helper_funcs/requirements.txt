@@ -1,12 +1,10 @@
-# Requirements.txt - Objdet for tagging
-# Last updated on 2 Jan 2024
+# Requirements.txt - Yolov2 demo
+# Last updated on 15 Aug 2025
 
-matplotlib>=3.8.0
-numpy<2.0.0
-pandas==2.2.2
+pandas==2.3.1
+matplotlib>=3.8
+numpy==2.3.2
 Pillow==11.0.0
-protobuf>=4.21.6
-opencv_contrib_python>=4.8.0
-opencv_python>=4.8.0
-opencv_python_headless>=4.8.0
+protobuf==3.20.3
 six==1.16.0
+imageio==2.35.1
