@@ -1,8 +1,10 @@
 # Play for Beginners 
 Try out scripts you find here to identify objects in your images. No coding knowledge needed!   
-*Last updated 3 September 2025*  
+*Last updated 7 September 2025*  
 
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/play_for_beginners/dinov3_demo.ipynb) Now with a new notebook featuring MetaAI's Dinov3 (Siméoni et al. 2025; [licensed under MetaAI](https://ai.meta.com/resources/models-and-libraries/dinov3-license/?fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExZ21RaE10TjdKQlRERk5lVAEee_PwlnA3G9XMBzWrtH7faFT1TZ-jcxbQgfwcdBEuwq6wdU4EbYUvq_Xe_-c_aem_eCv4c_bxKZvdRGPCeQAfMw)).
+
+:arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/play_for_beginners/plant_poll_generate_tags_bioclipv2.ipynb) Now with a new notebook featuring BIOCLIPv2 (Stevens et al. 2023).
 
 :arrow_right: :seedling: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aubricot/computer_vision_with_eol_images/blob/master/play_for_beginners/yolo_demo_v2.ipynb) Click here to start using object detection on your images using our 5 minute demo with YOLO.
 
