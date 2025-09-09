@@ -1,11 +1,20 @@
-# Utility functions for dataset preprocessing - Classification for image tagging
-# Last updated 7 Aug 2025 by K Wolcott
+# Utility functions for dataset preprocessing - Classification for image tagging and Object detection for image cropping
+# Last updated 8 Sep 2025 by K Wolcott
 import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import imgaug as ia
 import imgaug.augmenters as iaa
+from imgaug.augmentables.bbs import BoundingBox, BoundingBoxesOnImage
+import os
+import cv2
+import csv
+import mimetypes
+import requests
+from concurrent.futures import ThreadPoolExecutor
+from tqdm import tqdm
+from scipy.linalg import norm
 
 # To read in EOL formatted data files
 def read_datafile(fpath, sep="\t", header=0, disp_head=True):
@@ -23,6 +32,13 @@ def display_image(image):
     fig = plt.figure(figsize=(20, 15))
     plt.grid(False)
     plt.imshow(image)
+
+# To draw cropping coordinates on an image
+def draw_boxes(image, box, class_name):
+  image_wboxes = cv2.rectangle(image, (box[0], box[1]), (box[2], box[3]), \
+                               (255, 0, 157), 3) # change box color and thickness
+
+  return image_wboxes
 
 # Define start and stop indices in EOL bundle for running inference
 def set_start_stop(run, df):
@@ -54,6 +70,76 @@ def augment_image(image):
 
     return image_aug
 
+# To augment an image with bounding boxes
+# modified from https://github.com/aleju/imgaug
+def augment_image_w_bboxes(image, crops, i, filter, folder, cwd, display_results=False):
+    # Define image augmentation pipeline
+    seq = iaa.Sequential([
+            iaa.Crop(px=(1, 16), keep_size=False), # crop by 1-16px, resize resulting image to orig dims
+            iaa.Affine(rotate=(-25, 25)), # rotate -25 to 25 degrees
+            iaa.GaussianBlur(sigma=(0, 3.0)), # blur using gaussian kernel with sigma of 0-3
+            iaa.AddToHueAndSaturation((-50, 50), per_channel=True)
+            ])
+    # Set seed to make augmentation reproducible across runs, otherwise will be random each time
+    ia.seed(1)
+
+    # Organize locations to save files and relevant tag to filter by
+    pathbase = folder + '/'
+    class_name = filter
+
+    # Define image info needed for export
+    im_h, im_w = image.shape[:2]
+    xmin = crops.xmin[i].astype(int)
+    ymin = crops.ymin[i].astype(int)
+    xmax = crops.xmax[i].astype(int)
+    ymax = crops.ymax[i].astype(int)
+    box = [xmin, ymin, xmax, ymax]
+    fn = str(crops['data_object_id'][i]) + '.jpg'
+    fpath = pathbase + fn
+
+    # Export unaugmented image info for future use training object detectors
+    outfpath = cwd + '/' + filter + '_crops_train_aug.tsv'
+    print("Saving augmented cropping data to: ", outfpath)
+    with open(outfpath, 'a') as out_file:
+          tsv_writer = csv.writer(out_file, delimiter='\t')
+          tsv_writer.writerow([crops.data_object_id[i], crops.obj_url[i], \
+                              im_h, im_w, box[0], box[1], \
+                              box[2], box[3], fn, fpath, class_name])
+
+    # Load original bounding box coordinates to imgaug format
+    bb  = BoundingBox(x1=xmin, y1=ymin, x2=xmax, y2=ymax)
+    bb = BoundingBoxesOnImage([bb], shape=image.shape)
+
+    # Augment image using settings defined above in seq
+    image_aug, bb_aug = seq.augment(image=image, bounding_boxes=bb)
+
+    # Define augmentation results needed for export
+    fn_aug = str(crops['data_object_id'][i]) + '_aug' + '.jpg'
+    fpath_aug = pathbase + fn_aug
+    im_h_aug, im_w_aug = image_aug.shape[:2]
+    xmin_aug = bb_aug.bounding_boxes[0].x1.astype(int)
+    ymin_aug = bb_aug.bounding_boxes[0].y1.astype(int)
+    xmax_aug = bb_aug.bounding_boxes[0].x2.astype(int)
+    ymax_aug = bb_aug.bounding_boxes[0].y2.astype(int)
+    box_aug = [xmin_aug, ymin_aug, xmax_aug, ymax_aug]
+
+    # Export augmentation results for future use training object detectors
+    with open(outfpath, 'a') as out_file:
+          tsv_writer = csv.writer(out_file, delimiter='\t')
+          tsv_writer.writerow([crops.data_object_id[i], crops.obj_url[i], \
+                              im_h_aug, im_w_aug, box_aug[0], box_aug[1], \
+                              box_aug[2], box_aug[3], fn_aug, fpath_aug, class_name])
+
+    # Draw augmented bounding box and image
+    # Only use for up to 50 images
+    if display_results:
+        image_wboxes = draw_boxes(image_aug, box_aug, class_name)
+        display_image(image_wboxes)
+        url = crops["obj_url"][i]
+        plt.title('{}) Successfully augmented image from {}'.format(format(i+1, '.0f'), url))
+
+    return image_aug, fpath_aug
+
 # Filter by rating of interest
 def filter_by_rating(df, filter=filter, disp_head=False):
     rating = df.loc[round(df["overall_rating"])==int(filter)]
@@ -64,3 +150,252 @@ def filter_by_rating(df, filter=filter, disp_head=False):
     print("\n Number of available ratings for training/testing class {}: \n {}".format(filter, len(rating)))
 
     return rating
+
+# Reformat cropping dimensions
+def reformat_crops(crops, disp_head=True):
+    # Remove/replace characters in crop_dimensions string
+    crops.crop_dimensions.replace('"|{|}', '', regex=True, inplace=True)
+    crops.crop_dimensions.replace(':', ',', regex=True, inplace=True)
+
+    # Split crop_dimensions into their own columns
+    cols = crops.crop_dimensions.str.split(",", expand=True)
+    crops["im_height"] = cols[1]
+    crops["im_width"] = cols[3]
+    crops["xmin"] = cols[5]
+    crops["ymin"] = cols[7]
+    crops["xmax"] = cols[5].astype(float) + cols[9].astype(float) # add cropwidth to xmin, note crops are square so width=height
+    crops["ymax"] = cols[7].astype(float) + cols[9].astype(float) # add cropheight to ymin, note crops are square so width=height
+
+    # Remove crop_dimensions column
+    crops.drop(columns =["crop_dimensions"], inplace = True)
+    if disp_head:
+        print("\n~~~Reformatted EOL crops head~~~\n", crops.head())
+
+    return crops
+
+# Filter by taxon of interest
+def filter_by_taxon(crops, filter=filter, disp_head=False):
+    taxon = crops.loc[crops.ancestry.str.contains(filter, case=False, na=False)]
+    taxon.drop(columns =["ancestry"], inplace = True)
+    taxon['name'] = filter
+    taxon.reset_index(inplace=True)
+    if disp_head:
+          print("Showing dataset for only {}: {}\n".format(filter, taxon.head()))
+    print("\n~~~Number of available cropping coordinates for training/testing with {}~~~: \n{}\n".format(filter, len(taxon)))
+
+    return taxon
+
+# Split into train and test datasets
+def split_train_test(crops, outfpath, frac, disp_head=False):
+    # Randomly select 80% of data to use for training (set random_state seed for reproducibility)
+    idx = crops.sample(frac = 0.8, random_state=2).index
+    train = crops.iloc[idx]
+    if disp_head:
+        print("Training data for {} (n={} crops): \n".format(filter, len(train), train.head()))
+
+    # Select the remaining 20% of data for testing
+    # Uses the inverse index from above
+    test = crops.iloc[crops.index.difference(idx)]
+    if disp_head:
+        print("Testing data for {} (n={} crops): \n".format(filter, len(test), test.head()))
+
+    # Write test and train to tsvs
+    train_outfpath = os.path.splitext(outfpath)[0] + '_train' + '.tsv'
+    train.to_csv(train_outfpath, sep='\t', header=True, index=False)
+    test_outfpath = os.path.splitext(outfpath)[0] + '_test' + '.tsv'
+    test.to_csv(test_outfpath, sep='\t', header=True, index=False)
+    print("\n Train and test datasets sucessfully split and saved to: \n\n{}\n{}"\
+          .format(train_outfpath, test_outfpath))
+
+    return train, test
+
+# Remove out of bounds values
+def remove_oob(crops):
+    # Set negative values to 0
+    crops.loc[crops.xmin < 0, 'xmin'] = 0
+    crops.loc[crops.ymin < 0, 'ymin'] = 0
+
+    # Remove out of bounds cropping dimensions
+    ## When crop height > image height, set crop height equal to image height
+    idx = crops.index[crops.ymax > crops.im_height]
+    crops.loc[idx, 'ymin'] = 0
+    crops.loc[idx, 'ymax'] = crops.loc[idx, 'im_height']
+  
+    ## When crop width > image width, set crop width equal to image width
+    idx = crops.index[crops.xmax > crops.im_width]
+    crops.loc[idx, 'xmin'] = 0
+    crops.loc[idx, 'xmax'] = crops.loc[idx, 'im_width']
+
+    # Write relevant results to csv formatted for training and annotations needed by Tensorflow and YOLO
+    crops_oobrem = crops[['xmin', 'ymin', 'xmax', 'ymax',
+                  'filename', 'im_width', 'im_height', 'class']]
+
+    return crops_oobrem
+
+# Get info from EOL user generated cropping file
+def get_image_info(image, crops, i, cwd, folder, filter):
+    pathbase = folder + '/'
+    class_name = filter
+
+    # Define image info needed for export
+    im_h, im_w = image.shape[:2]
+    xmin = crops.xmin[i].astype(int)
+    ymin = crops.ymin[i].astype(int)
+    xmax = crops.xmax[i].astype(int)
+    ymax = crops.ymax[i].astype(int)
+    box = [xmin, ymin, xmax, ymax]
+    fn = str(crops['data_object_id'][i]) + '.jpg'
+    fpath = pathbase + fn
+
+    # Export to crops_test.tsv
+    fpath = cwd + "/" + filter + "_crops_test.tsv"
+    outfpath = os.path.splitext(fpath)[0] + '_notaug.tsv'
+    with open(outfpath, 'a') as out_file:
+            tsv_writer = csv.writer(out_file, delimiter='\t')
+            tsv_writer.writerow([crops.data_object_id[i], crops.obj_url[i], \
+                                 im_h, im_w, box[0], box[1], box[2], box[3], \
+                                 fn, fpath, class_name])
+
+    return fpath
+
+# Draw cropping box on image
+def draw_box_on_image(df, img, i):
+    # Get box coordinates
+    xmin = df['xmin'][i].astype(int)
+    ymin = df['ymin'][i].astype(int)
+    xmax = df['xmax'][i].astype(int)
+    ymax = df['ymax'][i].astype(int)
+    box = [xmin, ymin, xmax, ymax]
+
+    # Set box/font color and size
+    maxdim = max(df['im_height'][i],df['im_width'][i])
+    fontScale = maxdim/600
+    box_col = (255, 0, 157)
+
+    # Add label to image
+    tag = df['class'][i]
+    image_wbox = cv2.putText(img, tag, (xmin+7, ymax-12), cv2.FONT_HERSHEY_SIMPLEX, fontScale, box_col, 2, cv2.LINE_AA)
+
+    # Draw box label on image
+    image_wbox = cv2.rectangle(img, (xmin, ymax), (xmax, ymin), box_col, 5)
+
+    return image_wbox, box
+
+
+# Set filename for saving classification results
+def get_test_images(imclass, cwd):
+    impath = cwd + '/images/' + imclass
+    # If already custom-trained model, pull test images to inspect results for
+    if os.path.exists(impath):
+        fns = os.listdir(impath)
+        TEST_IMAGE_PATHS = [os.path.join(impath, fn) for fn in fns]
+        print("\nUsing test images from: \n", impath)
+
+    return TEST_IMAGE_PATHS
+
+# To cartoonize an image
+def cartoonize(img):
+    # Add edges
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.medianBlur(gray, 5)
+    edges = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C,
+                                         cv2.THRESH_BINARY, 9, 9)
+    edges = cv2.cvtColor(edges, cv2.COLOR_GRAY2RGB)
+    # Bilateral filter
+    color = cv2.bilateralFilter(img, 9, 250, 250)
+    img2 = cv2.bitwise_and(color, edges)
+
+    return img2
+
+# Calculate differences between original and cartoonized image
+def calc_img_diffs(img, img2):
+    # Convert both images from RGB to HSV
+    HSV_img = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+    HSV_img2 = cv2.cvtColor(img2, cv2.COLOR_RGB2HSV)
+    # Fnd the difference for H of HSV values of the images
+    diff = HSV_img[:,:,0]-HSV_img2[:,:,0]
+    mnorm = np.sum(np.abs(diff))  # Manhattan norm
+    mnorm_pp = mnorm/HSV_img.size # per pixel
+    znorm = norm(diff.ravel(), 0)  # Zero norm
+    znorm_pp = znorm*1.0/HSV_img2.size # per pixel
+
+    return mnorm, mnorm_pp, znorm, znorm_pp
+
+# To display an image already loaded into the runtime
+def display_images(image, image2, mnorm, mnorm_pp, znorm, znorm_pp):
+    fig, (a,b) = plt.subplots(2, figsize=(5, 5), constrained_layout=True)
+    fig.suptitle("Original vs Cartoonized, pairwise differences\nManhattan norm: {} / per pixel: {}\
+                  \nZero norm: {} / per pixel: {}".format(mnorm, mnorm_pp, znorm, znorm_pp))
+    a.imshow(image) ;
+    b.imshow(image2)
+
+# Make placeholder lists to fill for each class
+def make_placeholders():
+    filenames = []
+    mnorms = []
+    mnorms_pp = []
+    znorms = []
+    znorms_pp = []
+
+    return filenames, mnorms, mnorms_pp, znorms, znorms_pp
+
+# Add values for each image to placeholder list
+def record_results(fn, mnorm, mnorm_pp, znorm, znorm_pp, filenames, mnorms, mnorms_pp, znorms, znorms_pp):
+    filenames.append(fn)
+    mnorms.append(mnorm)
+    mnorms_pp.append(mnorm_pp)
+    znorms.append(znorm)
+    znorms_pp.append(znorm_pp)
+    results = [filenames, mnorms, mnorms_pp, znorms, znorms_pp]
+
+    return results
+
+def download_image(url, save_dir):
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0",
+            "Referer": "https://eol.org/"
+        }
+
+        r = requests.get(url, headers=headers, stream=True, timeout=10)
+        content_type = r.headers.get("Content-Type", "").lower()
+
+        if r.status_code == 200 and "image" in content_type:
+            # Extract filename correctly from URL
+            filename = os.path.basename(url.split("?")[0])
+            ext = mimetypes.guess_extension(content_type.split(";")[0]) or ".jpg"
+
+            # Ensure the file has an extension
+            if not os.path.splitext(filename)[1]:
+                filename += ext
+
+            filepath = os.path.join(save_dir, filename)
+
+            with open(filepath, "wb") as f:
+                for chunk in r.iter_content(1024):
+                    f.write(chunk)
+            return (url, True)
+
+        return (url, False)
+
+    except Exception as e:
+        return (url, False)
+
+def download_images_parallel(urls, save_dir, max_workers=8):
+    os.makedirs(save_dir, exist_ok=True)
+    failed = []
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(download_image, url, save_dir) for url in urls]
+        for future in tqdm(futures, desc=f"Downloading images to {save_dir}"):
+            url, success = future.result()
+            if not success:
+                failed.append(url)
+
+    print(f"\nDownloaded {len(urls) - len(failed)} images to {save_dir}.")
+    if failed:
+        fail_log = os.path.join(save_dir, "failed_urls.txt")
+        with open(fail_log, "w") as f:
+            for url in failed:
+                f.write(url + "\n")
+        print(f"{len(failed)} failed downloads logged to {fail_log}")
