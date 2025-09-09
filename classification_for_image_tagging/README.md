@@ -1,6 +1,6 @@
 # Classification for Image Tagging
 Testing different image classification frameworks as a method to automatically generate tags for image type (map/herbarium sheet/phylogeny/illustration) and image quality ratings for EOL images.   
-*Last updated 11 August 2025*
+*Last updated 8 September 2025*
 
 ## Project Structure
 **Flowers**
@@ -97,8 +97,17 @@ Run images through classification models using confidence values for "bad" image
 <p align="center">
 <sub><sup>Are the shown images good or bad? EOL users rated the left image of a goat as bad (1) and the right image of a Collared Peccary as good (5). Images are hosted by Flickr (<a href="http://farm2.staticflickr.com/1421/5177003577_d5c66874a7_o.jpg"><i>Pecari tajacuas</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/">CC-BY-NC-SA-2.0</a>) and Wikimedia commons (<a href="https://commons.wikimedia.org/wiki/File:Nederlandse_witte_geit.jpg"><i>Capra sp.</i></a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-3.0</a>).</sup></sub> 
 
-## Data and model availability
-EOL image tags produced using these pipelines are available on [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). EOL trained models are currently set to directly download within Colab Notebooks. Our trained models used to generate tags and crops are available on Kaggle, [check EOL's Kaggle Model Zoo here](https://www.kaggle.com/eolorg/models). Annotated training images for quality ratings (made by EOL users) are available on Zenodo for [training classes 1-4](https://zenodo.org/records/13305561) and [exemplars/class 5](https://zenodo.org/records/13305564). If there is a specific model file or dataset you would like that is not available through the sites listed above, [open a feature request](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose).
+## Data and Model Availability
+
+| Resource Type                      | Description                                                                                      | Link                                                                                                       |
+|-----------------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| 🏷️ Image Tags                     | EOL image tags produced using these pipelines                                                    | [Zenodo - EOL Computer Vision](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch)     |
+| 🧠 Trained Models (Colab use)     | Models are set up for direct download within Colab notebooks                                     | _Embedded in Colab – no direct link_                                                                      |
+| 🧪 Trained Models (Model Zoo)     | Models used for generating tags and crops                                                        | [EOL’s Kaggle Model Zoo](https://www.kaggle.com/eolorg/models)                                            |
+| 🖼️ Training Images (Classes 1–4)  | Annotated training images for quality ratings (class 1–4, tagged by EOL users)                   | [Zenodo – Classes 1–4](https://zenodo.org/records/13305561)                                               |
+| 🖼️ Training Images (Class 5)      | Exemplars for class 5 ("ideal" images)                                                           | [Zenodo – Class 5 Exemplars](https://zenodo.org/records/13305564)                                         |
+| 💬 Feature Requests               | Request specific model files or datasets not listed above                                        | [Open an issue](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose)           |
+
   
 ## References
 * [Çakır 2019](https://medium.com/analytics-vidhya/create-tensorflow-image-classification-model-with-your-own-dataset-in-google-colab-63e9d7853a3e). Create Tensorflow Image Classification Model with Your Own Dataset in Google Colab. Medium. 31 Oct 2019.
