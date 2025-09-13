@@ -1,5 +1,5 @@
-# Set up directory structure and model parameters
-# Last updated 2 Dec 2024 by K Wolcott
+# Set up directory structure and model parameters - Classif for image tagging
+# Last updated 28 Jan 2025 by K Wolcott
 import os
 import subprocess
 import shutil
@@ -37,6 +37,16 @@ def get_model_info(TRAIN_SESS_NUM):
     # Session 13 - image type
     elif int(TRAIN_SESS_NUM) == 13:
         module_selection = ("mobilenet_v2_1.0_224", 224)
+        dataset_labels = ['herb', 'illus', 'map', 'null', 'phylo']
+
+    # Session 14 - image type
+    elif int(TRAIN_SESS_NUM) == 14:
+        module_selection = ("mobilenet_v2_1.0_224", 224)
+        dataset_labels = ['herb', 'illus', 'map', 'null', 'phylo']
+
+    # Session 15 - image type
+    elif int(TRAIN_SESS_NUM) == 15:
+        module_selection = ("inception_v3", 299)
         dataset_labels = ['herb', 'illus', 'map', 'null', 'phylo']
 
     return module_selection, dataset_labels
