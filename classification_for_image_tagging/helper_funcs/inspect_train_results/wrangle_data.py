@@ -1,10 +1,12 @@
 # Utility functions for running inference - Classification for image tagging
-# Last updated 28 Jan 2025 by K Wolcott
+# Last updated 13 Sep 2025 by K Wolcott
 import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import tensorflow as tf
+import time
+import csv
 
 # To read in EOL formatted data files
 def read_datafile(fpath, sep="\t", header=0, disp_head=True, lineterminator='\n', encoding='latin1', dtype=None):
@@ -67,3 +69,65 @@ def plot_image_results(i, disp_img, tag):
         ax.imshow(disp_img)
         plt.axis('off')
         plt.title("{}) Image type: {} ".format(i+1, tag))
+
+# Run inference
+def run_inference(model, df, pixels, dataset_labels, start, stop, cutoff, outfpath, image_from_url, get_predict_info, export_results):
+    all_predictions = []
+
+    for i, row in enumerate(df.iloc[start:stop].iterrows()):
+        try:
+            url = df['eolMediaURL'][i]
+            img, _, _ = image_from_url(url, f"{i}.jpg", pixels)
+
+            start_time = time.time()
+            predictions = model.predict(img, batch_size=1)
+            label_num, conf, det_imclass = get_predict_info(predictions, url, i, stop, start, dataset_labels)
+            end_time = time.time()
+
+            export_results(df, url, det_imclass, conf, i)
+
+            print(f"\033[92mCompleted for {len(all_predictions)} of {cutoff} files\033[0m")
+            all_predictions.append(det_imclass)
+
+            if len(all_predictions) >= cutoff:
+                break
+
+        except Exception as e:
+            print(f"\033[91mError for URL: {url} -- {str(e)}\033[0m")
+
+    print("\n\n~~~\n\033[92mInference complete!\033[0m \033[93mRun these steps for remaining batches before proceeding.\033[0m\n~~~")
+
+
+# Run inference
+def run_inference_imtype(model, df, pixels, dataset_labels, start, stop, cutoff, outfpath, image_from_url, get_predict_info, export_results, cartoonize=False, calc_img_diffs=False):
+    all_predictions = []
+
+    for i, row in enumerate(df.iloc[start:stop].iterrows()):
+        try:
+            url = df['eolMediaURL'][i]
+            img, disp_img, _ = image_from_url(url, f"{i}.jpg", pixels)
+            
+            if cartoonize:
+                 # Cartoonization
+                img_cv = np.array(disp_img) # For working with cv2 lib
+                img2 = cartoonize(img_cv)
+                # Calculate differences between original and cartoonized image
+                mnorm_pp, _, _, _ = calc_img_diffs(img_cv, img2)
+
+            start_time = time.time()
+            predictions = model.predict(img, batch_size=1)
+            label_num, conf, det_imclass = get_predict_info(predictions, url, i, stop, start, dataset_labels)
+            end_time = time.time()
+
+            export_results(df, url, det_imclass, mnorm_pp, conf, i)
+
+            print(f"\033[92mCompleted for {len(all_predictions)} of {cutoff} files\033[0m")
+            all_predictions.append(det_imclass)
+
+            if len(all_predictions) >= cutoff:
+                break
+
+        except Exception as e:
+            print(f"\033[91mError for URL: {url} -- {str(e)}\033[0m")
+
+    print("\n\n~~~\n\033[92mInference complete!\033[0m \033[93mRun these steps for remaining batches before proceeding.\033[0m\n~~~")
