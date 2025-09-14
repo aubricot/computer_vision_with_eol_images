@@ -1,6 +1,6 @@
 # Computer Vision with EOL v3 Images 
 Testing different computer vision methods (object detection, image classification) to do customized, large-scale image processing for [Encyclopedia of Life v3 database images](https://eol.org/pages/2913056/media) (square, centered crops; image content tags; etc). Runs in Tensorflow 2 and Python 3.  
-*Last updated 13 September 2025*
+*Last updated 14 September 2025*
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -96,16 +96,20 @@ For additional details on steps below, see the [project wiki](https://github.com
 ## Data and model availability
 | Resource Type                      | Description                                                                                      | Link                                                                                                       |
 |-----------------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| **Classification for image tagging** |                                                                                                  |                                                                                                            |
+|  **Classification for Image Tagging** |                                                                                                  |                                                                                                            |
 | 🏷️ Image Tags                     | EOL image tags produced using these pipelines                                                    | [Zenodo - EOL Computer Vision](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch)     |
 | 🧠 Trained Models (Colab use)     | Models are set up for direct download within Colab notebooks                                     | _Embedded in Colab – no direct link_                                                                      |
 | 🧪 Trained Models (Model Zoo)     | Models used for generating tags and crops                                                        | [EOL’s Kaggle Model Zoo](https://www.kaggle.com/eolorg/models)                                            |
 | 🖼️ Training Images (Classes 1–4)  | Annotated training images for quality ratings (class 1–4, tagged by EOL users)                   | [Zenodo – Classes 1–4](https://zenodo.org/records/13305561)                                               |
 | 🖼️ Training Images (Class 5)      | Exemplars for class 5 ("ideal" images)                                                           | [Zenodo – Class 5 Exemplars](https://zenodo.org/records/13305564)                                         |
-| **Object detection for image tagging** |                                                                                                  |                                                                                                            |
-| 🏷️ Image Tags         | EOL image tags produced using these pipelines (upload in progress)                           | [Zenodo - EOL Computer Vision](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch)              |
-| **Other** | | |
-| 💬 Feature Requests               | Request specific model files or datasets not listed above                                        | [Open an issue](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose)           |
+|  **Object Detection for Image Cropping** |                                                                                                  |                                                                                                            |
+| 🖼️ Ground Truth Images           | Ground truths vs. model-predicted boxes from `inspect_train_results.ipynb`                       | [Zenodo - Ground Truths vs Predictions](https://doi.org/10.5281/zenodo.14853913)                          |
+| 🧠 Trained Models                | EOL-trained models used to generate tags and crops                                               | [Kaggle - EOL's Model Zoo](https://www.kaggle.com/eolorg/models)                                          |
+| ✂️ Cropping Data                 | User-generated square cropping coordinates used to train models                                  | [Zenodo - User Cropping Data](https://zenodo.org/records/13305560)                                        |
+|  **Object Detection for Image Tagging** |                                                                                                  |                                                                                                            |
+| 🏷️ Image Tags                   | EOL image tags produced using object detection pipelines (upload in progress)                    | [Zenodo - EOL Computer Vision](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch)     |
+|  **Other**                     |                                                                                                  |                                                                                                            |
+| 💬 Feature Requests              | Request specific model files or datasets not listed above                                        | [Open an issue](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose)           |
 
 
 ## References
