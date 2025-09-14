@@ -1,6 +1,6 @@
 # Object Detection for Image Cropping 
 Testing different existing object detection frameworks using Faster-RCNN (built on Resnet 50 and Inception v2) and SSD (built on MobileNet v2) via the Tensorflow Object Detection API as a method to do customized, large-scale image cropping for different groups of animals for [EOL.org](https://eol.org/pages/2913056/media). Now runs in TF2 and Python 3.   
-*Last updated 1 September 2025*  
+*Last updated 14 September 2025*  
 
 <p align="center">
 <a href="url"><img src="https://github.com/aubricot/computer_vision_with_eol_images/blob/master/object_detection_for_image_cropping/images/banner.jpg" align="middle" width="900" ></a></p>   
@@ -102,7 +102,13 @@ For additional details on steps below, see the [project wiki](https://github.com
 *--Note on framework versions: Tensorflow pipelines were built in TF1 in 2020 and updated to TF2 in 2021. YOLO pipelines were built with YOLO v2 in Darkflow and are no long being updated because darkflow does not support newer versions of YOLO. For object detection with a native implementation of YOLO v3, see [Object Detection for Image Tagging pipelines](https://github.com/aubricot/computer_vision_with_eol_images/tree/master/object_detection_for_image_tagging)--*
 
 ## Data and model availability
-EOL image tags and square cropping coordinates produced using these pipelines are available on [Zenodo](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch). Images with ground truths versus model predicted bounding boxes produced by inspect_train_results.ipynb notebooks are available on Zenodo, [here](https://doi.org/10.5281/zenodo.14853913). EOL trained models are currently set to directly download within Colab Notebooks. Our trained models used to generate tags and crops are available on Kaggle, [check EOL's Kaggle Model Zoo here](https://www.kaggle.com/eolorg/models). EOL user-generated square cropping coordinates used to train models are available on [Zenodo](https://zenodo.org/records/13305560). If there is a specific model file or dataset you would like that is not available through the sites listed above, [open a feature request](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose).
+| Resource Type         | Description                                                                                   | Link                                                                                                                                       |
+|----------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| 🏷️ Image Tags         | EOL image tags produced using these pipelines                                                  | [Zenodo - EOL Computer Vision](https://zenodo.org/communities/eol/records?q=computer%20vision&l=list&p=1&s=10&sort=bestmatch)              |
+| 🖼️ Ground Truth Images | Images with ground truths vs. model-predicted bounding boxes from `inspect_train_results.ipynb` | [Zenodo - Ground Truths vs Predictions](https://doi.org/10.5281/zenodo.14853913)                                                           |
+| 🧠 Trained Models      | EOL-trained models used to generate tags and crops (auto-download in Colab)                   | [Kaggle - EOL's Model Zoo](https://www.kaggle.com/eolorg/models)                                                                           |
+| ✂️ Cropping Data       | EOL user-generated square cropping coordinates used to train models                           | [Zenodo - User Cropping Data](https://zenodo.org/records/13305560)                                                                         |
+| 💬 Feature Requests    | Request specific model files or datasets not listed above                                     | [Open an issue](https://github.com/aubricot/computer_vision_with_eol_images/issues/new/choose)                                            |
 
 ## References
 * [Cartucho 2019](https://github.com/Cartucho/mAP). mAP (mean average precision). GitHub.  
